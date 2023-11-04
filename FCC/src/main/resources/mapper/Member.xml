@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	mybatis 기술문서에 보면 resultMap,parameterMap
+	원래 DB 필드값이 item1,item2 ,... Dto 랑 안맞으면
+	map은 두개를 mapping 시켜야 할때 xml 로 기술한다.
+ --> 
+<mapper namespace="Member">
+
+	
+	<insert id="Member_insert" parameterType="MemberDto">
+	 	insert into member
+	  	 (
+		   	 member_seq
+		   	 ,user_name
+		   	 ,password
+		   	 ,email
+		   	 ,nick_name
+		   	 ,member_wdate
+	  	 )
+	  	 values
+	  	 (
+	  	  	SEQ_MEMBER.nextval
+		  	 ,#{user_name}
+		   	 ,#{password}
+		   	 ,#{email}
+		   	 ,#{nick_name}
+		   	 ,sysdate
+	  	 )
+	 	
+	 	
+	 </insert>
+	 
+	
+</mapper>
