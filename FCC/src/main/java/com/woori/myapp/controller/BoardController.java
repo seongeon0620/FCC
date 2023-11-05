@@ -10,4 +10,9 @@ public class BoardController {
 	public String board_list() {
 		return "board/board_list";
 	}
+	
+	@GetMapping("board/view")
+	public String board_view() {
+		return "board/board_view";
+	}
 }
