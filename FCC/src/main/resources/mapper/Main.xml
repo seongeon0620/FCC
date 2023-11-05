@@ -89,14 +89,18 @@
 	 );
 	 -->
 	 
-	 SELECT CASE WHEN E_CNT = 0 THEN '양호' WHEN E_Cnt/T_Cnt < 0.3 then '보통' ELSE '위험' END as F_Status
+	SELECT CASE WHEN T_Cnt = 0 THEN '비움'
+	            WHEN E_CNT = 0 THEN '양호' 
+	            WHEN E_Cnt/T_Cnt < 0.3 then '보통' 
+	            ELSE '위험' 
+	       END as F_Status
 	     , T_Cnt
 	     , E_Cnt
 	  FROM (SELECT COUNT(FRIGO_SEQ) as T_Cnt
 	             , COUNT(case when FRIGO_EXPIRATION  < sysdate then 1 end) as E_Cnt
 	          FROM tb_frigo
-	     Where  mem_seq = #{mem_seq}
-	 );
+	     Where  mem_seq = 100
+	 )
 	</select>
 	
 	
