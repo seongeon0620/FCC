@@ -1,0 +1,4 @@
+@charset "UTF-8";
+
+.task-list-container {flex-grow: 1;}
+.select2-dropdown {z-index: 1055;}

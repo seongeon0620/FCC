@@ -62,26 +62,14 @@ $(function () {
       .on("click", function (event) {
         getAddBtnClass = $(this).attr("class").split(" ")[1];
 
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, "0");
-        var mm = String(today.getMonth());
+		let today = new Date();
+		let dd = String(today.getDate()).padStart(2, "0");
+		let mm = String(today.getMonth() + 1);
+		let yy = String(today.getFullYear()).slice(-2);
+		let hh = String(today.getHours());
+		let minutes = String(today.getMinutes());
 
-        var monthNames = [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec",
-        ];
-
-        today = dd + " " + monthNames[mm];
+		today = yy + "/" + mm + "/" + dd + " " + hh + ":" + minutes;
 
         var $_getParent = getParent;
 
@@ -119,11 +107,18 @@ $(function () {
           itemText +
           "</p>" +
           "</div>" +
-          '<div class="task-bottom">' +
+          '<div class="task-bottom flex-wrap">' +
           '<div class="tb-section-1">' +
           '<span class="hstack gap-2 fs-2" data-item-date="' +
           today +
-          '"><i class="ti ti-calendar fs-5"></i> ' +
+          '">등록일시<i class="ti ti-calendar fs-5"></i> ' +
+          today +
+          "</span>" +
+          "</div>" +
+          '<div class="tb-section-1">' +
+          '<span class="hstack gap-2 fs-2" data-item-date="' +
+          today +
+          '">유통기한<i class="ti ti-calendar fs-5"></i> ' +
           today +
           "</span>" +
           "</div>" +
