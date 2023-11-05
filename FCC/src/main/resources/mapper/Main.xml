@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	mybatis 기술문서에 보면 resultMap,parameterMap
+	원래 DB 필드값이 item1,item2 ,... Dto 랑 안맞으면
+	map은 두개를 mapping 시켜야 할때 xml 로 기술한다.
+ --> 
+<mapper namespace="Main">
+	<select id="randomRecipeList" resultType="RecipeDto" parameterType="RecipeDto">
+	</select>
+	
+	<!-- 냉장고 -->
+	<select id="MainRefriList" resultType="refriDto" parameterType="refriDto">
+	</select>
+	
+	<!-- 냉동실 -->
+	<select id="MainIceList" resultType="refriDto" parameterType="refriDto">
+	</select>
+	
+	<!--  영양 성분  -->
+	<select id="ingreNutritionInfo" resultType="ingreDto" parameterType="ingreDto">
+	</select>
+	
+	<!--  냉장고 신선도  -->
+	<select id="RefriFreshInfo" resultType="ingreDto" parameterType="ingreDto">
+	</select>
+	
+	
+</mapper>
