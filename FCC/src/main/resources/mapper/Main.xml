@@ -8,24 +8,95 @@
 	원래 DB 필드값이 item1,item2 ,... Dto 랑 안맞으면
 	map은 두개를 mapping 시켜야 할때 xml 로 기술한다.
  --> 
+ 	<!-- 이미지 소자 가져옴  -->
 <mapper namespace="Main">
 	<select id="randomRecipeList" resultType="RecipeDto" parameterType="RecipeDto">
+	SELECT RCP_IMG_S 
+	  FROM ( select * 
+	           from tb_recipe  
+	          order by DBMS_RANDOM.RANDOM ) Tb1
+	WHERE  rownum <= 10
 	</select>
 	
 	<!-- 냉장고 -->
 	<select id="MainRefriList" resultType="refriDto" parameterType="refriDto">
+	<!-- 
+	SELECT * 
+	  FROM ( select *
+	           from tb_frigo
+	          Where  mem_seq = 2
+	            and  ingre_seq = 3
+	            and  FRIGO_STORAGE = '냉장'
+	          order by FRIGO_EXPIRATION
+	        ) tb1
+	WHERE  rownum <= 10;
+	-->
+
+	SELECT  ingre_name
+	  FROM ( select *
+	           from tb_frigo
+	          Where  mem_seq = #{mem_seq}
+	            and  ingre_seq = #{ingre_seq}
+	            and  FRIGO_STORAGE = '냉장'
+	          order by FRIGO_EXPIRATION
+	        ) tb1
+	WHERE  rownum <= 10
 	</select>
 	
 	<!-- 냉동실 -->
 	<select id="MainIceList" resultType="refriDto" parameterType="refriDto">
+		SELECT  ingre_name
+		  FROM ( select *
+		           from tb_frigo
+		          Where  mem_seq = #{mem_seq}
+		            and  ingre_seq = #{ingre_seq}
+		            and  FRIGO_STORAGE = '냉동'
+		          order by FRIGO_EXPIRATION
+		        ) tb1
+		WHERE  rownum <= 10
+	</select>
+	
+	<!-- 실온보관 -->
+	<select id="MainIceList" resultType="refriDto" parameterType="refriDto">
+		SELECT  ingre_name
+		  FROM ( select *
+		           from tb_frigo
+		          Where  mem_seq = #{mem_seq}
+		            and  ingre_seq = #{ingre_seq}
+		            and  FRIGO_STORAGE = '실온'
+		          order by FRIGO_EXPIRATION
+		        ) tb1
+		WHERE  rownum <= 10
 	</select>
 	
 	<!--  영양 성분  -->
 	<select id="ingreNutritionInfo" resultType="ingreDto" parameterType="ingreDto">
+	SELECT  INGRE_NAME, INGRE_PRO, INGRE_CAR , INGRE_FAT
+	  FROM tb_ingre
+	 WHERE  ingre_seq = #{ingre_seq}
 	</select>
 	
 	<!--  냉장고 신선도  -->
 	<select id="RefriFreshInfo" resultType="ingreDto" parameterType="ingreDto">
+	<!--  
+	SELECT CASE WHEN E_CNT = 0 THEN '양호' WHEN E_Cnt/T_Cnt < 0.3 then '보통' ELSE '위험' END as F_Status
+	     , T_Cnt
+	     , E_Cnt
+	  FROM (SELECT COUNT(FRIGO_SEQ) as T_Cnt
+	             , COUNT(case when FRIGO_EXPIRATION  < sysdate then 1 end) as E_Cnt
+	          FROM tb_frigo
+	     Where  mem_seq = 2
+	 );
+	 -->
+	 
+	 SELECT CASE WHEN E_CNT = 0 THEN '양호' WHEN E_Cnt/T_Cnt < 0.3 then '보통' ELSE '위험' END as F_Status
+	     , T_Cnt
+	     , E_Cnt
+	  FROM (SELECT COUNT(FRIGO_SEQ) as T_Cnt
+	             , COUNT(case when FRIGO_EXPIRATION  < sysdate then 1 end) as E_Cnt
+	          FROM tb_frigo
+	     Where  mem_seq = #{mem_seq}
+	 );
 	</select>
 	
 	
