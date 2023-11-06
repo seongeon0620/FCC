@@ -8,18 +8,17 @@
 	원래 DB 필드값이 item1,item2 ,... Dto 랑 안맞으면
 	map은 두개를 mapping 시켜야 할때 xml 로 기술한다.
  --> 
- 	<!-- 이미지 소자 가져옴  -->
 <mapper namespace="Main">
 	<select id="randomRecipeList" resultType="RecipeDto" parameterType="RecipeDto">
               SELECT RCP_IMG_S , rcp_name
 			  FROM ( select * 
 			           from tb_recipe  
 			          order by DBMS_RANDOM.RANDOM ) Tb1
-			WHERE  rownum <![CDATA[<=]]> 10
+			WHERE  rownum <![CDATA[<=]]> 6
 	</select>
 	
 	<!-- 냉장고 -->
-	<select id="MainRefriList" resultType="refriDto" parameterType="refriDto">
+	<select id="MainRefriList" resultType="FrigoDto" parameterType="FrigoDto">
 		SELECT * 
 		  FROM ( select *
 		           from tb_frigo
@@ -28,7 +27,7 @@
 		            and  FRIGO_STORAGE = '냉장'
 		          order by FRIGO_EXPIRATION
 		        ) tb1
-		WHERE  rownum <![CDATA[<=]]> 10;
+		WHERE  rownum <![CDATA[<=]]> 10
 
 <!-- 
 		SELECT  ingre_name
@@ -44,7 +43,7 @@
 	</select>
 	
 	<!-- 냉동실 -->
-	<select id="MainIceList" resultType="refriDto" parameterType="refriDto">
+	<select id="MainIceList" resultType="FrigoDto" parameterType="FrigoDto">
 		SELECT  ingre_name
 		  FROM ( select *
 		           from tb_frigo
@@ -57,7 +56,7 @@
 	</select>
 	
 	<!-- 실온보관 -->
-	<select id="MainIceList" resultType="refriDto" parameterType="refriDto">
+	<select id="MainIndoorList" resultType="FrigoDto" parameterType="FrigoDto">
 		SELECT  ingre_name
 		  FROM ( select *
 		           from tb_frigo
@@ -70,7 +69,7 @@
 	</select>
 	
 	<!--  영양 성분  -->
-	<select id="ingreNutritionInfo" resultType="ingreDto" parameterType="ingreDto">
+	<select id="ingreNutritionInfo" resultType="IngreDto" parameterType="IngreDto">
 	SELECT  INGRE_NAME, INGRE_PRO, INGRE_CAR , INGRE_FAT
 	  FROM tb_ingre
 	 WHERE  ingre_seq = 11
@@ -83,7 +82,7 @@
 	</select>
 	
 	<!--  냉장고 신선도  -->
-	<select id="RefriFreshInfo" resultType="ingreDto" parameterType="ingreDto">
+	<select id="RefriFreshInfo" resultType="IngreDto" parameterType="IngreDto">
 		SELECT CASE WHEN T_Cnt = 0 THEN '비움'
 		            WHEN E_CNT = 0 THEN '양호' 
 		            WHEN E_Cnt/T_Cnt <![CDATA[<]]> 0.3 then '보통' 
