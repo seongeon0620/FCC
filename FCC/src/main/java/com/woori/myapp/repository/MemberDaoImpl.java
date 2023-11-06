@@ -19,4 +19,16 @@ public class MemberDaoImpl implements MemberDao{
 
 	}
 
+	@Override
+	public MemberDto login_proc(MemberDto dto) {
+		return sm.selectOne("Member_login",dto);
+		
+	}
+
+
+	@Override
+	public MemberDto getMypage(MemberDto dto) {
+		return sm.selectOne("Member_getMypage",dto);
+	}
+
 }
