@@ -1,7 +1,14 @@
 {{>layout/header}}
-  <body>
-{{>layout/nav}}
-     <!--  Header End -->
+ <body>
+	<!-- Preloader -->
+	<div class="preloader">
+		<img src="/images/logos/favicon.ico" alt="loader" class="lds-ripple img-fluid" />
+	</div>
+	<!-- Body Wrapper -->
+	<div class="page-wrapper" id="main-wrapper" data-layout="horizontal" data-navbarbg="skin6" data-sidebartype="full"
+		data-sidebar-position="fixed" data-header-position="fixed">
+		{{>layout/nav}}
+		<div class="body-wrapper">
         <div class="container-fluid">
           <!--  Owl carousel -->
           
@@ -154,7 +161,7 @@
             </div>
           </div>
           <!-- //row1 -->
-        
+        </div>
 {{>layout/mobile_nav}}
     <!-- Import Js Files -->
     <script src="/libs/jquery/dist/jquery.min.js"></script>
