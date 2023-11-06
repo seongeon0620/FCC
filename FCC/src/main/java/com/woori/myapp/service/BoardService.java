@@ -6,4 +6,5 @@ import com.woori.myapp.entity.BoardDto;
 
 public interface BoardService {
 	List<BoardDto> getList(BoardDto dto);
+	BoardDto getView(BoardDto dto);
 }

@@ -19,6 +19,12 @@ public class BoardDaoImpl implements BoardDao{
 		
 		return sm.selectList("Board_list", dto);
 	}
+
+	@Override
+	public BoardDto getView(BoardDto dto) {
+		
+		return sm.selectOne("Board_view", dto);
+	}
 	
 	
 }
