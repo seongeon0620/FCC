@@ -4,7 +4,7 @@
      <!--  Header End -->
         <div class="container-fluid">
           <!--  Owl carousel -->
-          <!--
+          
           <div class="owl-carousel counter-carousel owl-theme">
             <div class="item">
               <div class="card border-0 zoom-in bg-light-primary shadow-none">
@@ -17,6 +17,7 @@
                 </div>
               </div>
             </div>
+            
             <div class="item">
               <div class="card border-0 zoom-in bg-light-warning shadow-none">
                 <div class="card-body">
@@ -73,7 +74,6 @@
               </div>
             </div>
           </div>
-          -->
           
           <!--  Row 1 -->
           <div class="row">
@@ -85,7 +85,7 @@
                       <h5 class="card-title fw-semibold">Test님의 냉장고 요약</h5> 		<!--mem_name-->
                     </div>
                     <div>
-                      <select class="form-select">
+                       <select class="form-select" id="fridge-select">
                         <option value="1">냉장고</option>
                         <option value="2">냉동고</option>
                         <option value="3">실온보관</option>
@@ -93,9 +93,8 @@
                     </div>
                   </div>
                   
-                  <div class="row align-items-center">
-                    마늘 
-              
+                  <div class="row align-items-center" id="content-div">
+                    <!-- 내용 업데이트 부분 -->
                   </div>
                   
                 </div>
@@ -109,7 +108,7 @@
                   <div class="card overflow-hidden">
                     <div class="card-body">
                       <div class="row align-items-center">
-                        <div class="col-8">
+                        <div class="col-5">
                           <h5 class="card-title mb-9 fw-semibold">식품명의 영양 정보</h5>
                           <div>
                            <class="card-title mb-9 fw-semibold"> 단백질 : 		</class><br />
@@ -117,9 +116,14 @@
                            <class="card-title mb-9 fw-semibold"> 지방 : 		</class><br />
 						  </div>
                         </div>
-                        <div class="col-4">
+                        
+                        <div class="col-6">
                           <div class="d-flex justify-content-center">
-                            <div id="breakup"></div>
+							  
+		                    <div class="card-body">
+		                        <canvas id="nutritionChart"></canvas>
+		                    </div>
+		                    
                           </div>
                         </div>
                       </div> 
@@ -135,9 +139,9 @@
                           <h5 class="card-title mb-9 fw-semibold"> 냉장고 신선도</h5>
 						<!-- 프로그래스바-->
 						<div class="progress" style="height: 10px">
-							<div class="progress-bar bg-warning" style="width: 100%" role="progressbar">
-								위험
-							</div>
+							<div id="progress-bar" class="progress-bar bg-empty" role="progressbar">
+					          비움
+					        </div>
 						</div>
 						<!--// 프로그래스바-->
                         </div>
@@ -154,16 +158,127 @@
 {{>layout/mobile_nav}}
     <!-- Import Js Files -->
     <script src="/libs/jquery/dist/jquery.min.js"></script>
-    <script src="/libs/simplebar/dist/simplebar.min.js"></script>
-    <script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- core files -->
-    <script src="/js/app.min.js"></script>
-    <script src="/js/app.horizontal.init.js"></script>
     <script src="/js/app-style-switcher.js"></script>
-    <script src="/js/sidebarmenu.js"></script>
     <script src="/js/custom.js"></script>
     <script src="/libs/owl.carousel/dist/owl.carousel.min.js"></script>
-    <script src="/libs/apexcharts/dist/apexcharts.min.js"></script>
     <script src="/js/dashboard.js"></script>
   </body>
 </html>
+
+<script>
+  $(() => {
+    const select = $('#fridge-select');
+    const contentDiv = $('#content-div');
+    const progressBar = $('#progress-bar'); 
+
+    // 냉장고 기본 옵션 설정
+    const defaultOption = '1';
+
+    // 함수: 프로그래스 바의 상태 클래스 설정
+    const setProgressBarState = (state) => {
+      // 프로그래스 바의 클래스를 모두 제거
+      progressBar.removeClass('bg-empty bg-safe bg-normal bg-danger');
+
+      // 상태에 따라 클래스 추가
+      switch (state) {
+        case '비움':
+          progressBar.addClass('bg-empty');
+          break;
+        case '양호':
+          progressBar.addClass('bg-safe');
+          break;
+        case '보통':
+          progressBar.addClass('bg-normal');
+          break;
+        case '위험':
+          progressBar.addClass('bg-danger');
+          break;
+        default:
+          progressBar.addClass('bg-danger'); // 기본값은 위험으로 설정
+          break;
+      }
+    };
+
+    // 함수: 냉장고 신선도 업데이트
+    const updateFreshness = (selectedOption) => {
+      // AJAX 요청 보내기
+      $.ajax({
+        url: '/index/freshness', // 서버 엔드포인트 URL 설정
+        data: { fridgeOption: selectedOption }, // 선택한 냉장고 옵션을 데이터로 전송
+        dataType: 'json',
+        method: 'POST',
+      })
+      .done((res) => {
+        // 서버에서 받은 신선도 상태 값을 설정
+        const freshnessState = res.freshnessState;
+
+        // 프로그래스 바 업데이트
+        setProgressBarState(freshnessState);
+      })
+      .fail((res, error, status) => {
+        console.log(res.responseText);
+      });
+    };
+
+    // 함수: 냉장고 옵션 선택 시 내용 업데이트
+    const updateContent = (selectedOption) => {
+      // AJAX 요청 보내기
+      $.ajax({
+        url: '/index/refigo', // 서버 엔드포인트 URL 설정
+        data: { ingreName: selectedOption }, // 선택한 옵션을 데이터로 전송
+        dataType: 'json',
+        method: 'POST',
+      })
+      .done((res) => {
+        // 서버에서 받은 내용을 content-div에 적용
+        contentDiv.text(res); 
+      })
+      .fail((res, error, status) => {
+        console.log(res.responseText);
+      });
+    };
+
+    // 페이지 로드 시 기본 옵션으로 내용 업데이트 및 프로그래스 바 초기 설정
+    updateContent(defaultOption);
+    setProgressBarState('비움'); // 기본값은 비움으로 설정
+
+    // select 요소의 값이 변경될 때 내용을 업데이트
+    select.on('change', () => {
+      const selectedOption = select.val(); // 선택한 옵션의 값을 가져옴
+      updateContent(selectedOption); // 선택한 옵션에 따라 내용 업데이트
+    });
+  });
+</script>
+
+<!-- 차트 스크립트 -->
+ <script>
+        // 서버에서 받아온 단백질, 탄수화물, 지방 값
+        var proteinValue = 50; // 단백질 값
+        var carbValue = 30; // 탄수화물 값
+        var fatValue = 20; // 지방 값
+
+        // 차트 데이터 설정
+        var data = {
+            datasets: [{
+                data: [proteinValue, carbValue, fatValue],
+                backgroundColor: ['#aec0f5', '#ABCDEF', '#5e7ad6'],
+            }],
+            labels: ['단백질', '탄수화물', '지방'],
+        };
+
+        // 차트 그리기
+        var ctx = document.getElementById("nutritionChart").getContext('2d');
+        var nutritionChart = new Chart(ctx, {
+            type: 'pie',
+            data: data,
+            options: {
+				legend: {
+					display: false // 레이블 숨기기
+				}
+			},
+        });
+    </script>
+
+
+
