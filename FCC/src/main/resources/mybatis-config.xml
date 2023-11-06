@@ -6,11 +6,15 @@
 	<typeAliases>
 		<typeAlias alias="MemberDto"  type="com.woori.myapp.entity.MemberDto"/>
 		<typeAlias alias="BoardDto"  type="com.woori.myapp.entity.BoardDto"/>
+		<typeAlias alias="RecipeDto"  type="com.woori.myapp.entity.RecipeDto"/>
+		<typeAlias alias="IngreDto"  type="com.woori.myapp.entity.IngreDto"/>
+		<typeAlias alias="FrigoDto"  type="com.woori.myapp.entity.FrigoDto"/>
 		
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/Member.xml" />
 		<mapper resource="mapper/Board.xml" />
+		<mapper resource="mapper/Main.xml" />
 	</mappers>
 	
 </configuration>

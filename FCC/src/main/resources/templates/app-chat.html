@@ -1,7 +1,14 @@
 {{>layout/header}}
-  <body>
-{{>layout/nav}}
-
+ <body>
+	<!-- Preloader -->
+	<div class="preloader">
+		<img src="/images/logos/favicon.ico" alt="loader" class="lds-ripple img-fluid" />
+	</div>
+	<!-- Body Wrapper -->
+	<div class="page-wrapper" id="main-wrapper" data-layout="horizontal" data-navbarbg="skin6" data-sidebartype="full"
+		data-sidebar-position="fixed" data-header-position="fixed">
+		{{>layout/nav}}
+		<div class="body-wrapper">
         <div class="container-fluid">
           <div class="card bg-light-info shadow-none position-relative overflow-hidden">
             <div class="card-body px-4 py-3">
