@@ -9,11 +9,13 @@
 		<typeAlias alias="RecipeDto"  type="com.woori.myapp.entity.RecipeDto"/>
 		<typeAlias alias="IngreDto"  type="com.woori.myapp.entity.IngreDto"/>
 		<typeAlias alias="FrigoDto"  type="com.woori.myapp.entity.FrigoDto"/>
+
 		
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/Member.xml" />
 		<mapper resource="mapper/Board.xml" />
+		<mapper resource="mapper/Recipe.xml" />
 		<mapper resource="mapper/Main.xml" />
 	</mappers>
 	

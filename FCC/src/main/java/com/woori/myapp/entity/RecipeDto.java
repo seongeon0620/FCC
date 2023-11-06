@@ -1,6 +1,8 @@
 package com.woori.myapp.entity;
 
-public class RecipeDto {
+import com.woori.myapp.common.BaseDto;
+
+public class RecipeDto extends BaseDto{
     private Long rcp_seq = 0L;
     private String rcp_name = "";
     private String rcp_way = "";
