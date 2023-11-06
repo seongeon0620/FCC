@@ -21,4 +21,10 @@ public class BoardServiceImpl implements BoardService{
 		return dao.getList(dto);
 	}
 
+	@Override
+	public BoardDto getView(BoardDto dto) {
+		
+		return dao.getView(dto);
+	}
+
 }
