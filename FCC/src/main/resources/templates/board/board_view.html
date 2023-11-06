@@ -49,40 +49,27 @@
               <img src="/images/profile/user-5.jpg" alt="" class="img-fluid rounded-circle position-absolute bottom-0 start-0 mb-n9 ms-9" width="40" height="40" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Esther Lindsey">
             </div>
             <div class="card-body p-4">
-              <span class="badge text-bg-light fs-2 rounded-4 py-1 px-2 lh-sm  mt-3">한식</span>
-              <h2 class="fs-9 fw-semibold my-4">Streaming video way before it was cool, go dark tomorrow</h2>
+              <span class="badge text-bg-light fs-2 rounded-4 py-1 px-2 lh-sm  mt-3">{{boardView.board_category}}</span>
+              <h2 class="fs-9 fw-semibold my-4">{{boardView.board_title}}</h2>
               <div class="d-flex align-items-center gap-4">
                 <!-- 조회수 <div class="d-flex align-items-center gap-2"><i class="ti ti-eye text-dark fs-5"></i>2252</div> -->
                 <div class="d-flex align-items-center gap-2"><i class="ti ti-message-2 text-dark fs-5"></i>3</div>
-                <div class="d-flex align-items-center fs-2 ms-auto"><i class="ti ti-point text-dark"></i>Sat, Jan 14</div>
+                <div class="d-flex align-items-center fs-2 ms-auto"><i class="ti ti-point text-dark"></i>{{boardView.board_wdate}}</div>
               </div>
             </div>
             <div class="card-body border-top p-4">
 				<div class="border-bottom mb-3 pb-3">
                 	<h3 class="fw-semibold">재료</h3>
 	                <ul class="my-3 ps-4 text-dark">
-	                  <li class="d-flex align-items-center gap-2"><span class="p-1 bg-dark rounded-circle"></span> Gigure out what it is or</li>
-	                  <li class="d-flex align-items-center gap-2"><span class="p-1 bg-dark rounded-circle"></span> The links it currently</li>
-	                  <li class="d-flex align-items-center gap-2"><span class="p-1 bg-dark rounded-circle"></span> It allows you to start your bid</li>
-	                  <li class="d-flex align-items-center gap-2"><span class="p-1 bg-dark rounded-circle"></span> Gigure out what it is or</li>
-	                  <li class="d-flex align-items-center gap-2"><span class="p-1 bg-dark rounded-circle"></span> The links it currently</li>
-	                  <li class="d-flex align-items-center gap-2"><span class="p-1 bg-dark rounded-circle"></span> It allows you to start your bid</li>
+						{{#ingre}}
+	                  <li class="d-flex align-items-center gap-2"><span class="p-1 bg-dark rounded-circle"></span> {{.}}</li>
+	                	{{/ingre}}
 	                </ul>
               </div>
-              <h2 class="fs-8 fw-semibold mb-3">Title of the paragraph</h2>
+              <h2 class="fs-8 fw-semibold mb-3">조리 방법</h2>
               <p class="mb-3">
-                But you cannot figure out what it is or what it can do. MTA web directory is the simplest way in which one can bid on a link, or a few links if they wish to do so. The link 
-                directory on MTA displays all of the links it currently has, and does so in alphabetical order, which makes it much easier for someone to find what they are looking for if it is 
-                something specific and they do not want to go through all the other sites and links as well. It allows you to start your bid at the bottom and slowly work your way to the top 
-                of the list.
+                {{boardView.board_contents}}
               </p>
-              <p class="mb-3">
-                Gigure out what it is or what it can do. MTA web directory is the simplest way in which one can bid on a link, or a few links if they wish to do so. The link directory on MTA 
-                displays all of the links it currently has, and does so in alphabetical order, which makes it much easier for someone to find what they are looking for if it is something 
-                specific and they do not want to go through all the other sites and links as well. It allows you to start your bid at the bottom and slowly work your way to the top of the
-              </p>
-              <p class="text-dark mb-0"><strong>This is strong text.</strong></p>
-              <p class="mb-0"><em>This is italic text.</em></p>
             </div>
           </div>
           <div class="card">

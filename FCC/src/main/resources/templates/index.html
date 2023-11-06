@@ -11,75 +11,20 @@
 		<div class="body-wrapper">
         <div class="container-fluid">
           <!--  Owl carousel -->
-          
+			  <h3 class="card-title mb-9 fw-semibold">TastyTales's Pick✨</h3> <br />
           <div class="owl-carousel counter-carousel owl-theme">
+			  {{#list}}
             <div class="item">
               <div class="card border-0 zoom-in bg-light-primary shadow-none">
                 <div class="card-body">
                   <div class="text-center">
-                    <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-user-male.svg" width="50" height="50" class="mb-3" alt="" />
-                    <p class="fw-semibold fs-3 text-primary mb-1"> Employees </p>
-                    <h5 class="fw-semibold text-primary mb-0">96</h5>
+                    <img src="{{rcp_img_s}}" width="100" height="100" class="mb-3" alt="" />
+                    <p class="fw-semibold fs-3 text-primary mb-1" style="max-width: 300px; max-height: 300px; overflow: hidden; text-overflow: ellipsis; white-space: normal;">{{rcp_name}}</p>
                   </div>
                 </div>
               </div>
             </div>
-            
-            <div class="item">
-              <div class="card border-0 zoom-in bg-light-warning shadow-none">
-                <div class="card-body">
-                  <div class="text-center">
-                    <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-briefcase.svg" width="50" height="50" class="mb-3" alt="" />
-                    <p class="fw-semibold fs-3 text-warning mb-1">Clients</p>
-                    <h5 class="fw-semibold text-warning mb-0">3,650</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="card border-0 zoom-in bg-light-info shadow-none">
-                <div class="card-body">
-                  <div class="text-center">
-                    <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-mailbox.svg" width="50" height="50" class="mb-3" alt="" />
-                    <p class="fw-semibold fs-3 text-info mb-1">Projects</p>
-                    <h5 class="fw-semibold text-info mb-0">356</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="card border-0 zoom-in bg-light-danger shadow-none">
-                <div class="card-body">
-                  <div class="text-center">
-                    <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-favorites.svg" width="50" height="50" class="mb-3" alt="" />
-                    <p class="fw-semibold fs-3 text-danger mb-1">Events</p>
-                    <h5 class="fw-semibold text-danger mb-0">696</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="card border-0 zoom-in bg-light-success shadow-none">
-                <div class="card-body">
-                  <div class="text-center">
-                    <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-speech-bubble.svg" width="50" height="50" class="mb-3" alt="" />
-                    <p class="fw-semibold fs-3 text-success mb-1">Payroll</p>
-                    <h5 class="fw-semibold text-success mb-0">$96k</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="card border-0 zoom-in bg-light-info shadow-none">
-                <div class="card-body">
-                  <div class="text-center">
-                    <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-connect.svg" width="50" height="50" class="mb-3" alt="" />
-                    <p class="fw-semibold fs-3 text-info mb-1">Reports</p>
-                    <h5 class="fw-semibold text-info mb-0">59</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
+             {{/list}}
           </div>
           
           <!--  Row 1 -->
@@ -175,86 +120,7 @@
 
 <script>
   $(() => {
-    const select = $('#fridge-select');
-    const contentDiv = $('#content-div');
-    const progressBar = $('#progress-bar'); 
-
-    // 냉장고 기본 옵션 설정
-    const defaultOption = '1';
-
-    // 함수: 프로그래스 바의 상태 클래스 설정
-    const setProgressBarState = (state) => {
-      // 프로그래스 바의 클래스를 모두 제거
-      progressBar.removeClass('bg-empty bg-safe bg-normal bg-danger');
-
-      // 상태에 따라 클래스 추가
-      switch (state) {
-        case '비움':
-          progressBar.addClass('bg-empty');
-          break;
-        case '양호':
-          progressBar.addClass('bg-safe');
-          break;
-        case '보통':
-          progressBar.addClass('bg-normal');
-          break;
-        case '위험':
-          progressBar.addClass('bg-danger');
-          break;
-        default:
-          progressBar.addClass('bg-danger'); // 기본값은 위험으로 설정
-          break;
-      }
-    };
-
-    // 함수: 냉장고 신선도 업데이트
-    const updateFreshness = (selectedOption) => {
-      // AJAX 요청 보내기
-      $.ajax({
-        url: '/index/freshness', // 서버 엔드포인트 URL 설정
-        data: { fridgeOption: selectedOption }, // 선택한 냉장고 옵션을 데이터로 전송
-        dataType: 'json',
-        method: 'POST',
-      })
-      .done((res) => {
-        // 서버에서 받은 신선도 상태 값을 설정
-        const freshnessState = res.freshnessState;
-
-        // 프로그래스 바 업데이트
-        setProgressBarState(freshnessState);
-      })
-      .fail((res, error, status) => {
-        console.log(res.responseText);
-      });
-    };
-
-    // 함수: 냉장고 옵션 선택 시 내용 업데이트
-    const updateContent = (selectedOption) => {
-      // AJAX 요청 보내기
-      $.ajax({
-        url: '/index/refigo', // 서버 엔드포인트 URL 설정
-        data: { ingreName: selectedOption }, // 선택한 옵션을 데이터로 전송
-        dataType: 'json',
-        method: 'POST',
-      })
-      .done((res) => {
-        // 서버에서 받은 내용을 content-div에 적용
-        contentDiv.text(res); 
-      })
-      .fail((res, error, status) => {
-        console.log(res.responseText);
-      });
-    };
-
-    // 페이지 로드 시 기본 옵션으로 내용 업데이트 및 프로그래스 바 초기 설정
-    updateContent(defaultOption);
-    setProgressBarState('비움'); // 기본값은 비움으로 설정
-
-    // select 요소의 값이 변경될 때 내용을 업데이트
-    select.on('change', () => {
-      const selectedOption = select.val(); // 선택한 옵션의 값을 가져옴
-      updateContent(selectedOption); // 선택한 옵션에 따라 내용 업데이트
-    });
+	  
   });
 </script>
 

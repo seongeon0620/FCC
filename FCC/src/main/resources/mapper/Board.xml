@@ -12,6 +12,19 @@ from (
         from tb_board A
         ) A where pg=#{pg}
 	 </select>
+	 
+	 <select id="Board_view" resultType="BoardDto" parameterType="BoardDto">
+	 select  
+	 	board_seq, 
+	 	board_category, 
+	 	board_ingredients, 
+	 	board_title, 
+	 	board_contents, 
+	 	board_wdate, 
+	 	member_seq
+	from tb_board
+	where board_seq = #{board_seq}
+	 </select>
 </mapper>
 
 
