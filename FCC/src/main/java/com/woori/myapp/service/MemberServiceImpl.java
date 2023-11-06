@@ -19,4 +19,18 @@ public class MemberServiceImpl implements MemberService{
 		
 	}
 
+	@Override
+	public MemberDto login_proc(MemberDto dto) {
+		
+		MemberDto resultDto = dao.login_proc(dto);
+		
+		return resultDto;
+	}
+
+	@Override
+	public MemberDto getMypage(MemberDto dto) {
+		MemberDto resultDto = dao.getMypage(dto);
+		return resultDto;
+	}
+
 }
