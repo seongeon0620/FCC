@@ -31,4 +31,13 @@ public class MemberDaoImpl implements MemberDao{
 		return sm.selectOne("Member_getMypage",dto);
 	}
 
+	@Override
+	public boolean idCheck(MemberDto dto) {
+		int cnt = sm.selectOne("Member_idcheck",dto);
+		if(cnt==0) {
+			return true;
+		}					
+		return false;
+	}
+
 }
