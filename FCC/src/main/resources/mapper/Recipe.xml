@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Recipe">
+	 <select id="Recipe_getList" resultType="RecipeDto" parameterType="RecipeDto">
+		select A.rcp_seq, A.rcp_name, A.rcp_img_s
+		from 
+		(	select A.rcp_seq, A.rcp_name, A.rcp_img_s,
+				    row_number() over( order by rcp_seq asc) as rnum,
+					ceil(row_number() over( order by rcp_seq asc)/9)-1 as pg
+			from tb_recipe A
+		)A where pg=#{pg}		
+	 </select>
+	 
+	 <select id="Recipe_getTotalCnt" resultType="int">
+        SELECT COUNT(*) FROM tb_recipe
+    </select>
+</mapper>
