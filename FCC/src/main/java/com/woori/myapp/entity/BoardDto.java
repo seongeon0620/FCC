@@ -1,76 +1,69 @@
 package com.woori.myapp.entity;
 
-public class BoardDto {
-	private Long boardSeq;
-    private String boardWriter;
-    private String boardCategory;
-    private String boardTitle;
-    private String boardContents;
-    private String boardIngredients;
-    private	String boardWDate;
-    private Long memberSeq;
+import com.woori.myapp.common.BaseDto;
+
+public class BoardDto extends BaseDto{
+	private Long board_seq;
+    private String board_category;
+    private String board_title;
+    private String board_contents;
+    private String board_ingredients;
+    private	String board_wdate;
+    private Long member_seq;
 
     public Long getBoardSeq() {
-        return boardSeq;
+        return board_seq;
     }
 
     public void setBoardSeq(Long boardSeq) {
-        this.boardSeq = boardSeq;
-    }
-
-    public String getBoardWriter() {
-        return boardWriter;
-    }
-
-    public void setBoardWriter(String boardWriter) {
-        this.boardWriter = boardWriter;
+        this.board_seq = boardSeq;
     }
 
     public String getBoardCategory() {
-        return boardCategory;
+        return board_category;
     }
 
     public void setBoardCategory(String boardCategory) {
-        this.boardCategory = boardCategory;
+        this.board_category = boardCategory;
     }
 
     public String getBoardTitle() {
-        return boardTitle;
+        return board_title;
     }
 
     public void setBoardTitle(String boardTitle) {
-        this.boardTitle = boardTitle;
+        this.board_title = boardTitle;
     }
 
     public String getBoardContents() {
-        return boardContents;
+        return board_contents;
     }
 
     public void setBoardContents(String boardContents) {
-        this.boardContents = boardContents;
+        this.board_contents = boardContents;
     }
 
     public String getBoardIngredients() {
-        return boardIngredients;
+        return board_ingredients;
     }
 
     public void setBoardIngredients(String boardIngredients) {
-        this.boardIngredients = boardIngredients;
+        this.board_ingredients = boardIngredients;
     }
 
     public String getBoardWDate() {
-        return boardWDate;
+        return board_wdate;
     }
 
     public void setBoardWDate(String boardWDate) {
-        this.boardWDate = boardWDate;
+        this.board_wdate = boardWDate;
     }
 
     public Long getMemberSeq() {
-        return memberSeq;
+        return member_seq;
     }
 
     public void setMemberSeq(Long memberSeq) {
-        this.memberSeq = memberSeq;
+        this.member_seq = memberSeq;
     }
 }
