@@ -11,36 +11,36 @@
  	<!-- 이미지 소자 가져옴  -->
 <mapper namespace="Main">
 	<select id="randomRecipeList" resultType="RecipeDto" parameterType="RecipeDto">
-	SELECT RCP_IMG_S 
-	  FROM ( select * 
-	           from tb_recipe  
-	          order by DBMS_RANDOM.RANDOM ) Tb1
-	WHERE  rownum <= 10
+              SELECT RCP_IMG_S , rcp_name
+			  FROM ( select * 
+			           from tb_recipe  
+			          order by DBMS_RANDOM.RANDOM ) Tb1
+			WHERE  rownum <![CDATA[<=]]> 10
 	</select>
 	
 	<!-- 냉장고 -->
 	<select id="MainRefriList" resultType="refriDto" parameterType="refriDto">
-	<!-- 
-	SELECT * 
-	  FROM ( select *
-	           from tb_frigo
-	          Where  mem_seq = 2
-	            and  ingre_seq = 3
-	            and  FRIGO_STORAGE = '냉장'
-	          order by FRIGO_EXPIRATION
-	        ) tb1
-	WHERE  rownum <= 10;
-	-->
+		SELECT * 
+		  FROM ( select *
+		           from tb_frigo
+		          Where  mem_seq = 2
+		            and  ingre_seq = 3
+		            and  FRIGO_STORAGE = '냉장'
+		          order by FRIGO_EXPIRATION
+		        ) tb1
+		WHERE  rownum <![CDATA[<=]]> 10;
 
-	SELECT  ingre_name
-	  FROM ( select *
-	           from tb_frigo
-	          Where  mem_seq = #{mem_seq}
-	            and  ingre_seq = #{ingre_seq}
-	            and  FRIGO_STORAGE = '냉장'
-	          order by FRIGO_EXPIRATION
-	        ) tb1
-	WHERE  rownum <= 10
+<!-- 
+		SELECT  ingre_name
+		  FROM ( select *
+		           from tb_frigo
+		          Where  mem_seq = #{mem_seq}
+		            and  ingre_seq = #{ingre_seq}
+		            and  FRIGO_STORAGE = '냉장'
+		          order by FRIGO_EXPIRATION
+		        ) tb1
+		WHERE  rownum <![CDATA[<=]]> 10
+		-->
 	</select>
 	
 	<!-- 냉동실 -->
@@ -48,12 +48,12 @@
 		SELECT  ingre_name
 		  FROM ( select *
 		           from tb_frigo
-		          Where  mem_seq = #{mem_seq}
-		            and  ingre_seq = #{ingre_seq}
+	          Where  mem_seq = 2
+	            and  ingre_seq = 3
 		            and  FRIGO_STORAGE = '냉동'
 		          order by FRIGO_EXPIRATION
 		        ) tb1
-		WHERE  rownum <= 10
+		WHERE  rownum <![CDATA[<=]]>10
 	</select>
 	
 	<!-- 실온보관 -->
@@ -61,46 +61,41 @@
 		SELECT  ingre_name
 		  FROM ( select *
 		           from tb_frigo
-		          Where  mem_seq = #{mem_seq}
-		            and  ingre_seq = #{ingre_seq}
+	          Where  mem_seq = 2
+	         	   and  ingre_seq = 3
 		            and  FRIGO_STORAGE = '실온'
 		          order by FRIGO_EXPIRATION
 		        ) tb1
-		WHERE  rownum <= 10
+		WHERE  rownum <![CDATA[<=]]> 10
 	</select>
 	
 	<!--  영양 성분  -->
 	<select id="ingreNutritionInfo" resultType="ingreDto" parameterType="ingreDto">
 	SELECT  INGRE_NAME, INGRE_PRO, INGRE_CAR , INGRE_FAT
 	  FROM tb_ingre
+	 WHERE  ingre_seq = 11
+	
+	<!--
+	SELECT  INGRE_NAME, INGRE_PRO, INGRE_CAR , INGRE_FAT
+	  FROM tb_ingre
 	 WHERE  ingre_seq = #{ingre_seq}
+	   -->
 	</select>
 	
 	<!--  냉장고 신선도  -->
 	<select id="RefriFreshInfo" resultType="ingreDto" parameterType="ingreDto">
-	<!--  
-	SELECT CASE WHEN E_CNT = 0 THEN '양호' WHEN E_Cnt/T_Cnt < 0.3 then '보통' ELSE '위험' END as F_Status
-	     , T_Cnt
-	     , E_Cnt
-	  FROM (SELECT COUNT(FRIGO_SEQ) as T_Cnt
-	             , COUNT(case when FRIGO_EXPIRATION  < sysdate then 1 end) as E_Cnt
-	          FROM tb_frigo
-	     Where  mem_seq = 2
-	 );
-	 -->
-	 
-	SELECT CASE WHEN T_Cnt = 0 THEN '비움'
-	            WHEN E_CNT = 0 THEN '양호' 
-	            WHEN E_Cnt/T_Cnt < 0.3 then '보통' 
-	            ELSE '위험' 
-	       END as F_Status
-	     , T_Cnt
-	     , E_Cnt
-	  FROM (SELECT COUNT(FRIGO_SEQ) as T_Cnt
-	             , COUNT(case when FRIGO_EXPIRATION  < sysdate then 1 end) as E_Cnt
-	          FROM tb_frigo
-	     Where  mem_seq = 100
-	 )
+		SELECT CASE WHEN T_Cnt = 0 THEN '비움'
+		            WHEN E_CNT = 0 THEN '양호' 
+		            WHEN E_Cnt/T_Cnt <![CDATA[<]]> 0.3 then '보통' 
+		            ELSE '위험' 
+		       END as F_Status
+		     , T_Cnt
+		     , E_Cnt
+		  FROM (SELECT COUNT(FRIGO_SEQ) as T_Cnt
+		             , COUNT(case when FRIGO_EXPIRATION  <![CDATA[<]]> sysdate then 1 end) as E_Cnt
+		          FROM tb_frigo
+		     Where  mem_seq = 1
+		 )
 	</select>
 	
 	
