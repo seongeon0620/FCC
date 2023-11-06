@@ -9,10 +9,14 @@
 	map은 두개를 mapping 시켜야 할때 xml 로 기술한다.
  --> 
 <mapper namespace="Member">
-
+	<select id="Member_idcheck" resultType="Integer" parameterType="MemberDto">
+		select count(*) from tb_member
+		where mem_name=#{mem_name}
+	
+	</select>
 	
 	<insert id="Member_insert" parameterType="MemberDto">
-	 	insert into member
+	 	insert into tb_member
 	  	 (
 		   	 mem_seq
 		   	 ,mem_name
@@ -40,7 +44,7 @@
 	 </insert>
 	  <select id="Member_login" resultType="MemberDto" parameterType="MemberDto">
 		 select mem_name,mem_password,mem_nickname,mem_email,mem_img
-		 from member
+		 from tb_member
 		 where mem_name=#{mem_name}
 	 </select>
 	 
@@ -51,7 +55,7 @@
 				,mem_email
 				,mem_nickname
 				,mem_img				
-			from member
+			from tb_member
 			where mem_seq = #{mem_seq}
 	
 	</select>
