@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Board">
+	  <select id="Board_list" resultType="BoardDto" parameterType="BoardDto">
+select A.board_seq, A.board_category, A.board_ingredients, A.board_title, A.board_contents, A.board_wdate, A.member_seq, A.rnum
+from (
+        select A.board_seq, A.board_category, A.board_ingredients, A.board_title, A.board_contents, A.board_wdate, A.member_seq, row_number() over(order by board_seq desc) as rnum,
+        ceil(row_number() over (order by board_seq desc) / 9) - 1 as pg
+        from tb_board A
+        ) A where pg=#{pg}
+	 </select>
+</mapper>
+
+
+ 

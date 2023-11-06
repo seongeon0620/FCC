@@ -5,10 +5,13 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="MemberDto"  type="com.woori.myapp.entity.MemberDto"/>
+		<typeAlias alias="BoardDto"  type="com.woori.myapp.entity.BoardDto"/>
 		
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/Member.xml" />
+		<mapper resource="mapper/Board.xml" />
 	</mappers>
+	
 </configuration>
 
