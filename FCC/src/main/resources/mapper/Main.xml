@@ -11,7 +11,7 @@
 <mapper namespace="Main">
 	<select id="randomRecipeList" resultType="RecipeDto" parameterType="RecipeDto">
               SELECT rcp_img_s , rcp_name
-			  FROM ( select * 
+			  FROM ( select rcp_img_s , rcp_name 
 			           from tb_recipe  
 			          order by DBMS_RANDOM.RANDOM ) Tb1
 			WHERE  rownum <![CDATA[<=]]> 6

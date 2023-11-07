@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.woori.myapp.entity.FrigoDto;
-import com.woori.myapp.entity.IngreDto;
 import com.woori.myapp.entity.MainDto;
 import com.woori.myapp.entity.MemberDto;
 import com.woori.myapp.entity.RecipeDto;
 import com.woori.myapp.service.MainService;
 
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class MainController {
@@ -27,9 +27,10 @@ public class MainController {
 	
 	// 메인 페이지_레시피 리스트
 	@GetMapping("/index")
-	public String index( Model model, MemberDto mto ) {
-		Long member_seq = 1L; 
-		mto.setMember_seq(member_seq);
+	public String index( Model model, MemberDto mto, HttpServletRequest request ) {
+		HttpSession session = request.getSession();
+		session.setAttribute( "mem_nickname", "tester" );
+		session.setAttribute( "mem_seq", 1 );
 		
 		List<RecipeDto> list = service.getRecipeList( null );
 		model.addAttribute( "list", list );

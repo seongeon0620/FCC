@@ -15,7 +15,7 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-
+ 
 //컨피그할때 어떤 경우는 특정 클래스를 상속받는 경우도 있고 아닌경우도 있다
 @Configuration
 public class DatabaseConfig {

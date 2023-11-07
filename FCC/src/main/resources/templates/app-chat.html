@@ -1,5 +1,10 @@
 {{>layout/header}}
+
  <body>
+	 <input type="text" id="mem_nickname" value="tester(nick)"/> <br />
+	 <input type="text" id="message" >
+	 
+	 <button type="submit">보내기</button>
 	<!-- Preloader -->
 	<div class="preloader">
 		<img src="/images/logos/favicon.ico" alt="loader" class="lds-ripple img-fluid" />
@@ -119,17 +124,6 @@
                               </div>
                             </div>
                             
-                            
-                            <div class="hstack gap-3 align-items-start mb-7 justify-content-start">
-                              <img src="/images/profile/user-8.jpg" alt="user8" width="40" height="40" class="rounded-circle" />
-                              <div>
-                                <h6 class="fs-2 text-muted">TastyTales 관리자</h6>
-                                <div class="rounded-2 overflow-hidden">
-                                  <img src="/images/products/product-1.jpg" alt="" class="w-100">
-                                </div>
-                              </div>
-                            </div>
-                            
                           </div>
                           
                         </div>
@@ -148,8 +142,8 @@
     {{>layout/mobile_nav}}
     <!-- Import Js Files -->
     <script src="/libs/jquery/dist/jquery.min.js"></script>
-    <script src="/libs/simplebar/dist/simplebar.min.js"></script>
     <script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
     <!-- core files -->
     <script src="/js/app.min.js"></script>
     <script src="/js/app.init.js"></script>
@@ -159,6 +153,9 @@
     <script src="/js/custom.js"></script>
     <!-- current page js files -->
     <script src="/js/apps/chat.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.0.0/bundles/stomp.umd.min.js"></script>
+    <script src="/js/apps/app.js"></script>
   </body>
 
 </html>
