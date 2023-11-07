@@ -170,3 +170,5 @@ $("body").on('click', '.chat-menu', function () {
   $(".app-chat-offcanvas").toggleClass('app-chat-right');
   $(this).toggleClass('app-chat-active');
 });
+
+

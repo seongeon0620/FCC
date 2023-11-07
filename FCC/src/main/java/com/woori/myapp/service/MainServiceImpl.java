@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.woori.myapp.entity.FrigoDto;
 import com.woori.myapp.entity.IngreDto;
+import com.woori.myapp.entity.MainDto;
 import com.woori.myapp.entity.RecipeDto;
 import com.woori.myapp.repository.MainDao;
 
@@ -18,18 +19,8 @@ public class MainServiceImpl implements MainService {
 	MainDao dao;
 
 	@Override
-	public List<FrigoDto> getFrigoInfo(FrigoDto Fto) {
-		return dao.getFrigoInfo(Fto);
-	}
-
-	@Override
-	public List<FrigoDto> getIceInfo(FrigoDto Fto) {
-		return dao.getIceInfo(Fto);
-	}
-
-	@Override
-	public List<FrigoDto> getIndoorInfo(FrigoDto Fto) {
-		return dao.getIndoorInfo(Fto);
+	public List<MainDto> getFrigoInfo(MainDto mto) {
+		return dao.getFrigoInfo(mto);
 	}
 
 	@Override
@@ -39,14 +30,14 @@ public class MainServiceImpl implements MainService {
 	}
 
 	@Override
-	public IngreDto getNutritionInfo(IngreDto Ito) {
-		IngreDto resultNutiIto = dao.getNutritionInfo(Ito);
+	public MainDto getNutritionInfo(MainDto mto) {
+		MainDto resultNutiIto = dao.getNutritionInfo(mto);
 		return resultNutiIto;
 	}
 
 	@Override
-	public FrigoDto getFrigoFreshInfo(FrigoDto Fto) {
-		FrigoDto resultFreshIto = dao.getFrigoFreshInfo(Fto);
+	public MainDto getFrigoFreshInfo(MainDto mto) {
+		MainDto resultFreshIto = dao.getFrigoFreshInfo( mto );
 		return resultFreshIto;
 	}
 	
