@@ -33,4 +33,9 @@ public class MemberServiceImpl implements MemberService{
 		return resultDto;
 	}
 
+	@Override
+	public boolean idCheck(MemberDto dto) {
+		return dao.idCheck(dto);
+	}
+
 }

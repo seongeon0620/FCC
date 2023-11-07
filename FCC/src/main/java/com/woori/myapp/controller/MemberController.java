@@ -9,21 +9,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
 import com.woori.myapp.entity.MemberDto;
-import com.woori.myapp.repository.MemberDao;
 import com.woori.myapp.service.MemberService;
 
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
+
 @Controller
 public class MemberController {
 	
+	
 	@Resource(name="memberService")
 	MemberService service;
-	
-
+		
+		
 	
 	@GetMapping("/member")
 	public String member_join() {
@@ -49,6 +51,20 @@ public class MemberController {
 		return map;
 	}
 	
+	@GetMapping("/member/idcheck")
+	@ResponseBody
+	public HashMap<String,Object> member_idcheck(MemberDto dto){
+		
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		
+		if(service.idCheck(dto)) {
+			map.put("result", "success");
+		}else {
+			map.put("result","fail");
+		}
+		return map;
+	}
+	
 	@PostMapping("/member/loginproc") 
 	@ResponseBody
 	public HashMap<String,Object> member_logonproc(MemberDto dto,HttpServletRequest request){
@@ -61,7 +77,7 @@ public class MemberController {
 		map.put("result",result);
 		if(result==1) {
 			System.out.println(result);
-			map.put("msg", "로그온 성공");
+			map.put("msg", "로그인 성공");
 			session.setAttribute("mem_name", resultDto.getMem_name());
 			session.setAttribute("mem_nickname", resultDto.getMem_nickname());
 			session.setAttribute("mem_email", resultDto.getMem_email());
@@ -107,6 +123,7 @@ public class MemberController {
 		
 		return "/member/member_modify";
 	}
+
 	
 	
 
