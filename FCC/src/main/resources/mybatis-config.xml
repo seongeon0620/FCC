@@ -10,7 +10,7 @@
 		<typeAlias alias="IngreDto"  type="com.woori.myapp.entity.IngreDto"/>
 		<typeAlias alias="FrigoDto"  type="com.woori.myapp.entity.FrigoDto"/>
 		<typeAlias alias="MainDto"  type="com.woori.myapp.entity.MainDto"/>
-
+		<typeAlias alias="FrigoResponseDto"  type="com.woori.myapp.entity.FrigoResponseDto"/>
 		
 	</typeAliases>
 	<mappers>
@@ -18,7 +18,8 @@
 		<mapper resource="mapper/Board.xml" />
 		<mapper resource="mapper/Recipe.xml" />
 		<mapper resource="mapper/Main.xml" />
+		<mapper resource="mapper/Ingre.xml" />
+		<mapper resource="mapper/Frigo.xml" />
 	</mappers>
-	
 </configuration>
 

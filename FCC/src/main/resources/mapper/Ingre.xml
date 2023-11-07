@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Ingre">
+	 <select id="Ingre_getMainList" resultType="String">
+			SELECT 
+				DISTINCT A.INGRE_NAME
+			FROM
+				TB_INGRE A
+			ORDER BY
+				A.INGRE_NAME
+	</select>
+	<select id="Ingre_getSubList" resultType="IngreDto" parameterType="String">
+		SELECT
+			A.INGRE_SEQ, A.INGRE_DETAIL
+		FROM
+			TB_INGRE A
+		WHERE A.INGRE_NAME = #{category}
+	</select>
+</mapper>
