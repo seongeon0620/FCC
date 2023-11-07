@@ -9,6 +9,7 @@
 		<typeAlias alias="RecipeDto"  type="com.woori.myapp.entity.RecipeDto"/>
 		<typeAlias alias="IngreDto"  type="com.woori.myapp.entity.IngreDto"/>
 		<typeAlias alias="FrigoDto"  type="com.woori.myapp.entity.FrigoDto"/>
+		<typeAlias alias="MainDto"  type="com.woori.myapp.entity.MainDto"/>
 
 		
 	</typeAliases>
