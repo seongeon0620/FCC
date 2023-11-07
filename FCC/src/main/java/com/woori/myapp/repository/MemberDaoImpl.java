@@ -40,4 +40,13 @@ public class MemberDaoImpl implements MemberDao{
 		return false;
 	}
 
+	@Override
+	public void update(MemberDto dto) {
+		sm.update("Member_modify",dto);
+		
+		
+	}
+
+
+
 }
