@@ -10,5 +10,6 @@ public interface MemberDao {
 	MemberDto getMypage(MemberDto dto);
 	boolean idCheck(MemberDto dto);
 	void update(MemberDto dto);
+	
 
 }
