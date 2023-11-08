@@ -20,19 +20,31 @@ $(function () {
   }
 
   // ----------------------------------------------------------------------
-  // clear all task on click
+  // 전부 삭제
   // ----------------------------------------------------------------------
-  function clearItem() {
-    $(".list-clear-all")
-      .off("click")
-      .on("click", function (event) {
-        event.preventDefault();
-        $(this)
-          .parents('[data-action="sorting"]')
-          .find(".connect-sorting-content .card")
-          .remove();
-      });
-  }
+	function clearItem() {
+		$(".list-clear-all")
+			.on("click", function (event) {
+				event.preventDefault();
+
+				let targetStorage = $(this).closest('.task-container-header').find('.item-head').attr('data-item-title');
+				console.log(targetStorage);
+				$.ajax({
+					url : `/frigo/deleteAll/${targetStorage}`,
+					method : 'post'
+				})
+				.done((res) => {
+					if (res.response == 'success') {
+						alert(`${targetStorage}을(를) 전부 비웠습니다.`);
+						location.reload();
+					}
+					
+				})
+				.fail((res, error, status) => {
+					console.log(error);
+				})
+		});
+	}
 
   // ----------------------------------------------------------------------
   // 저장공간 추가
@@ -56,15 +68,14 @@ $(function () {
   // ----------------------------------------------------------------------
   //   add default item
   // ----------------------------------------------------------------------
-  function kanban_add(getParent) {
-    $('[data-btn-action="addTask"]')
+	function kanban_add(getParent) {
+		$('[data-btn-action="addTask"]')
 		.off("click")
 		.on("click", function (event) {
 			
 		let itemTitle = document.getElementById("kanban-title");
 		let itemText = document.getElementById("kanban-text");
 		let itemEdate = document.getElementById("kanban-edate");
-		console.log(itemEdate.value);
 		
 		let tmpDate = new Date(itemEdate.value);
 
@@ -103,7 +114,8 @@ $(function () {
 			
 		})
 		.done((res) => {
-			console.log(res);
+			 if (res.response == 'success')
+				 location.reload();
 		})
 		.fail((res, error, status) => {
 			console.log("등록 실패");
@@ -112,11 +124,6 @@ $(function () {
 			
 		getAddBtnClass = $(this).attr("class").split(" ")[1];
 
-<<<<<<< Updated upstream
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, "0");
-        var mm = String(today.getMonth());
-=======
 		let today = new Date();
 		console.log(today);
 		let dd = String(today.getDate()).padStart(2, "0");
@@ -124,98 +131,11 @@ $(function () {
 		let yy = String(today.getFullYear()).slice(-2);
 		let hh = String(today.getHours());
 		let minutes = String(today.getMinutes());
->>>>>>> Stashed changes
 
-        var monthNames = [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec",
-        ];
+		today = yy + "/" + mm + "/" + dd + " " + hh + ":" + minutes;
 
-        today = dd + " " + monthNames[mm];
-
-		let $_getParent = getParent;
-
-		
-		
-        item_html =
-          '<div data-draggable="true" class="card task-text-progress" style="">' +
-          '<div class="card-body">' +
-          '<div class="task-header">' +
-          '<div class="">' +
-          '<h4 class="" data-item-title="' +
-          itemTitle.value +
-          '">' +
-          itemTitle.value +
-          "</h4>" +
-          "</div>" +
-          '<div class="">' +
-          '<div class="dropdown">' +
-          '<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink-4" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">' +
-          '<i class="ti ti-dots-vertical text-dark"></i>' +
-          "</a>" +
-          '<div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink-4">' +
-          '<a class="dropdown-item kanban-item-edit cursor-pointer d-flex align-items-center gap-1" href="javascript:void(0);"><i class="ti ti-pencil fs-5"></i>Edit</a>' +
-          '<a class="dropdown-item kanban-item-delete cursor-pointer d-flex align-items-center gap-1" href="javascript:void(0);"><i class="ti ti-trash fs-5"></i>Delete</a>' +
-          "</div>" +
-          "</div>" +
-          "</div>" +
-          "</div>" +
-          '<div class="task-body">' +
-          '<div class="task-content">' +
-          '<p class="mb-0" data-item-text="' +
-          itemText.value +
-          '">' +
-          itemText.value +
-          "</p>" +
-          "</div>" +
-          '<div class="task-bottom">' +
-          '<div class="tb-section-1">' +
-          '<span class="hstack gap-2 fs-2" data-item-date="' +
-          today +
-<<<<<<< Updated upstream
-          '"><i class="ti ti-calendar fs-5"></i> ' +
-          today +
-=======
-          '">등록일시<i class="ti ti-calendar fs-5"></i> ' +
-          today +
-          "</span>" +
-          "</div>" +
-          '<div class="tb-section-1">' +
-          '<span class="hstack gap-2 fs-2" data-item-date="' +
-          itemEdate +
-          '">유통기한<i class="ti ti-calendar fs-5"></i> ' +
-          itemEdate +
->>>>>>> Stashed changes
-          "</span>" +
-          "</div>" +
-          '<div class="tb-section-2">' +
-          '<span class="badge text-bg-success fs-1">Design</span>' +
-          "</div>" +
-          "</div>" +
-          "</div>" +
-          "</div>" +
-          "</div>";
-
-        $("[data-item='" + $_getParent + "'] .connect-sorting-content").append(
-          item_html
-        );
-
-        $("#addItemModal").modal("hide");
-
-        kanbanEdit();
-        kanbanDelete();
-      });
-  }
+	});
+}
 
   // ----------------------------------------------------------------------
   //   add item
@@ -230,75 +150,6 @@ $(function () {
       $(".edit-list-title").hide();
       $(".add-list-title").show();
       $("#addListModal").modal("show");
-    });
-
-  // ----------------------------------------------------------------------
-  //   add list
-  // ----------------------------------------------------------------------
-  $(".add-list")
-    .off("click")
-    .on("click", function (event) {
-      var today = new Date();
-      var dd = String(today.getDate()).padStart(2, "0");
-      var mm = String(today.getMonth() + 1).padStart(2, "0");
-
-      today = mm + "." + dd;
-
-      var itemTitle = document.getElementById("item-name").value;
-
-      var itemNameLowercase = itemTitle.toLowerCase();
-      var itemNameRemoveWhiteSpace = itemNameLowercase.split(" ").join("_");
-      var itemDataAttr = itemNameRemoveWhiteSpace;
-
-      item_html =
-        '<div data-item="item-' +
-        itemDataAttr +
-        '" class="task-list-container  mb-4 " data-action="sorting">' +
-        '<div class="connect-sorting">' +
-        '<div class="task-container-header">' +
-        '<h6 class="item-head mb-0 fs-4 fw-semibold" data-item-title="' +
-        itemTitle +
-        '">' +
-        itemTitle +
-        "</h6>" +
-        '<div class="hstack gap-2">' +
-        '<div class="dropdown">' +
-        '<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink-4" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">' +
-        '<i class="ti ti-dots-vertical text-dark"></i>' +
-        "</a>" +
-        '<div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink-4">' +
-        '<a class="dropdown-item list-edit" href="javascript:void(0);">Edit</a>' +
-        '<a class="dropdown-item list-delete" href="javascript:void(0);">Delete</a>' +
-        '<a class="dropdown-item list-clear-all" href="javascript:void(0);">Clear All</a>' +
-        "</div>" +
-        "</div>" +
-        "</div>" +
-        "</div>" +
-        '<div class="connect-sorting-content" data-sortable="true">' +
-        "</div>" +
-        "</div>" +
-        "</div>";
-
-      $(".task-list-section").append(item_html);
-      $("#addListModal").modal("hide");
-      $("#item-name").val("");
-      kanbanSortable();
-      editItem();
-      deleteItem();
-      clearItem();
-      addKanbanItem();
-      kanbanEdit();
-      kanbanDelete();
-
-      // --------------------
-      // Tooltip
-      // --------------------
-      var tooltipTriggerList = [].slice.call(
-        document.querySelectorAll('[data-bs-toggle="tooltip"]')
-      );
-      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl);
-      });
     });
 
   // ----------------------------------------------------------------------
@@ -350,38 +201,35 @@ $(function () {
   }
 
   // ----------------------------------------------------------------------
-  // all list delete
-  // ----------------------------------------------------------------------
-  function deleteItem() {
-    $(".list-delete")
-      .off("click")
-      .on("click", function (event) {
-        event.preventDefault();
-        $(this).parents("[data-action]").remove();
-      });
-  }
-
-  // ----------------------------------------------------------------------
   // Delete item on click
   // ----------------------------------------------------------------------
-  function kanbanDelete() {
-    $(".card .kanban-item-delete")
-      .off("click")
-      .on("click", function (event) {
-        event.preventDefault();
+	function kanbanDelete() {
+		$(".card .kanban-item-delete").on("click", function (event) {
+			event.preventDefault();
 
-        get_card_parent = $(this).parents(".card");
+			// get_card_parent = $(this).parents(".card");
+			console.log($(this).closest(".card").find('.task-header h4').attr('data-item-title'));			
+			let targetFrigoId = $(this).closest(".card").find('.task-header h4').attr('data-item-title');
 
-        $("#deleteConformation").modal("show");
+			$("#deleteConformation").modal("show");
 
-        $('[data-remove="task"]').on("click", function (event) {
-          event.preventDefault();
-          /* Act on the event */
-          get_card_parent.remove();
-          $("#deleteConformation").modal("hide");
-        });
-      });
-  }
+			$('[data-remove="task"]').on("click", (event) => {
+				event.preventDefault();
+				
+				$.ajax({
+					url : `/frigo/delete/${targetFrigoId}`,
+					method : 'post'
+				})
+				.done((res) => {
+					if (res.response == 'success')
+						location.reload();
+				})
+				.fail((res, error, status) => {
+					console.log(error);
+				})
+			});
+		});
+	}
 
   // ----------------------------------------------------------------------
   // Edit item on click
@@ -449,7 +297,6 @@ $(function () {
   }
 
   editItem();
-  deleteItem();
   clearItem();
   addKanbanItem();
   kanbanEdit();

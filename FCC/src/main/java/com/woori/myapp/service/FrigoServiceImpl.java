@@ -18,16 +18,28 @@ public class FrigoServiceImpl implements FrigoService {
 	FrigoDao dao;
 
 	@Override
-	public HashMap<String, FrigoDto> insert(FrigoDto dto) {
+	public FrigoResponseDto insert(FrigoDto dto) {
 		dao.insert(dto);
-		return null;
+		FrigoResponseDto reponseDto = dao.getInsertResult(dto.getFrigo_seq());
+		return reponseDto;
 	}
 
 	@Override
 	public List<FrigoResponseDto> getList(FrigoResponseDto frigoResponseDto, String category) {
-		frigoResponseDto.setFrigo_seq(1L);	// 임시
 		frigoResponseDto.setFrigo_storage(category);
 		return dao.getList(frigoResponseDto);
 	}
+
+	@Override
+	public int deleteAll(FrigoDto frigoDto) {
+		return dao.deleteAll(frigoDto);
+	}
+
+	@Override
+	public int deleteOne(FrigoDto frigoDto) {
+		return dao.deleteOne(frigoDto);
+	}
+
+	
 	
 }

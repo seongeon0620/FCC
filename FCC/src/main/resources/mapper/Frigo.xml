@@ -22,15 +22,20 @@
 			, #{frigo_storage}
 			, sysdate
 		)
-		<selectKey keyProperty="frigo_seq" resultType="long" order="AFTER">
+		<selectKey keyProperty="frigo_seq" resultType="Long" order="AFTER">
 			SELECT SEQ_FRIGO.currval FROM dual
-		</selectKey>	
+		</selectKey>
 	</insert>
 	
-	<select id="Frigo_getInsertResult" parameterType="long" resultType="FrigoDto">
-		SELECT
-			A.frigo_seq
-			,A. FROM TB_FRIGO A WHERE frigo_seq = #{frigo_seq}
+	<select id="Frigo_getInsertResult" parameterType="Long" resultType="FrigoResponseDto">
+	SELECT FRI.FRIGO_SEQ, FRI.FRIGO_EXPIRATION, FRI.FRIGO_STORAGE, FRI.FRIGO_WDATE, ING.INGRE_NAME, ING.INGRE_DETAIL,
+		CASE
+				WHEN (TO_DATE(FRI.FRIGO_EXPIRATION, 'YY/MM/DD') - TO_DATE(FRI.FRIGO_WDATE, 'YY/MM/DD')) <![CDATA[<]]> 0 THEN '초과'
+				WHEN (TO_DATE(FRI.FRIGO_EXPIRATION, 'YY/MM/DD') - TO_DATE(FRI.FRIGO_WDATE, 'YY/MM/DD')) = 0 THEN 'D-Day'
+				ELSE 'D-'||TO_CHAR(TO_DATE(FRI.FRIGO_EXPIRATION, 'YY/MM/DD') - TO_DATE(FRI.FRIGO_WDATE, 'YY/MM/DD'))
+		END AS ddayBadge
+	FROM TB_FRIGO FRI, TB_INGRE ING
+	WHERE FRI.INGRE_SEQ = ING.INGRE_SEQ AND FRI.FRIGO_SEQ = #{frigo_seq}
 	</select>
 
 	<select id="Frigo_getList" resultType="FrigoResponseDto">
@@ -45,5 +50,13 @@
 		AND MEM_SEQ = #{mem_seq}
 		AND FRI.FRIGO_STORAGE = #{frigo_storage}
 	</select>
+	
+	<delete id="Frigo_deleteOne" parameterType="FrigoDto">
+		DELETE FROM TB_FRIGO WHERE MEM_SEQ = #{mem_seq} AND FRIGO_SEQ = #{frigo_seq}
+	</delete>
+	
+	<delete id="Frigo_deleteAll" parameterType="FrigoDto">
+		DELETE FROM TB_FRIGO WHERE FRIGO_STORAGE = #{frigo_storage} AND MEM_SEQ = #{mem_seq}
+	</delete>
 	
 </mapper>
