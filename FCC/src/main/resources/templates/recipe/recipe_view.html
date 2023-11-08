@@ -93,11 +93,11 @@
 								{{recipeInfo.rcp_tip}}
 							</div>
 							<div class="d-sm-flex align-items-center gap-3 pt-8 mb-7">
-								<a href="javascript:history.back()"
-									class="btn d-block btn-primary px-5 py-8 mb-2 mb-sm-0">뒤로가기 </a>
-								<a href="javascript:void(0)" class="btn d-block btn-danger px-5 py-8 mb-2 mb-sm-0">찜
-									하기</a>
+								<a href="javascript:location.href = document.referrer"
+									class="btn d-block btn-outline-primary px-5 py-8 mb-2 mb-sm-0">뒤로가기 </a>
+								<a href="javascript:void(0)" id="btnRecipeLike"> </a>
 							</div>
+
 						</div>
 					</div>
 				</div>
@@ -135,37 +135,37 @@
 				<div class="card">
 					<div class="card-body">
 						<div class="mb-3">
-							<h6 class="mb-0">칼로리( kcal )  :  {{recipeInfo.rcp_eng}}</h6>
+							<h6 class="mb-0">칼로리( kcal ) : {{recipeInfo.rcp_eng}}</h6>
 						</div>
 						<div class="progress" id="eng_progress" style="height: 15px">
 						</div>
 						<br />
 						<div class="mb-3">
-							<h6 class="mb-0">탄수화물( g )  :  {{recipeInfo.rcp_car}}</h6>
+							<h6 class="mb-0">탄수화물( g ) : {{recipeInfo.rcp_car}}</h6>
 						</div>
 						<div class="progress" id="car_progress" style="height: 15px">
-							
+
 						</div>
 						<br />
 						<div class="mb-3">
-							<h6 class="mb-0">단백질( g )  :  {{recipeInfo.rcp_pro}}</h6>
+							<h6 class="mb-0">단백질( g ) : {{recipeInfo.rcp_pro}}</h6>
 						</div>
 						<div class="progress" id="pro_progress" style="height: 15px">
-							
+
 						</div>
 						<br />
 						<div class="mb-3">
-							<h6 class="mb-0">지방( g )  :  {{recipeInfo.rcp_fat}}</h5>
+							<h6 class="mb-0">지방( g ) : {{recipeInfo.rcp_fat}}</h5>
 						</div>
 						<div class="progress" id="fat_progress" style="height: 15px">
-							
+
 						</div>
 						<br />
 						<div class="mb-3">
-							<h6 class="mb-0">나트륨( mg )  :  {{recipeInfo.rcp_na}}</h6>
+							<h6 class="mb-0">나트륨( mg ) : {{recipeInfo.rcp_na}}</h6>
 						</div>
 						<div class="progress" id="na_progress" style="height: 15px">
-							
+
 						</div>
 					</div>
 				</div>
@@ -207,6 +207,93 @@
 
 </html>
 
+<script>
+	$(function () {
+		
+		let checkLike = "{{checkRecipeLike}}";
+		if( checkLike == "clickLike" ) {
+			$("#btnRecipeLike").addClass("btn d-block btn-outline-danger px-5 py-8 mb-2 mb-sm-0");
+			$("#btnRecipeLike").text("찜 하기   ").append("<i class='fa fa-heart text-danger'></i>");
+			$("#btnRecipeLike").attr("data-type", checkLike);
+		}else {
+			$("#btnRecipeLike").addClass("btn d-block btn-danger px-5 py-8 mb-2 mb-sm-0");
+			$("#btnRecipeLike").text("찜 완료   ").append("<i class='fa fa-heart text-light'></i>");
+			$("#btnRecipeLike").attr("data-type", checkLike);
+		}
+		
+		// 찜 기능 관련
+		$("#btnRecipeLike").click(function () {
+			let rcp_seq = "{{recipeInfo.rcp_seq}}";
+			let like_type = $(this).attr("data-type");
+			$.ajax({
+				url: "/recipe/like/" + rcp_seq,
+				type: "get",
+				data: {"like_type": like_type},
+				dataType: "json"
+			}).done((res) => {
+				$(this).attr("data-type", res.change_like_type);
+				if (res.change_like_type == "clickLike") {
+					$(this).attr('class','btn d-block btn-outline-danger px-5 py-8 mb-2 mb-sm-0');
+					$(this).text("찜 하기   ").append("<i class='fa fa-heart text-danger'></i>");
+				} else {
+					$(this).attr('class','btn d-block btn-danger px-5 py-8 mb-2 mb-sm-0');
+					$(this).text("찜 완료   ").append("<i class='fa fa-heart text-light'></i>");
+				}
+			}).fail((res, err, status) => {
+				console.log(err);
+			});
+		});
+
+		// 차트 관련
+		let car_gram = parseFloat($("#rcp_car").val());
+		let pro_gram = parseFloat($("#rcp_pro").val());
+		let fat_gram = parseFloat($("#rcp_fat").val());
+
+		let essential_nutrients = {
+			series: [car_gram, pro_gram, fat_gram],
+			chart: {
+				fontFamily: '"Nunito Sans", sans-serif',
+				width: 380,
+				type: "pie",
+			},
+			colors: ["var(--bs-primary)", "var(--bs-success)", "var(--bs-danger)"],
+			labels: ["탄수화물(g)", "단백질(g)", "지방(g)"],
+			responsive: [{
+				breakpoint: 480,
+				options: {
+					chart: {
+						width: 200,
+					},
+					legend: {
+						position: "bottom",
+					},
+				},
+			},],
+			legend: {
+				labels: {
+					colors: ["#a1aab2"],
+				},
+			},
+		};
+
+		var chart_pie_simple = new ApexCharts(
+			document.querySelector("#chart-pie-simple"),
+			essential_nutrients
+		);
+		chart_pie_simple.render();
+
+		let engProgressBar = '<div class="progress-bar bg-secondary" style="width: {{recipeAnalysis.rcp_per_eng}}" role="progressbar">{{recipeInfo.rcp_eng}}</div>';
+		let carProgressBar = '<div class="progress-bar bg-primary" style="width: {{recipeAnalysis.rcp_per_car}}" role="progressbar">{{recipeInfo.rcp_car}}</div>';
+		let proProgressBar = '<div class="progress-bar bg-success" style="width: {{recipeAnalysis.rcp_per_pro}}" role="progressbar">{{recipeInfo.rcp_pro}}</div>';
+		let fatProgressBar = '<div class="progress-bar bg-danger" style="width: {{recipeAnalysis.rcp_per_fat}}" role="progressbar">{{recipeInfo.rcp_fat}}</div>';
+		let naProgressBar = '<div class="progress-bar bg-warning" style="width: {{recipeAnalysis.rcp_per_na}}" role="progressbar">{{recipeInfo.rcp_na}}</div>';
+		$("#eng_progress").append(engProgressBar);
+		$("#car_progress").append(carProgressBar);
+		$("#pro_progress").append(proProgressBar);
+		$("#fat_progress").append(fatProgressBar);
+		$("#na_progress").append(naProgressBar);
+	});
+</script>
 <script>
 	$(document).ready(function () {
 		var imageElements = [
@@ -266,57 +353,5 @@
 				$("#demo-foo-addrow tbody").append(tr);
 			}
 		}
-	});
-</script>
-
-<script>
-	$(function () {
-		let car_gram = parseFloat($("#rcp_car").val());
-		let pro_gram = parseFloat($("#rcp_pro").val());
-		let fat_gram = parseFloat($("#rcp_fat").val());
-
-		let essential_nutrients = {
-			series: [car_gram, pro_gram, fat_gram],
-			chart: {
-				fontFamily: '"Nunito Sans", sans-serif',
-				width: 380,
-				type: "pie",
-			},
-			colors: ["var(--bs-primary)", "var(--bs-success)", "var(--bs-danger)"],
-			labels: ["탄수화물(g)", "단백질(g)", "지방(g)"],
-			responsive: [{
-				breakpoint: 480,
-				options: {
-					chart: {
-						width: 200,
-					},
-					legend: {
-						position: "bottom",
-					},
-				},
-			},],
-			legend: {
-				labels: {
-					colors: ["#a1aab2"],
-				},
-			},
-		};
-
-		var chart_pie_simple = new ApexCharts(
-			document.querySelector("#chart-pie-simple"),
-			essential_nutrients
-		);
-		chart_pie_simple.render();
-
-		let engProgressBar = '<div class="progress-bar bg-secondary" style="width: {{recipeAnalysis.rcp_per_eng}}" role="progressbar">{{recipeInfo.rcp_eng}}</div>';
-		let carProgressBar = '<div class="progress-bar bg-primary" style="width: {{recipeAnalysis.rcp_per_car}}" role="progressbar">{{recipeInfo.rcp_car}}</div>';
-		let proProgressBar = '<div class="progress-bar bg-success" style="width: {{recipeAnalysis.rcp_per_pro}}" role="progressbar">{{recipeInfo.rcp_pro}}</div>';
-		let fatProgressBar = '<div class="progress-bar bg-danger" style="width: {{recipeAnalysis.rcp_per_fat}}" role="progressbar">{{recipeInfo.rcp_fat}}</div>';
-		let naProgressBar = '<div class="progress-bar bg-warning" style="width: {{recipeAnalysis.rcp_per_na}}" role="progressbar">{{recipeInfo.rcp_na}}</div>';
-		$("#eng_progress").append(engProgressBar);
-		$("#car_progress").append(carProgressBar);
-		$("#pro_progress").append(proProgressBar);
-		$("#fat_progress").append(fatProgressBar);
-		$("#na_progress").append(naProgressBar);
 	});
 </script>
