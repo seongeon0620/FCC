@@ -1,20 +1,12 @@
 package com.woori.myapp.controller;
 
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.woori.myapp.entity.MemberDto;
 import com.woori.myapp.service.MemberService;
@@ -36,12 +28,13 @@ public class MemberController {
 	}
 
 	@GetMapping("/member/login")
-	public String member_login(HttpSession sess) {
-		MemberDto logInfo = (MemberDto) sess.getAttribute("logInfo");
-		System.out.println("세션 : " + logInfo);
+	public String member_login(HttpSession session) {
+		MemberDto memberDto = (MemberDto) session.getAttribute("logInfo");
 
-		if (logInfo != null) {
-			return "redirect:/";
+		if (memberDto != null) {
+			String memName = memberDto.getMem_name();
+			System.out.println("세션 mem_name: " + memName);
+			return "/";
 		}
 
 		return "/member/member_login";
@@ -125,27 +118,38 @@ public class MemberController {
 		return 1;
 	}
 
-	@GetMapping("/member/mypage/{id}")
-	public String mypage(Model model, @PathVariable("id") Long id) {
-		MemberDto dto = new MemberDto();
+	@GetMapping("/member/mypage")
+	public String mypage(Model model, HttpSession session) {
+		MemberDto memberDto = (MemberDto) session.getAttribute("logInfo");
+		String memName = (String) session.getAttribute("mem_name");
 
-		dto.setMember_seq(id);
-		MemberDto resultDto = service.getMypage(dto);
-
-		model.addAttribute("member", resultDto);
-
-		return "/member/member_mypage";
+		if (memberDto != null) {
+			MemberDto dto = new MemberDto();
+			dto.setMem_name(memName);
+			MemberDto resultDto = service.getMypage(dto);
+			model.addAttribute("member", resultDto);
+			return "/member/member_mypage";
+		} else {
+			// 세션에 로그인 정보가 없는 경우
+			return "redirect:/member/login";
+		}
 	}
 
-	@GetMapping("/member/modify/{id}")
-	public String modify(Model model, @PathVariable("id") Long id) {
-		MemberDto dto = new MemberDto();
-		dto.setMember_seq(id);
-		MemberDto resultDto = service.getMypage(dto);
+	@GetMapping("/member/modify")
+	public String modify(Model model, HttpSession session) {
+		MemberDto memberDto = (MemberDto) session.getAttribute("logInfo");
+		String memName = (String) session.getAttribute("mem_name");
 
-		model.addAttribute("member", resultDto);
-
-		return "/member/member_modify";
+		if (memberDto != null) {
+			MemberDto dto = new MemberDto();
+			dto.setMem_name(memName);
+			MemberDto resultDto = service.getMypage(dto);
+			model.addAttribute("member", resultDto);
+			return "/member/member_modify";
+		} else {
+			// 세션에 로그인 정보가 없는 경우
+			return "redirect:/member/login";
+		}
 	}
 
 }

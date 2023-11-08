@@ -1,280 +1,317 @@
 <!DOCTYPE html>
 <html lang="en">
-  
+
 <!-- Mirrored from demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/html/main/page-account-settings.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 16 Aug 2023 15:07:19 GMT -->
+
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!--  Title -->
-    <title>Mordenize</title>
-    <!--  Required Meta Tag -->
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="handheldfriendly" content="true" />
-    <meta name="MobileOptimized" content="width" />
-    <meta name="description" content="Mordenize" />
-    <meta name="author" content="" />
-    <meta name="keywords" content="Mordenize" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!--  Favicon -->
-    <link rel="shortcut icon" type="image/png" href="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico" />
-    <!-- Owl Carousel  -->
-    <link rel="stylesheet" href="/libs/owl.carousel/dist/assets/owl.carousel.min.css">
-    
-    <!-- Core Css -->
-    <link  id="themeColors"  rel="stylesheet" href="/css/style.min.css" />
-  </head>
-  <body>
-	  {{#member}}
-    <!-- Preloader -->
-    <div class="preloader">
-      <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico" alt="loader" class="lds-ripple img-fluid" />
-    </div>
-    <!-- Preloader -->
-    <div class="preloader">
-      <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico" alt="loader" class="lds-ripple img-fluid" />
-    </div>
-    <!--  Body Wrapper -->
-    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
-      <!-- Sidebar Start -->
-      <aside class="left-sidebar">
-        <!-- Sidebar scroll-->
-        <div>
-          <div class="brand-logo d-flex align-items-center justify-content-between">
-            <a href="index-2.html" class="text-nowrap logo-img">
-              <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/dark-logo.svg" class="dark-logo" width="180" alt="" />
-              <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/light-logo.svg" class="light-logo"  width="180" alt="" />
-            </a>
-            <div class="close-btn d-lg-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
-              <i class="ti ti-x fs-8 text-muted"></i>
-            </div>
-          </div>
-          <!-- Sidebar navigation-->
-         
-          <div class="fixed-profile p-3 bg-light-secondary rounded sidebar-ad mt-3">
-            <div class="hstack gap-3">
-              <div class="john-img">
-                <img src="/images/profile/user-1.jpg" class="rounded-circle" width="40" height="40" alt="">
-              </div>
-              <div class="john-title">
-                <h6 class="mb-0 fs-4 fw-semibold">Mathew</h6>
-                <span class="fs-2 text-dark">Designer</span>
-              </div>
-              <button class="border-0 bg-transparent text-primary ms-auto" tabindex="0" type="button" aria-label="logout" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="logout">
-                <i class="ti ti-power fs-6"></i>
-              </button>
-            </div>
-          </div>  
-          <!-- End Sidebar navigation -->
-        </div>
-        <!-- End Sidebar scroll-->
-      </aside>
-      <!--  Sidebar End -->
-      <!--  Main wrapper -->
-      <div class="body-wrapper">
-        <!--  Header Start -->
-        
-        <!--  Header End -->
-        <div class="container-fluid">
-          <div class="card bg-light-info shadow-none position-relative overflow-hidden">
-            
-              <div class="row align-items-center">
-                <div class="col-9">          
-                <div class="col-3">
-                  <div class="text-center mb-n5">  
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <ul class="nav nav-pills user-profile-tab" id="pills-tab" role="tablist">
-              <li class="nav-item" role="presentation">
-                <button class="nav-link position-relative rounded-0 active d-flex align-items-center justify-content-center bg-transparent fs-3 py-4" id="pills-account-tab" data-bs-toggle="pill" data-bs-target="#pills-account" type="button" role="tab" aria-controls="pills-account" aria-selected="true">
-                  <i class="ti ti-user-circle me-2 fs-6"></i>
-                  <span class="d-none d-md-block">Account</span> 
-                </button>
-              </li>
-            </ul>
-            <div class="card-body">
-              <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-account" role="tabpanel" aria-labelledby="pills-account-tab" tabindex="0">
-                  <div class="row">
-                    <div class="col-lg-6 d-flex align-items-stretch">
-                      <div class="card w-100 position-relative overflow-hidden">
-                        <div class="card-body p-4">
-                          <h5 class="card-title fw-semibold">프로필 사진 변경</h5>
-                          
-                          <div class="text-center">
-                            <img id="profileimg" src="/images/profile/user-1.jpg" alt="" class="img-fluid rounded-circle" width="120" height="120">
-                            <div class="d-flex align-items-center justify-content-center my-4 gap-3">
-								<form method="post" name="myform" id="myform" encytype="multipart/form-data">
-								  <input type="file"  name="file" id="file">
-	                              <button type="button" id="btnUpload" class="btn btn-primary" onclick="imgChange()">사진 변경</button>
-	                              <button class="btn btn-outline-danger">초기화</button>
-                              </form>
+	<!--  Title -->
+	<title>Mordenize</title>
+	<!--  Required Meta Tag -->
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="handheldfriendly" content="true" />
+	<meta name="MobileOptimized" content="width" />
+	<meta name="description" content="Mordenize" />
+	<meta name="author" content="" />
+	<meta name="keywords" content="Mordenize" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<!--  Favicon -->
+	<link rel="shortcut icon" type="image/png"
+		href="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico" />
+	<!-- Owl Carousel  -->
+	<link rel="stylesheet" href="/libs/owl.carousel/dist/assets/owl.carousel.min.css">
 
-                            </div>
-                            <p class="mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-6 d-flex align-items-stretch">
-                      <div class="card w-100 position-relative overflow-hidden">
-                        <div class="card-body p-4">
-                          <h5 class="card-title fw-semibold">비밀번호 변경</h5>
-                          
-                          <form name="myform" id="myform">
-                            <div class="mb-4">
-                              <label for="exampleInputPassword1" class="form-label fw-semibold">현재 비밀번호</label>
-                              <input type="password" class="form-control" id="cur_password" >
-                            </div>
-                            <div class="mb-4">
-                              <label for="exampleInputPassword1" class="form-label fw-semibold">새 비밀번호</label>
-                              <input type="password" class="form-control" id="new_password" >
-                            </div>
-                            <div class="">
-                              <label for="exampleInputPassword1" class="form-label fw-semibold">새 비밀번호 확인</label>
-                              <input type="password" class="form-control" id="new_passwordChk">
-                            </div>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-12">
-                      <div class="card w-100 position-relative overflow-hidden mb-0">
-                        <div class="card-body p-4">
-                          <h5 class="card-title fw-semibold">상세정보</h5>
-                          
-                          <form name="myform" id="myform">
-                            <div class="row">
-                              <div class="col-lg-6">
-                                <div class="mb-4">
-                                  <label for="exampleInputPassword1" class="form-label fw-semibold">아이디</label>
-                                  <input type="text" class="form-control" id="mem_name" value="{{mem_name}}" readonly/>
-                                  
-                                </div>
-                             	<div class="mb-4">
-                                  <label for="exampleInputPassword1" class="form-label fw-semibold">닉네임</label>
-                                  <input type="text" class="form-control" id="mem_nickname" value="{{mem_nickname}}" >
-                                </div>
-                                <div class="mb-4">
-                                  <label for="exampleInputPassword1" class="form-label fw-semibold">Email</label>
-                                  <input type="email" class="form-control" id="mem_email" value="{{mem_email}}">
-                                </div>
-                              </div>
-                              <div class="col-lg-6">
-                               
-                              </div>
-                              <div class="col-12">
-                                <div class="d-flex align-items-center justify-content-end mt-4 gap-3">
-                                  <button class="btn btn-primary" id="btnUpdate" name="btnUpdate">변경</button>
-                                  <button class="btn btn-light-danger text-danger">취소</button>
-                                </div>
-                              </div>
-                            </div>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>           
-              </div>
-            </div>
-          </div>
-        </div>  
-      </div>
-    <div class="dark-transparent sidebartoggler"></div>
-    <div class="dark-transparent sidebartoggler"></div>
-    </div>
+	<!-- Core Css -->
+	<link id="themeColors" rel="stylesheet" href="/css/style.min.css" />
+</head>
 
-        <!--  Customizer -->
-    <!--  Import Js Files -->
-    <script src="/libs/jquery/dist/jquery.min.js"></script>
-    <script src="/libs/simplebar/dist/simplebar.min.js"></script>
-    <script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <!--  core files -->
-    <script src="/js/app.min.js"></script>
-    <script src="/js/app.init.js"></script>
-    <script src="/js/app-style-switcher.js"></script>
-    <script src="/js/sidebarmenu.js"></script>
-    
-    <script src="/js/custom.js"></script>
-    <!--  current page js files -->
-    <script src="/libs/owl.carousel/dist/owl.carousel.min.js"></script>
-    {{/member}}
-  </body>
+<body>
+	{{#member}}
+	<!-- Preloader -->
+	<div class="preloader">
+		<img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico"
+			alt="loader" class="lds-ripple img-fluid" />
+	</div>
+	<!-- Preloader -->
+	<div class="preloader">
+		<img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico"
+			alt="loader" class="lds-ripple img-fluid" />
+	</div>
+	<!--  Body Wrapper -->
+	<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-sidebartype="full"
+		data-sidebar-position="fixed" data-header-position="fixed">
+		<!-- Sidebar Start -->
+		<aside class="left-sidebar">
+			<!-- Sidebar scroll-->
+			<div>
+				<div class="brand-logo d-flex align-items-center justify-content-between">
+					<a href="index-2.html" class="text-nowrap logo-img">
+						<img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/dark-logo.svg"
+							class="dark-logo" width="180" alt="" />
+						<img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/light-logo.svg"
+							class="light-logo" width="180" alt="" />
+					</a>
+					<div class="close-btn d-lg-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+						<i class="ti ti-x fs-8 text-muted"></i>
+					</div>
+				</div>
+				<!-- Sidebar navigation-->
+
+				<div class="fixed-profile p-3 bg-light-secondary rounded sidebar-ad mt-3">
+					<div class="hstack gap-3">
+						<div class="john-img">
+							<img src="/images/profile/user-1.jpg" class="rounded-circle" width="40" height="40" alt="">
+						</div>
+						<div class="john-title">
+							<h6 class="mb-0 fs-4 fw-semibold">Mathew</h6>
+							<span class="fs-2 text-dark">Designer</span>
+						</div>
+						<button class="border-0 bg-transparent text-primary ms-auto" tabindex="0" type="button"
+							aria-label="logout" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="logout">
+							<i class="ti ti-power fs-6"></i>
+						</button>
+					</div>
+				</div>
+				<!-- End Sidebar navigation -->
+			</div>
+			<!-- End Sidebar scroll-->
+		</aside>
+		<!--  Sidebar End -->
+		<!--  Main wrapper -->
+		<div class="body-wrapper">
+			<!--  Header Start -->
+
+			<!--  Header End -->
+			<div class="container-fluid">
+				<div class="card bg-light-info shadow-none position-relative overflow-hidden">
+
+					<div class="row align-items-center">
+						<div class="col-9">
+							<div class="col-3">
+								<div class="text-center mb-n5">
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card">
+					<ul class="nav nav-pills user-profile-tab" id="pills-tab" role="tablist">
+						<li class="nav-item" role="presentation">
+							<button
+								class="nav-link position-relative rounded-0 active d-flex align-items-center justify-content-center bg-transparent fs-3 py-4"
+								id="pills-account-tab" data-bs-toggle="pill" data-bs-target="#pills-account"
+								type="button" role="tab" aria-controls="pills-account" aria-selected="true">
+								<i class="ti ti-user-circle me-2 fs-6"></i>
+								<span class="d-none d-md-block">Account</span>
+							</button>
+						</li>
+					</ul>
+					<div class="card-body">
+						<div class="tab-content" id="pills-tabContent">
+							<div class="tab-pane fade show active" id="pills-account" role="tabpanel"
+								aria-labelledby="pills-account-tab" tabindex="0">
+								<div class="row">
+									<div class="col-lg-6 d-flex align-items-stretch">
+										<div class="card w-100 position-relative overflow-hidden">
+											<div class="card-body p-4">
+												<h5 class="card-title fw-semibold">프로필 사진 변경</h5>
+
+												<div class="text-center">
+													<img id="profileimg" src="/images/profile/user-1.jpg" alt=""
+														class="img-fluid rounded-circle" width="120" height="120">
+													<div
+														class="d-flex align-items-center justify-content-center my-4 gap-3">
+														<form method="post" name="myform" id="myform"
+															encytype="multipart/form-data">
+															<input type="file" name="file" id="file">
+															<button type="button" id="btnUpload" class="btn btn-primary"
+																onclick="imgChange()">사진 변경</button>
+															<button class="btn btn-outline-danger">초기화</button>
+														</form>
+
+													</div>
+													<p class="mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-6 d-flex align-items-stretch">
+										<div class="card w-100 position-relative overflow-hidden">
+											<div class="card-body p-4">
+												<h5 class="card-title fw-semibold">비밀번호 변경</h5>
+
+												<form name="myform" id="myform">
+													<div class="mb-4">
+														<label for="exampleInputPassword1"
+															class="form-label fw-semibold">현재 비밀번호</label>
+														<input type="password" class="form-control" id="cur_password">
+													</div>
+													<div class="mb-4">
+														<label for="exampleInputPassword1"
+															class="form-label fw-semibold">새 비밀번호</label>
+														<input type="password" class="form-control" id="mem_password">
+													</div>
+													<div class="">
+														<label for="exampleInputPassword1"
+															class="form-label fw-semibold">새 비밀번호 확인</label>
+														<input type="password" class="form-control"
+															id="new_passwordChk">
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+									<div class="col-12">
+										<div class="card w-100 position-relative overflow-hidden mb-0">
+											<div class="card-body p-4">
+												<h5 class="card-title fw-semibold">상세정보</h5>
+
+												<form name="myform" id="myform">
+													<div class="row">
+														<div class="col-lg-6">
+															<div class="mb-4">
+																<label for="exampleInputPassword1"
+																	class="form-label fw-semibold">아이디</label>
+																<input type="text" class="form-control"
+																	value="{{mem_name}}" readonly />
+
+															</div>
+															<div class="mb-4">
+																<label for="exampleInputPassword1"
+																	class="form-label fw-semibold">닉네임</label>
+																<input type="text" class="form-control"
+																	id="mem_nickname" value="{{mem_nickname}}">
+															</div>
+															<div class="mb-4">
+																<label for="exampleInputPassword1"
+																	class="form-label fw-semibold">Email</label>
+																<input type="email" class="form-control" id="mem_email"
+																	value="{{mem_email}}">
+															</div>
+														</div>
+														<div class="col-lg-6">
+
+														</div>
+														<div class="col-12">
+															<div
+																class="d-flex align-items-center justify-content-end mt-4 gap-3">
+																<button class="btn btn-primary" id="btnUpdate"
+																	name="btnUpdate">변경</button>
+																<button
+																	class="btn btn-light-danger text-danger">취소</button>
+															</div>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="dark-transparent sidebartoggler"></div>
+		<div class="dark-transparent sidebartoggler"></div>
+	</div>
+
+	<!--  Customizer -->
+	<!--  Import Js Files -->
+	<script src="/libs/jquery/dist/jquery.min.js"></script>
+	<script src="/libs/simplebar/dist/simplebar.min.js"></script>
+	<script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<!--  core files -->
+	<script src="/js/app.min.js"></script>
+	<script src="/js/app.init.js"></script>
+	<script src="/js/app-style-switcher.js"></script>
+	<script src="/js/sidebarmenu.js"></script>
+
+	<script src="/js/custom.js"></script>
+	<!--  current page js files -->
+	<script src="/libs/owl.carousel/dist/owl.carousel.min.js"></script>
+	{{/member}}
+</body>
 
 <!-- Mirrored from demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/html/main/page-account-settings.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 16 Aug 2023 15:07:19 GMT -->
+
 </html>
 <script>
-	$("#btnUpdate").click(()=>{
+	$("#btnUpdate").click(() => {
+		const mem_seq = '<%= session.getAttribute("mem_seq") %>';
+		console.log("memseq : "+ mem_seq);
+		const mem_password = $("#mem_password").val();
+		const mem_nickname = $("#mem_nickname").val();
+		const mem_email = $("#mem_email").val();
 
-	
-	let params = $("#myform").serialize();
-		console.log(params);
-		
+		const params = {
+			mem_nickname: mem_nickname,
+			mem_email: mem_email,
+		};
 		$.ajax({
-			url:"/member/update",
-			data:params,
-			dataType:"json",
-			method:"POST"
+			url: "/member/update",
+			data: params,
+			dataType: "json",
+			method: "POST"
 		})
-		.done(res=>{
-			if(res.result=="success"){
-				alert("마이페이지 수정");
-				location.href="/";
-			}else{
-				alert("수정 실패");
-			}
-		})
-		.fail((res,error,status)=>{
-			console.log(error);
-		})
+			.done(res => {
+				if (res.result == "success") {
+					alert("마이페이지 수정");
+					location.href = "/";
+				} else {
+					alert("수정 실패");
+				}
+			})
+			.fail((res, error, status) => {
+				console.log(error);
+			})
 
-});
+	});
 
-	
+
 </script>
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script>
-		//encytype="multipart/form-data" 이게 있어야 파일전송가능
-	$(()=>{
-		$("#btnUpload").click(()=>{
+	//encytype="multipart/form-data" 이게 있어야 파일전송가능
+	$(() => {
+		$("#btnUpload").click(() => {
 			// 파일 전송할때 자바스크립트가 제공하는 FormData 객체를 써야한다
 			// document.myform - 이름속성으로 폼을 접근
 			// document.getElementById("myform"); -- id로 접근
 			// document.getElementById("myform") , $("#myform") 서로 다르다
 			let frmData = new FormData($("#myform")[0]);
 			console.log(frmData);
-			for(key of frmData.keys()){
-				console.log(frmData.get(key));	
+			for (key of frmData.keys()) {
+				console.log(frmData.get(key));
 			}
-			
-			
-			$.ajax({url:"/member/upload",
-					data:frmData,
-					contentType:false, // 파일전송에 반드시 필요
-					processData:false, // 파일전송에 반드시 필요
-					method:"POST",
-					dataType:"json"
-				})
-				.done((res)=>{
+
+
+			$.ajax({
+				url: "/member/upload",
+				data: frmData,
+				contentType: false, // 파일전송에 반드시 필요
+				processData: false, // 파일전송에 반드시 필요
+				method: "POST",
+				dataType: "json"
+			})
+				.done((res) => {
 					console.log(res.filename);
 					console.log(res.image_url);
 				})
-				.fail((res,error,status)=>{
+				.fail((res, error, status) => {
 					console.log(error);
 				})
 		});
 	})
-	
+
 </script>
 <script>
-	function imgChange(){
+	function imgChange() {
 		document.getElementById("profileimg").src = "./fileUpload/"
 	}
-	
+
 </script>
