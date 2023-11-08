@@ -1,7 +1,11 @@
 package com.woori.myapp.entity;
 
-public class MemberDto {
+import java.io.Serializable;
 
+public class MemberDto implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
 	 private Long mem_seq=0L;
 	 private String mem_name=""; 
 	 private String mem_password=""; 
