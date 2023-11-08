@@ -12,9 +12,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.woori.myapp.entity.FrigoDto;
 import com.woori.myapp.entity.FrigoResponseDto;
+import com.woori.myapp.entity.MemberDto;
+import com.woori.myapp.entity.RecipeDto;
 import com.woori.myapp.service.FrigoService;
+import com.woori.myapp.service.MainService;
 
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class FrigoController {
@@ -24,15 +29,15 @@ public class FrigoController {
 	
 	@GetMapping("/my_frigo")
 	public String my_frigo(Model model, FrigoResponseDto dto) {
-		dto.setMem_seq(1L);	//임시
-		
 		List<FrigoResponseDto> iceList = service.getList(dto, "냉장");
 		List<FrigoResponseDto> frozenList = service.getList(dto, "냉동");
 		List<FrigoResponseDto> roomList = service.getList(dto, "실온");
+		List<RecipeDto> recipeList = service.getRecipeList();
 		
 		model.addAttribute("iceList", iceList);
 		model.addAttribute("frozenList", frozenList);
 		model.addAttribute("roomList", roomList);
+		model.addAttribute( "recipeList", recipeList );
 		return "my_frigo";
 	}
 	
@@ -40,13 +45,10 @@ public class FrigoController {
 	@PostMapping("/frigo/save")
 	@ResponseBody
 	public HashMap<String, Object> save(FrigoDto dto) {
-		
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		
-		dto.setMem_seq(1L);	// 임시
-		
 		resultMap.put("result", service.insert(dto));
-		resultMap.put("response", "success");
+		resultMap.put("message", "success");
 		
 		return resultMap;
 	}
@@ -55,15 +57,14 @@ public class FrigoController {
 	@ResponseBody
 	public HashMap<String, Object> delete_one(FrigoDto dto, @PathVariable("frigo_seq") Long frigo_seq) {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-
-		dto.setMem_seq(1L);	// 임시
+		
 		int result = service.deleteOne(dto);
 		if (result ==  0) {
-			resultMap.put("response", "fail");
+			resultMap.put("message", "fail");
 			return resultMap;
 		}
 		
-		resultMap.put("response", "success");
+		resultMap.put("message", "success");
 		
 		return resultMap;
 	}
@@ -74,10 +75,9 @@ public class FrigoController {
 	public HashMap<String, Object> delete_all(FrigoDto dto, @PathVariable("frigo_storage") String frigo_storage) {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		
-		dto.setMem_seq(1L);	// 임시
 		int deleteRow = service.deleteAll(dto);
 		if (deleteRow > 0) {
-			resultMap.put("response", "success");
+			resultMap.put("message", "success");
 		}
 		
 		return resultMap;
@@ -88,15 +88,13 @@ public class FrigoController {
 	public HashMap<String, Object> modify(FrigoDto dto) {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		
-		dto.setMem_seq(1L);
-		
 		int result = service.updateDatail(dto);
 		if (result == 0) {
-			resultMap.put("response", "fail");
+			resultMap.put("message", "fail");
 			return resultMap;
 		}
 		
-		resultMap.put("response", "success");
+		resultMap.put("message", "success");
 		return resultMap;
 	}
 	
@@ -105,7 +103,6 @@ public class FrigoController {
 	public HashMap<String, Object> update_status(FrigoDto dto) {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		
-		dto.setMem_seq(1L);
 		int result = service.updateStatus(dto);
 		if (result != 1) {
 			resultMap.put("message", "fail");

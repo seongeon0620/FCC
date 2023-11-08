@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.woori.myapp.entity.FrigoDto;
 import com.woori.myapp.entity.FrigoResponseDto;
+import com.woori.myapp.entity.RecipeDto;
 
 public interface FrigoDao {
 	void insert(FrigoDto dto);
@@ -13,4 +14,5 @@ public interface FrigoDao {
 	int deleteOne(FrigoDto dto);
 	int updateDetail(FrigoDto dto);
 	int updateStatus(FrigoDto dto);
+	List<RecipeDto> getRecipeList();
 }

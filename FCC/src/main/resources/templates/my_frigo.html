@@ -1,10 +1,8 @@
 {{>layout/header}}
-
+<style>
+	.card-img-top { height: 250px; object-fit: cover;}
+</style>
 <body>
-	<!-- Preloader -->
-	<div class="preloader">
-		<img src="/images/logos/favicon.ico" alt="loader" class="lds-ripple img-fluid" />
-	</div>
 	<!-- Body Wrapper -->
 	<div class="page-wrapper" id="main-wrapper" data-layout="horizontal" data-navbarbg="skin6" data-sidebartype="full"
 		data-sidebar-position="fixed" data-header-position="fixed">
@@ -368,167 +366,109 @@
 						</div>
 					</div>
 				</div>
+<!--				<div class="row">-->
+<!--					<h5 class="mb-4 mt-3 fs-5 fw-semibold">나의 재료기반 기존 레시피</h5>-->
+<!--					<div class="col-md-6 col-lg-3">-->
+<!--						<div class="card rounded-2 overflow-hidden">-->
+<!--							<div class="position-relative">-->
+<!--								<a href="javascript:void(0)"><img src="/images/products/s4.jpg"-->
+<!--										class="card-img-top rounded-0" alt="..."></a>-->
+<!--								<a href="javascript:void(0)"-->
+<!--									class="btn btn-danger rounded-circle p-2 d-flex align-items-center justify-content-center position-absolute bottom-0 end-0 me-3 mb-n3">-->
+<!--									<i class="ti ti-heart"></i>-->
+<!--								</a>-->
+<!--							</div>-->
+<!--							<div class="card-body p-4">-->
+<!--								<h5 class="fw-semibold fs-4 mb-2">Boat Headphone</h5>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--					<div class="col-md-6 col-lg-3">-->
+<!--						<div class="card rounded-2 overflow-hidden">-->
+<!--							<div class="position-relative">-->
+<!--								<a href="javascript:void(0)"><img src="/images/products/s5.jpg"-->
+<!--										class="card-img-top rounded-0" alt="..."></a>-->
+<!--								<a href="javascript:void(0)"-->
+<!--									class="btn btn-danger rounded-circle p-2 d-flex align-items-center justify-content-center position-absolute bottom-0 end-0 me-3 mb-n3">-->
+<!--									<i class="ti ti-basket"></i>-->
+<!--								</a>-->
+<!--							</div>-->
+<!--							<div class="card-body p-4">-->
+<!--								<h5 class="fw-semibold fs-4 mb-2">MacBook Air Pro</h5>-->
+<!--								<div class="d-flex align-items-center justify-content-between">-->
+<!--									<div class="d-flex align-items-center gap-2">-->
+<!--										<h5 class="fw-semibold fs-4 mb-0">$900</h5>-->
+<!--										<p class="mb-0 text-decoration-line-through">$650</p>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--					<div class="col-md-6 col-lg-3">-->
+<!--						<div class="card rounded-2 overflow-hidden">-->
+<!--							<div class="position-relative">-->
+<!--								<a href="javascript:void(0)"><img src="/images/products/s7.jpg"-->
+<!--										class="card-img-top rounded-0" alt="..."></a>-->
+<!--								<a href="javascript:void(0)"-->
+<!--									class="btn btn-primary rounded-circle p-2 d-flex align-items-center justify-content-center position-absolute bottom-0 end-0 me-3 mb-n3">-->
+<!--									<i class="ti ti-basket"></i>-->
+<!--								</a>-->
+<!--							</div>-->
+<!--							<div class="card-body p-4">-->
+<!--								<h5 class="fw-semibold fs-4 mb-2">Red Valvet Dress</h5>-->
+<!--								<div class="d-flex align-items-center justify-content-between">-->
+<!--									<div class="d-flex align-items-center gap-2">-->
+<!--										<h5 class="fw-semibold fs-4 mb-0">$200</h5>-->
+<!--										<p class="mb-0 text-decoration-line-through">$150</p>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--					<div class="col-md-6 col-lg-3">-->
+<!--						<div class="card rounded-2 overflow-hidden">-->
+<!--							<div class="position-relative">-->
+<!--								<a href="javascript:void(0)"><img src="/images/products/s11.jpg"-->
+<!--										class="card-img-top rounded-0" alt="..."></a>-->
+<!--								<a href="javascript:void(0)"-->
+<!--									class="btn btn-primary rounded-circle p-2 d-flex align-items-center justify-content-center position-absolute bottom-0 end-0 me-3 mb-n3">-->
+<!--									<i class="ti ti-basket"></i>-->
+<!--								</a>-->
+<!--							</div>-->
+<!--							<div class="card-body p-4">-->
+<!--								<h5 class="fw-semibold fs-4 mb-2">Cute Soft Teddybear</h5>-->
+<!--								<div class="d-flex align-items-center justify-content-between">-->
+<!--									<div class="d-flex align-items-center gap-2">-->
+<!--										<h5 class="fw-semibold fs-4 mb-0">$345</h5>-->
+<!--										<p class="mb-0 text-decoration-line-through">$205</p>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--				</div>-->
+				
+				
+				
+				
 				<div class="row">
-					<h5 class="mb-4 mt-3 fs-5 fw-semibold">나의 재료기반 기존 레시피</h5>
+					<h5 class="mb-4 mt-3 fs-5 fw-semibold">추천 레시피</h5>
+					{{#recipeList}}
 					<div class="col-md-6 col-lg-3">
 						<div class="card rounded-2 overflow-hidden">
 							<div class="position-relative">
-								<a href="javascript:void(0)"><img src="/images/products/s4.jpg"
-										class="card-img-top rounded-0" alt="..."></a>
+								<a href="/recipe/view/{{rcp_seq}}"><img src="{{rcp_img_s}}" class="card-img-top rounded-0" alt="..."></a>
 								<a href="javascript:void(0)"
 									class="btn btn-danger rounded-circle p-2 d-flex align-items-center justify-content-center position-absolute bottom-0 end-0 me-3 mb-n3">
 									<i class="ti ti-heart"></i>
 								</a>
 							</div>
 							<div class="card-body p-4">
-								<h5 class="fw-semibold fs-4 mb-2">Boat Headphone</h5>
+								<h5 class="fw-semibold fs-4 mb-2">{{rcp_name}}</h5>
 							</div>
 						</div>
 					</div>
-					<div class="col-md-6 col-lg-3">
-						<div class="card rounded-2 overflow-hidden">
-							<div class="position-relative">
-								<a href="javascript:void(0)"><img src="/images/products/s5.jpg"
-										class="card-img-top rounded-0" alt="..."></a>
-								<a href="javascript:void(0)"
-									class="btn btn-danger rounded-circle p-2 d-flex align-items-center justify-content-center position-absolute bottom-0 end-0 me-3 mb-n3">
-									<i class="ti ti-basket"></i>
-								</a>
-							</div>
-							<div class="card-body p-4">
-								<h5 class="fw-semibold fs-4 mb-2">MacBook Air Pro</h5>
-								<div class="d-flex align-items-center justify-content-between">
-									<div class="d-flex align-items-center gap-2">
-										<h5 class="fw-semibold fs-4 mb-0">$900</h5>
-										<p class="mb-0 text-decoration-line-through">$650</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-3">
-						<div class="card rounded-2 overflow-hidden">
-							<div class="position-relative">
-								<a href="javascript:void(0)"><img src="/images/products/s7.jpg"
-										class="card-img-top rounded-0" alt="..."></a>
-								<a href="javascript:void(0)"
-									class="btn btn-primary rounded-circle p-2 d-flex align-items-center justify-content-center position-absolute bottom-0 end-0 me-3 mb-n3">
-									<i class="ti ti-basket"></i>
-								</a>
-							</div>
-							<div class="card-body p-4">
-								<h5 class="fw-semibold fs-4 mb-2">Red Valvet Dress</h5>
-								<div class="d-flex align-items-center justify-content-between">
-									<div class="d-flex align-items-center gap-2">
-										<h5 class="fw-semibold fs-4 mb-0">$200</h5>
-										<p class="mb-0 text-decoration-line-through">$150</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-3">
-						<div class="card rounded-2 overflow-hidden">
-							<div class="position-relative">
-								<a href="javascript:void(0)"><img src="/images/products/s11.jpg"
-										class="card-img-top rounded-0" alt="..."></a>
-								<a href="javascript:void(0)"
-									class="btn btn-primary rounded-circle p-2 d-flex align-items-center justify-content-center position-absolute bottom-0 end-0 me-3 mb-n3">
-									<i class="ti ti-basket"></i>
-								</a>
-							</div>
-							<div class="card-body p-4">
-								<h5 class="fw-semibold fs-4 mb-2">Cute Soft Teddybear</h5>
-								<div class="d-flex align-items-center justify-content-between">
-									<div class="d-flex align-items-center gap-2">
-										<h5 class="fw-semibold fs-4 mb-0">$345</h5>
-										<p class="mb-0 text-decoration-line-through">$205</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<h5 class="mb-4 mt-3 fs-5 fw-semibold">나의 재료기반 유저 레시피</h5>
-					<div class="col-md-6 col-lg-3">
-						<div class="card rounded-2 overflow-hidden">
-							<div class="position-relative">
-								<a href="javascript:void(0)"><img src="/images/products/s4.jpg"
-										class="card-img-top rounded-0" alt="..."></a>
-								<a href="javascript:void(0)"
-									class="btn btn-danger rounded-circle p-2 d-flex align-items-center justify-content-center position-absolute bottom-0 end-0 me-3 mb-n3">
-									<i class="ti ti-heart"></i>
-								</a>
-							</div>
-							<div class="card-body p-4">
-								<h5 class="fw-semibold fs-4 mb-2">Boat Headphone</h5>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-3">
-						<div class="card rounded-2 overflow-hidden">
-							<div class="position-relative">
-								<a href="javascript:void(0)"><img src="/images/products/s5.jpg"
-										class="card-img-top rounded-0" alt="..."></a>
-								<a href="javascript:void(0)"
-									class="btn btn-danger rounded-circle p-2 d-flex align-items-center justify-content-center position-absolute bottom-0 end-0 me-3 mb-n3">
-									<i class="ti ti-basket"></i>
-								</a>
-							</div>
-							<div class="card-body p-4">
-								<h5 class="fw-semibold fs-4 mb-2">MacBook Air Pro</h5>
-								<div class="d-flex align-items-center justify-content-between">
-									<div class="d-flex align-items-center gap-2">
-										<h5 class="fw-semibold fs-4 mb-0">$900</h5>
-										<p class="mb-0 text-decoration-line-through">$650</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-3">
-						<div class="card rounded-2 overflow-hidden">
-							<div class="position-relative">
-								<a href="javascript:void(0)"><img src="/images/products/s7.jpg"
-										class="card-img-top rounded-0" alt="..."></a>
-								<a href="javascript:void(0)"
-									class="btn btn-primary rounded-circle p-2 d-flex align-items-center justify-content-center position-absolute bottom-0 end-0 me-3 mb-n3">
-									<i class="ti ti-basket"></i>
-								</a>
-							</div>
-							<div class="card-body p-4">
-								<h5 class="fw-semibold fs-4 mb-2">Red Valvet Dress</h5>
-								<div class="d-flex align-items-center justify-content-between">
-									<div class="d-flex align-items-center gap-2">
-										<h5 class="fw-semibold fs-4 mb-0">$200</h5>
-										<p class="mb-0 text-decoration-line-through">$150</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-3">
-						<div class="card rounded-2 overflow-hidden">
-							<div class="position-relative">
-								<a href="javascript:void(0)"><img src="/images/products/s11.jpg"
-										class="card-img-top rounded-0" alt="..."></a>
-								<a href="javascript:void(0)"
-									class="btn btn-primary rounded-circle p-2 d-flex align-items-center justify-content-center position-absolute bottom-0 end-0 me-3 mb-n3">
-									<i class="ti ti-basket"></i>
-								</a>
-							</div>
-							<div class="card-body p-4">
-								<h5 class="fw-semibold fs-4 mb-2">Cute Soft Teddybear</h5>
-								<div class="d-flex align-items-center justify-content-between">
-									<div class="d-flex align-items-center gap-2">
-										<h5 class="fw-semibold fs-4 mb-0">$345</h5>
-										<p class="mb-0 text-decoration-line-through">$205</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+					{{/recipeList}}
 				</div>
 			</div>
 		</div>
@@ -601,9 +541,6 @@
 				});
 			}
 			
-			$("#btnAllClear").click(() => {
-				console.log('clear');
-			});
 		});
 	</script>
 </body>

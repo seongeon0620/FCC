@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.woori.myapp.entity.FrigoDto;
 import com.woori.myapp.entity.FrigoResponseDto;
+import com.woori.myapp.entity.RecipeDto;
 
 @Repository("frigoDao")
 public class FrigoDaoImpl implements FrigoDao {
@@ -49,6 +50,11 @@ public class FrigoDaoImpl implements FrigoDao {
 	@Override
 	public int updateStatus(FrigoDto dto) {
 		return sm.update("Frigo_updateStatus", dto);
+	}
+
+	@Override
+	public List<RecipeDto> getRecipeList() {
+		return sm.selectList("Frigo_getRandomList");
 	}
 
 	

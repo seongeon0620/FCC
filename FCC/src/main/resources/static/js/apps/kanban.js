@@ -76,10 +76,14 @@ $(function () {
 					method : 'post'
 				})
 				.done((res) => {
-					if (res.response == 'success') {
+					console.log(res);
+					if (res.message == 'success') {
 						alert(`${targetStorage}을(를) 전부 비웠습니다.`);
 						location.reload();
 					}
+					
+					alert("이미 비어있는 저장공간입니다.");
+					return;
 					
 				})
 				.fail((res, error, status) => {
@@ -155,7 +159,7 @@ $(function () {
 			
 		})
 		.done((res) => {
-			 if (res.response == 'success')
+			 if (res.message == 'success')
 				 location.reload();
 		})
 		.fail((res, error, status) => {
@@ -242,7 +246,7 @@ $(function () {
   }
 
   // ----------------------------------------------------------------------
-  // Delete item on click
+  // 일부삭제
   // ----------------------------------------------------------------------
 	function kanbanDelete() {
 		$(".card .kanban-item-delete").on("click", function (event) {
@@ -262,7 +266,7 @@ $(function () {
 					method : 'post'
 				})
 				.done((res) => {
-					if (res.response == 'success')
+					if (res.message == 'success')
 						location.reload();
 				})
 				.fail((res, error, status) => {
@@ -326,8 +330,8 @@ $(function () {
 			})
 			.done((res) => {
 				console.log(res);
-				console.log(res.response);
-				if (res.response == "success") {
+				console.log(res.message);
+				if (res.message == "success") {
 					location.reload();
 //					let kanbanValueTitle = document.getElementById("kanban-title").value;
 //					let kanbanValueText = $("#kanban-text option:selected").text();
