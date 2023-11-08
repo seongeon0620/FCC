@@ -6,7 +6,9 @@ import com.woori.myapp.entity.FrigoDto;
 import com.woori.myapp.entity.FrigoResponseDto;
 
 public interface FrigoDao {
-	int insert(FrigoDto dto);
-	FrigoDto getInsertResult(int frigoSeq);
+	void insert(FrigoDto dto);
+	FrigoResponseDto getInsertResult(Long frigoSeq);
 	List<FrigoResponseDto> getList(FrigoResponseDto frigoResponseDto);
+	int deleteAll(FrigoDto dto);
+	int deleteOne(FrigoDto dto);
 }

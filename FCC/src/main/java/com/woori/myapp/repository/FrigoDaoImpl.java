@@ -17,18 +17,28 @@ public class FrigoDaoImpl implements FrigoDao {
 	SqlSessionTemplate sm;
 
 	@Override
-	public int insert(FrigoDto dto) {
-		return sm.insert("Frigo_insert", dto);
+	public void insert(FrigoDto dto) {
+		sm.insert("Frigo_insert", dto);
 	}
 
 	@Override
-	public FrigoDto getInsertResult(int frigoSeq) {
+	public FrigoResponseDto getInsertResult(Long frigoSeq) {
 		return sm.selectOne("Frigo_getInsertResult", frigoSeq);
 	}
 
 	@Override
 	public List<FrigoResponseDto> getList(FrigoResponseDto dto) {
 		return sm.selectList("Frigo_getList", dto);
+	}
+
+	@Override
+	public int deleteAll(FrigoDto dto) {
+		return sm.delete("Frigo_deleteAll", dto);
+	}
+
+	@Override
+	public int deleteOne(FrigoDto dto) {
+		return sm.delete("Frigo_deleteOne", dto);
 	}
 
 	
