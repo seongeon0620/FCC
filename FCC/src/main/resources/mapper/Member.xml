@@ -43,7 +43,7 @@
 	 	
 	 </insert>
 	  <select id="Member_login" resultType="MemberDto" parameterType="MemberDto">
-		 select mem_name,mem_password,mem_nickname,mem_email,mem_img
+		 select mem_seq, mem_name,mem_password,mem_nickname,mem_email,mem_img
 		 from tb_member
 		 where mem_name=#{mem_name}
 	 </select>

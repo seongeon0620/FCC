@@ -41,7 +41,7 @@
 							<div class="card-body">
 								<div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
 									<div class="mb-3 mb-sm-0" id="frigoLink">
-										<h5 class="card-title fw-semibold">{{mem_nickname}}님의 냉장고 요약</h5>
+										<h5 class="card-title fw-semibold">{{logInfo.mem_nickname}}님의 냉장고 요약</h5>
 									</div>
 									<div>
 										<select class="form-select" id="fridge_select">
@@ -131,7 +131,8 @@
 </html>
 
 <script>
-	let mem_seq = 1;
+	let mem_seq = '{{logInfo.mem_seq}}';
+	console.log(mem_seq);
 	// document.ready
 	$(() => {
 		// 냉장고 초기 설정
