@@ -16,8 +16,8 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer{
 		// /queue 는 한명이 message 를 발행했을 때 발행한 한 명에게 다시 정보를 보내는 경우에 사용합니다. 저는
 		
 		//전체에게 보낸다 
-		registry.enableSimpleBroker("/topic");
-		registry.setApplicationDestinationPrefixes("/app"); //html문서의 자바스크립트
+		registry.enableSimpleBroker("/topic"); 	// 시작포인트
+		registry.setApplicationDestinationPrefixes("/app"); //끝포인트 html문서의 자바스크립트
 	}
 	
 	@Override

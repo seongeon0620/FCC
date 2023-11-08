@@ -4,28 +4,52 @@ import org.springframework.web.util.HtmlUtils;
 
 //일반 DTO 필요한 필드가 있으면 추가한다 
 public class Message {
-	private String username="";
+	private String mem_nickname="";
 	private String message="";
-	private String userid="";   //JSON으로 만들어서 보낸다.
-	private String roomid="";
+	private String mem_name="";   //JSON으로 만들어서 보낸다.
+	private String roomid="all";
 	
 	@Override
 	public String toString() {
 		
-		return HtmlUtils.htmlEscape(username + " " + message + " " + roomid+ " "+roomid);
+		return HtmlUtils.htmlEscape(mem_nickname + " " + message + " " + mem_name+ " "+roomid);
 	}
 
 	public Message()
 	{}
 	
-	public Message(String username, String message, String userid, String roomid) {
+	public Message(String mem_nickname, String message, String mem_name, String roomid) {
 		super();
-		this.username = username;
+		this.mem_nickname = mem_nickname;
 		this.message = message;
-		this.userid = userid;
+		this.mem_name = mem_name;
 		this.roomid=roomid;
 	}
-	
+
+	public String getMem_nickname() {
+		return mem_nickname;
+	}
+
+	public void setMem_nickname(String mem_nickname) {
+		this.mem_nickname = mem_nickname;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public String getMem_name() {
+		return mem_name;
+	}
+
+	public void setMem_name(String mem_name) {
+		this.mem_name = mem_name;
+	}
+
 	public String getRoomid() {
 		return roomid;
 	}
@@ -33,26 +57,6 @@ public class Message {
 	public void setRoomid(String roomid) {
 		this.roomid = roomid;
 	}
-
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public String getMessage() {
-		return message;
-	}
-	public void setMessage(String message) {
-		this.message = message;
-	}
-	public String getUserid() {
-		return userid;
-	}
-	public void setUserid(String userid) {
-		this.userid = userid;
-	}
-	
 	
 	
 }

@@ -111,6 +111,7 @@ $(".app-chat .chat-user ").on("click", function (event) {
 // Send Messages
 $(".message-type-box").on("keydown", function (event) {
   if (event.key === "Enter") {
+	  sendName();
     // Start getting time
     var now = new Date();
     var hh = now.getHours();

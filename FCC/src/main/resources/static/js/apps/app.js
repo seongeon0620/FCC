@@ -21,8 +21,8 @@ stompClient.onConnect = (frame) => {
     //	registry.enableSimpleBroker("/topic");
     //정보를 기다린다, /topic/greetins 로 오면 
     //greeting =>  Message객체 
-    let roomid = $("#roomid").val();
-    let topic = `/topic/${roomid}`;
+    //let roomid = $("#roomid").val();
+    let topic = `/topic/all`;
     stompClient.subscribe(topic, (greeting) => {
 		console.log( greeting );  //
 		//이데이터가 문자열로 온다.  => JSON.parse   {name:"홍길동"}  '{name:"홍길동"}'
@@ -68,24 +68,59 @@ function disconnect() {
 //서버로 정보를 보낸다ㅑ. 
 //JSON.stringify : JSON 객체를 문자열로 바꿔서 보낸다.
 function sendName() {
-	let roomid = $("#roomid").val();
-	let destination = `/app/${roomid}`;
+	let roomid ="all";
+	let destination = `/app/all`;
 	console.log( destination );
     stompClient.publish({
         //destination: "/app/hello",
         destination:destination,
         body: JSON.stringify(
 			{
-		     'roomid':roomid,
-			 'username': $("#username").val(),
-			 'message':$("#message").val()
+		     'roomid':"all",
+			 'mem_nickname': $("#mem_nickname").val(),
+			 'message':$(".message-type-box").val()
 			}
 		)
     });
 }
 
+// 수신 하면 화면에 뿌림
 function showGreeting(data) {
-    $("#greetings").append("<tr><td>" + data.username  +  " "+ data.message + "</td></tr>");
+	
+	if( data.mem_nickname == $("#mem_nickname").val() ) {
+		return;
+	}
+	
+	let now = new Date();
+	let hh = now.getHours();
+	let min = now.getMinutes();
+
+	let ampm = hh >= 12 ? "pm" : "am";
+	hh = hh % 12;
+	hh = hh ? hh : 12;
+	hh = hh < 10 ? "0" + hh : hh;
+	min = min < 10 ? "0" + min : min;
+
+	let time = hh + ":" + min + " " + ampm;
+
+	let receptionMag = `
+		<div class="hstack gap-3 align-items-start mb-7 justify-content-start">
+			<img src="/images/profile/user-6.jpg" width="40" height="40" class="rounded-circle" />
+			<div>
+				<h6 class="fs-2 text-muted">${data.mem_nickname}</h6>
+				<div class="p-2 bg-light rounded-1 d-inline-block text-dark fs-3">
+					${data.message}
+					</div> <div class="d-block fs-2">
+					${time}
+					</div>
+				</div>
+			</div>
+		</div>`;
+
+	$(".message-type-box")
+		.parents(".chat-application")
+		.find(".active-chat")
+		.append(receptionMag);
 }
 
 //함수를 여기서 붙인다. 앞부분의 html  submit 버튼의 기능 차단이 가능하다

@@ -18,6 +18,7 @@
 		<mapper resource="mapper/Board.xml" />
 		<mapper resource="mapper/Recipe.xml" />
 		<mapper resource="mapper/Main.xml" />
+		<mapper resource="mapper/Chat.xml" />
 		<mapper resource="mapper/Ingre.xml" />
 		<mapper resource="mapper/Frigo.xml" />
 	</mappers>
