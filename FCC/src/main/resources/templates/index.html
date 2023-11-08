@@ -41,7 +41,7 @@
 							<div class="card-body">
 								<div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
 									<div class="mb-3 mb-sm-0" id="frigoLink">
-										<h5 class="card-title fw-semibold">{{logInfo.mem_nickname}}님의 냉장고 요약</h5>
+										<h5 class="card-title fw-semibold">{{logInfo.mem_nickname}}님❗유통기한 순으로 정리해드릴게요💕 </h5>
 									</div>
 									<div>
 										<select class="form-select" id="fridge_select">
@@ -103,7 +103,7 @@
 										<!-- 프로그래스바-->
 										<div class="progress" style="height: 25px;">
 											<div id="progressbar" class="progress-bar bg-empty" role="progressbar">
-												<span id="progressbarStatus"> </span>
+												<span id="progressbarStatus"></span>
 											</div>
 										</div>
 										<!--// 프로그래스바-->
@@ -181,7 +181,7 @@
 					let result = res.list;
 					let temp = "";
 					if (result.length === 0) {
-						temp = "<p style='text-align: center; font-size: 24px; font-weight: bold;'>비어있습니다</p>";
+						temp = "<p style='text-align: center; font-size: 24px; font-weight: bold;'> <br /> <br /> <br />비어있습니다 <br /> 나의 냉장고에서 음식을 추가하세요</p>";
 
 					}
 					for (i = 0; i < result.length; i++) {
@@ -269,7 +269,7 @@
 			.done((res) => {
 				console.log(res);
 				if (res.f_status === "비움") {
-					progressBar.css("width", "0%");
+					progressBar.css("width", "100%");
 					progressBar.removeClass("bg-danger bg-warning bg-success");
 					progressBar.addClass("bg-empty");
 					progressBarStatus.html("냉장고가 비었습니다");
