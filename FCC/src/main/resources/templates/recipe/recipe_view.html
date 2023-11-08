@@ -55,99 +55,132 @@
 					</div>
 					<div class="col-3">
 						<div class="text-center mb-n5">
-							<img src="../../dist/images/breadcrumb/ChatBc.png" alt="" class="img-fluid mb-n4">
+							<img src="/images/breadcrumb/ChatBc.png" alt="" class="img-fluid mb-n4">
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="card rounded-2 overflow-hidden">
-			<div class="position-relative">
-				<a href="javascript:void(0)"><img src="../../dist/images/blog/blog-img5.jpg"
-						class="card-img-top rounded-0 object-fit-cover" alt="..." height="440"></a>
-				<span
-					class="badge bg-white text-dark fs-2 rounded-4 lh-sm mb-9 me-9 py-1 px-2 fw-semibold position-absolute bottom-0 end-0">2
-					min Read</span>
-				<img src="../../dist/images/profile/user-5.jpg" alt=""
-					class="img-fluid rounded-circle position-absolute bottom-0 start-0 mb-n9 ms-9" width="40"
-					height="40" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Esther Lindsey">
-			</div>
 			<div class="card-body p-4">
-				<span class="badge text-bg-light fs-2 rounded-4 py-1 px-2 lh-sm  mt-3">Lifestyle</span>
-				<h2 class="fs-9 fw-semibold my-4">Streaming video way before it was cool, go dark tomorrow</h2>
-				<div class="d-flex align-items-center gap-4">
-					<div class="d-flex align-items-center gap-2"><i class="ti ti-eye text-dark fs-5"></i>2252</div>
-					<div class="d-flex align-items-center gap-2"><i class="ti ti-message-2 text-dark fs-5"></i>3</div>
-					<div class="d-flex align-items-center fs-2 ms-auto"><i class="ti ti-point text-dark"></i>Sat, Jan 14
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="position-relative"
+							style="width: 100%; height: 440px; display: flex; justify-content: center; align-items: center; overflow: hidden;">
+							<img src="{{recipeInfo.rcp_img_b}}"
+								style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;"
+								alt="Recsipe Image">
+						</div>
 					</div>
-				</div>
-			</div>
-			<div class="card-body border-top p-4">
-				<h2 class="fs-8 fw-semibold mb-3">Title of the paragraph</h2>
-				<p class="mb-3">
-					But you cannot figure out what it is or what it can do. MTA web directory is the simplest way in
-					which one can bid on a link, or a few links if they wish to do so. The link
-					directory on MTA displays all of the links it currently has, and does so in alphabetical order,
-					which makes it much easier for someone to find what they are looking for if it is
-					something specific and they do not want to go through all the other sites and links as well. It
-					allows you to start your bid at the bottom and slowly work your way to the top
-					of the list.
-				</p>
-				<p class="mb-3">
-					Gigure out what it is or what it can do. MTA web directory is the simplest way in which one can bid
-					on a link, or a few links if they wish to do so. The link directory on MTA
-					displays all of the links it currently has, and does so in alphabetical order, which makes it much
-					easier for someone to find what they are looking for if it is something
-					specific and they do not want to go through all the other sites and links as well. It allows you to
-					start your bid at the bottom and slowly work your way to the top of the
-				</p>
-				<p class="text-dark mb-0"><strong>This is strong text.</strong></p>
-				<p class="mb-0"><em>This is italic text.</em></p>
-				<div class="border-top mt-7 pt-7">
-					<h3 class="fw-semibold">Unorder list.</h3>
-					<ul class="my-3 ps-4 text-dark">
-						<li class="d-flex align-items-center gap-2"><span class="p-1 bg-dark rounded-circle"></span>
-							Gigure out what it is or</li>
-						<li class="d-flex align-items-center gap-2"><span class="p-1 bg-dark rounded-circle"></span> The
-							links it currently</li>
-						<li class="d-flex align-items-center gap-2"><span class="p-1 bg-dark rounded-circle"></span> It
-							allows you to start your bid</li>
-						<li class="d-flex align-items-center gap-2"><span class="p-1 bg-dark rounded-circle"></span>
-							Gigure out what it is or</li>
-						<li class="d-flex align-items-center gap-2"><span class="p-1 bg-dark rounded-circle"></span> The
-							links it currently</li>
-						<li class="d-flex align-items-center gap-2"><span class="p-1 bg-dark rounded-circle"></span> It
-							allows you to start your bid</li>
-					</ul>
-				</div>
-				<div class="border-top mt-7 pt-7">
-					<h3 class="fw-semibold">Order list.</h3>
-					<ol class="my-3 text-dark">
-						<li>Gigure out what it is or</li>
-						<li>The links it currently</li>
-						<li>It allows you to start your bid</li>
-						<li>Gigure out what it is or</li>
-						<li>The links it currently</li>
-						<li>It allows you to start your bid</li>
-					</ol>
-				</div>
-				<div class="border-top mt-7 pt-7">
-					<h3 class="fw-semibold">Quotes</h3>
-					<div class="p-3">
-						<h6 class="mb-0 fs-4 fw-semibold"><i class="ti ti-quote fs-7"></i>Life is short, Smile while you
-							still have teeth!</h6>
+					<div class="col-lg-6">
+						<div class="shop-content">
+							<div class="d-flex align-items-center gap-2 mb-2">
+								<span class="badge text-bg-success fs-2 fw-semibold rounded-3">조리 방법</span>
+								<span class="fs-2">{{recipeInfo.rcp_way}}</span>
+								&nbsp &nbsp &nbsp &nbsp &nbsp
+								<span class="badge text-bg-success fs-2 fw-semibold rounded-3">요리 종류</span>
+								<span class="fs-2">{{recipeInfo.rcp_pat}}</span>
+							</div>
+							<br />
+							<h2 class="fw-semibold"> ✔️ {{recipeInfo.rcp_name}}</h2>
+							<br />
+							<span class="badge text-bg-secondary  fs-2 fw-semibold rounded-3">재료 정보</span>
+							<div class="alert alert-secondary" role="alert">
+								{{recipeInfo.rcp_details}}
+							</div>
+							<span class="badge text-bg-warning  fs-2 fw-semibold rounded-3">저감 조리법 Tip</span>
+							<div class="alert alert-warning" role="alert">
+								{{recipeInfo.rcp_tip}}
+							</div>
+							<div class="d-sm-flex align-items-center gap-3 pt-8 mb-7">
+								<a href="javascript:history.back()"
+									class="btn d-block btn-primary px-5 py-8 mb-2 mb-sm-0">뒤로가기 </a>
+								<a href="javascript:void(0)" class="btn d-block btn-danger px-5 py-8 mb-2 mb-sm-0">찜
+									하기</a>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		
+	</div>
+	<div class="card-body border-top p-4">
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="table-responsive">
+					<table id="demo-foo-addrow" class="table table-bordered m-t-30 table-hover contact-list"
+						style="text-align: center;">
+						<thead>
+							<tr>
+								<th style="text-align: center; background-color: #f2f2f2;">사진</th>
+								<th style="text-align: center; background-color: #f2f2f2;">설명</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+				<input type="hidden" id="rcp_car" value="{{recipeInfo.rcp_car}}">
+				<input type="hidden" id="rcp_pro" value="{{recipeInfo.rcp_pro}}">
+				<input type="hidden" id="rcp_fat" value="{{recipeInfo.rcp_fat}}">
+			</div>
+			<div class="col-lg-6">
+				<div class="card">
+					<div class="card-body">
+						<h5>탄단지 비율</h5>
+						<div id="chart-pie-simple"></div>
+					</div>
+				</div>
+
+				<div class="card">
+					<div class="card-body">
+						<div class="mb-3">
+							<h6 class="mb-0">칼로리( kcal )  :  {{recipeInfo.rcp_eng}}</h6>
+						</div>
+						<div class="progress" id="eng_progress" style="height: 15px">
+						</div>
+						<br />
+						<div class="mb-3">
+							<h6 class="mb-0">탄수화물( g )  :  {{recipeInfo.rcp_car}}</h6>
+						</div>
+						<div class="progress" id="car_progress" style="height: 15px">
+							
+						</div>
+						<br />
+						<div class="mb-3">
+							<h6 class="mb-0">단백질( g )  :  {{recipeInfo.rcp_pro}}</h6>
+						</div>
+						<div class="progress" id="pro_progress" style="height: 15px">
+							
+						</div>
+						<br />
+						<div class="mb-3">
+							<h6 class="mb-0">지방( g )  :  {{recipeInfo.rcp_fat}}</h5>
+						</div>
+						<div class="progress" id="fat_progress" style="height: 15px">
+							
+						</div>
+						<br />
+						<div class="mb-3">
+							<h6 class="mb-0">나트륨( mg )  :  {{recipeInfo.rcp_na}}</h6>
+						</div>
+						<div class="progress" id="na_progress" style="height: 15px">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+
 	</div>
 	</div>
 	<div class="dark-transparent sidebartoggler"></div>
 	<div class="dark-transparent sidebartoggler"></div>
 	</div>
-	
-	
+
+
 	<!-- ---------------------------------------------- -->
 	<!-- Import Js Files -->
 	<!-- ---------------------------------------------- -->
@@ -167,8 +200,123 @@
 	<!-- current page js files -->
 	<!-- ---------------------------------------------- -->
 	<script src="/js/apps/chat.js"></script>
+	<script src="/libs/apexcharts/dist/apexcharts.min.js"></script>
 </body>
 
 <!-- Mirrored from demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/html/main/blog-detail.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 16 Aug 2023 15:07:12 GMT -->
 
 </html>
+
+<script>
+	$(document).ready(function () {
+		var imageElements = [
+			"{{recipeInfo.rcp_manual_img01}}",
+			"{{recipeInfo.rcp_manual_img02}}",
+			"{{recipeInfo.rcp_manual_img03}}",
+			"{{recipeInfo.rcp_manual_img04}}",
+			"{{recipeInfo.rcp_manual_img05}}",
+			"{{recipeInfo.rcp_manual_img06}}",
+			"{{recipeInfo.rcp_manual_img07}}",
+			"{{recipeInfo.rcp_manual_img08}}",
+			"{{recipeInfo.rcp_manual_img09}}",
+			"{{recipeInfo.rcp_manual_img10}}",
+			"{{recipeInfo.rcp_manual_img11}}",
+			"{{recipeInfo.rcp_manual_img12}}",
+			"{{recipeInfo.rcp_manual_img13}}",
+			"{{recipeInfo.rcp_manual_img14}}",
+			"{{recipeInfo.rcp_manual_img15}}",
+			"{{recipeInfo.rcp_manual_img16}}",
+			"{{recipeInfo.rcp_manual_img17}}",
+			"{{recipeInfo.rcp_manual_img18}}",
+			"{{recipeInfo.rcp_manual_img19}}",
+			"{{recipeInfo.rcp_manual_img20}}"
+		];
+
+		var manualElements = [
+			"{{recipeInfo.rcp_manual01}}",
+			"{{recipeInfo.rcp_manual02}}",
+			"{{recipeInfo.rcp_manual03}}",
+			"{{recipeInfo.rcp_manual04}}",
+			"{{recipeInfo.rcp_manual05}}",
+			"{{recipeInfo.rcp_manual06}}",
+			"{{recipeInfo.rcp_manual07}}",
+			"{{recipeInfo.rcp_manual08}}",
+			"{{recipeInfo.rcp_manual09}}",
+			"{{recipeInfo.rcp_manual10}}",
+			"{{recipeInfo.rcp_manual11}}",
+			"{{recipeInfo.rcp_manual12}}",
+			"{{recipeInfo.rcp_manual13}}",
+			"{{recipeInfo.rcp_manual14}}",
+			"{{recipeInfo.rcp_manual15}}",
+			"{{recipeInfo.rcp_manual16}}",
+			"{{recipeInfo.rcp_manual17}}",
+			"{{recipeInfo.rcp_manual18}}",
+			"{{recipeInfo.rcp_manual19}}",
+			"{{recipeInfo.rcp_manual20}}"
+		];
+
+		for (var i = 0; i < imageElements.length; i++) {
+			if (imageElements[i] && manualElements[i]) {
+				var tr = '<tr>' +
+					'<td style="vertical-align: middle; text-align: center;">' +
+					'<img src="' + imageElements[i] + '" alt="user" width="200" style="display: block; margin: 0 auto;">' +
+					'</td>' +
+					'<td style="font-size: 1.2em; text-align: center; vertical-align: middle;">' + manualElements[i] + '</td>' +
+					'</tr>';
+				$("#demo-foo-addrow tbody").append(tr);
+			}
+		}
+	});
+</script>
+
+<script>
+	$(function () {
+		let car_gram = parseFloat($("#rcp_car").val());
+		let pro_gram = parseFloat($("#rcp_pro").val());
+		let fat_gram = parseFloat($("#rcp_fat").val());
+
+		let essential_nutrients = {
+			series: [car_gram, pro_gram, fat_gram],
+			chart: {
+				fontFamily: '"Nunito Sans", sans-serif',
+				width: 380,
+				type: "pie",
+			},
+			colors: ["var(--bs-primary)", "var(--bs-success)", "var(--bs-danger)"],
+			labels: ["탄수화물(g)", "단백질(g)", "지방(g)"],
+			responsive: [{
+				breakpoint: 480,
+				options: {
+					chart: {
+						width: 200,
+					},
+					legend: {
+						position: "bottom",
+					},
+				},
+			},],
+			legend: {
+				labels: {
+					colors: ["#a1aab2"],
+				},
+			},
+		};
+
+		var chart_pie_simple = new ApexCharts(
+			document.querySelector("#chart-pie-simple"),
+			essential_nutrients
+		);
+		chart_pie_simple.render();
+
+		let engProgressBar = '<div class="progress-bar bg-secondary" style="width: {{recipeAnalysis.rcp_per_eng}}" role="progressbar">{{recipeInfo.rcp_eng}}</div>';
+		let carProgressBar = '<div class="progress-bar bg-primary" style="width: {{recipeAnalysis.rcp_per_car}}" role="progressbar">{{recipeInfo.rcp_car}}</div>';
+		let proProgressBar = '<div class="progress-bar bg-success" style="width: {{recipeAnalysis.rcp_per_pro}}" role="progressbar">{{recipeInfo.rcp_pro}}</div>';
+		let fatProgressBar = '<div class="progress-bar bg-danger" style="width: {{recipeAnalysis.rcp_per_fat}}" role="progressbar">{{recipeInfo.rcp_fat}}</div>';
+		let naProgressBar = '<div class="progress-bar bg-warning" style="width: {{recipeAnalysis.rcp_per_na}}" role="progressbar">{{recipeInfo.rcp_na}}</div>';
+		$("#eng_progress").append(engProgressBar);
+		$("#car_progress").append(carProgressBar);
+		$("#pro_progress").append(proProgressBar);
+		$("#fat_progress").append(fatProgressBar);
+		$("#na_progress").append(naProgressBar);
+	});
+</script>

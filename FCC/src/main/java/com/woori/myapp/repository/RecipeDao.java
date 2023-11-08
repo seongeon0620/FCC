@@ -10,4 +10,6 @@ public interface RecipeDao {
 	
 	int getRecipeTotalCnt();
 
+	RecipeDto getRecipeInfo(Integer rcp_seq);
+
 }

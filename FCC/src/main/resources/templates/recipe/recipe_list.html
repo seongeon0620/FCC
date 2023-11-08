@@ -68,39 +68,60 @@
 					</div>
 				</div>
 
-				<!-- Row -->
-				<div class="row">
-					<!-- column -->
+				<div class="row el-element-overlay">
 					{{#recipeList}}
-					<div class="col-lg-4 col-md-6">
-						<!-- Card -->
-						<div class="card" style="height: 100%;">
-							<div style="position: relative; padding-bottom: 100%; overflow: hidden;">
-								<img class="card-img-top img-responsive" src="{{rcp_img_s}}"
-									style="position: absolute; object-fit: cover; width: 100%; height: 100%;"
-									alt="Card image cap" />
-							</div>
-							<div class="card-body">
-								<h4 class="card-title">{{rcp_name}}</h4>
-								<p class="card-text">
-								</p>
-								<a href="javascript:void(0)" class="btn btn-primary">레시피 보러가기</a>
+					<div class="col-lg-3 col-md-6">
+						<div class="card overflow-hidden">
+							<div class="el-card-item pb-3">
+								<div class="
+                      el-card-avatar
+                      mb-3
+                      el-overlay-1
+                      w-100
+                      overflow-hidden
+                      position-relative
+                      text-center
+                    ">
+									<img src="{{rcp_img_s}}" class="d-block position-relative w-100" alt="user"
+										style="height: 20vw; width: 100%; object-fit: cover;" />
+									<div class="el-overlay w-100 overflow-hidden">
+										<ul class="
+                          list-style-none
+                          el-info
+                          text-white text-uppercase
+                          d-inline-block
+                          p-0
+                        ">
+											<li class="el-item d-inline-block my-0 mx-1">
+												<a class="
+                              btn
+                              default
+                              btn-outline
+                              image-popup-vertical-fit
+                              el-link
+                              text-white
+                              border-white
+                            " href="/recipe/view/{{rcp_seq}}">레시피 보러가기</a>
+											</li>
+
+										</ul>
+									</div>
+								</div>
+								<div class="el-card-content text-center">
+									<h4 class="mb-0 fs-5">{{rcp_name}}</h4>
+									<span class="text-muted"></span>
+								</div>
 							</div>
 						</div>
-						<!-- Card -->
 					</div>
-					<!-- column -->
 					{{/recipeList}}
 				</div>
-				<!-- Row -->
-				<!-- 1. end card with img -->
-				
+
 				<nav aria-label="...">
 					<ul class="pagination justify-content-center mb-0 mt-4">
 						{{{page}}}
-					</ul> 
+					</ul>
 				</nav>
-
 			</div>
 		</div>
 		<!-- ---------------------------------------------- -->
@@ -130,7 +151,7 @@
 
 <script>
 	function goPage(pageNumber) {
-        var url = "/recipe/list/" + pageNumber; // 페이지 번호에 맞는 URL 생성
-        window.location.href = url; // 새로운 URL로 페이지 이동
-    }
+		var url = "/recipe/list/" + pageNumber; // 페이지 번호에 맞는 URL 생성
+		window.location.href = url; // 새로운 URL로 페이지 이동
+	}
 </script>
