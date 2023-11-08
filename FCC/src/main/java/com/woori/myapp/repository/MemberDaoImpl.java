@@ -7,46 +7,42 @@ import org.springframework.stereotype.Repository;
 import com.woori.myapp.entity.MemberDto;
 
 @Repository("memberDao")
-public class MemberDaoImpl implements MemberDao{
+public class MemberDaoImpl implements MemberDao {
 
 	@Autowired
 	SqlSessionTemplate sm;
 
 	@Override
 	public void insert(MemberDto dto) {
-		
-		sm.insert("Member_insert",dto);
+
+		sm.insert("Member_insert", dto);
 
 	}
 
 	@Override
 	public MemberDto login_proc(MemberDto dto) {
-		return sm.selectOne("Member_login",dto);
-		
-	}
+		return sm.selectOne("Member_login", dto);
 
+	}
 
 	@Override
 	public MemberDto getMypage(MemberDto dto) {
-		return sm.selectOne("Member_getMypage",dto);
+		return sm.selectOne("Member_getMypage", dto);
 	}
 
 	@Override
 	public boolean idCheck(MemberDto dto) {
-		int cnt = sm.selectOne("Member_idcheck",dto);
-		if(cnt==0) {
+		int cnt = sm.selectOne("Member_idcheck", dto);
+		if (cnt == 0) {
 			return true;
-		}					
+		}
 		return false;
 	}
 
 	@Override
 	public void update(MemberDto dto) {
-		sm.update("Member_modify",dto);
-		
-		
+		sm.update("Member_modify", dto);
+
 	}
-
-
 
 }

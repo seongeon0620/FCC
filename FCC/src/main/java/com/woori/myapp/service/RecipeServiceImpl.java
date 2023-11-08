@@ -5,10 +5,14 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.woori.myapp.entity.LikesDto;
+import com.woori.myapp.entity.MemberDto;
 import com.woori.myapp.entity.RecipeDto;
 import com.woori.myapp.repository.RecipeDao;
 
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Service("recipeService")
 public class RecipeServiceImpl implements RecipeService {
@@ -61,6 +65,60 @@ public class RecipeServiceImpl implements RecipeService {
 		map.put("rcp_per_fat", rcp_per_fat+"%");
 		map.put("rcp_per_na", rcp_per_na+"%");
 		return map;
+	}
+
+	@Override
+	public HashMap<String, Object> likeRecipe(HttpServletRequest request, String like_type, Integer rcp_seq) {
+		HashMap<String, Object> map = new HashMap<>();
+		long mem_seq = getMemSeqToSession(request);
+		LikesDto likesDto = new LikesDto(rcp_seq, 1, mem_seq);
+		// 찜 insert
+		if( like_type.equals("clickLike") ) {
+			int check = dao.insertRecipeLike(likesDto);
+			if( check == 1 ) {
+				map.put("change_like_type", "cancelLike");
+				map.put("result", "success");
+			}else {
+				map.put("change_like_type", "clickLike");
+				map.put("result", "fail");
+			}
+		} 
+		// 찜 delete
+		else {
+			int check = dao.deleteRecipeLike(likesDto);
+			if( check == 1 ) {
+				map.put("change_like_type", "clickLike");
+				map.put("result", "success");
+			}else {
+				map.put("change_like_type", "cancelLike");
+				map.put("result", "fail");
+			}
+		}
+		return map;
+	}
+	
+	@Override
+	public Long getMemSeqToSession(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		MemberDto memberDto = (MemberDto) session.getAttribute("logInfo");
+		return memberDto.getmem_seq();
+	}
+
+	@Override
+	public String checkRecipeLike(HttpServletRequest request, Integer rcp_seq) {
+		long mem_seq = getMemSeqToSession(request);
+		LikesDto likesDto = new LikesDto(rcp_seq, 1, mem_seq);
+		if( dao.checkRecipeLike( likesDto ) ) {
+			return "clickLike"; //찜테이블에 없다.
+		}
+		return "cancelLike";
+	}
+
+	@Override
+	public List<RecipeDto> getRecipeLikeList(HttpServletRequest request) {
+		long mem_seq = getMemSeqToSession(request);
+		
+		return dao.getRecipeLikeList(mem_seq);
 	}
 
 

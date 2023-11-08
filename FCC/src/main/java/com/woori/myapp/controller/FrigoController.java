@@ -83,4 +83,38 @@ public class FrigoController {
 		return resultMap;
 	}
 	
+	@PostMapping("/frigo/modify")
+	@ResponseBody
+	public HashMap<String, Object> modify(FrigoDto dto) {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		
+		dto.setMem_seq(1L);
+		
+		int result = service.updateDatail(dto);
+		if (result == 0) {
+			resultMap.put("response", "fail");
+			return resultMap;
+		}
+		
+		resultMap.put("response", "success");
+		return resultMap;
+	}
+	
+	@PostMapping("/frigo/updateStatus")
+	@ResponseBody
+	public HashMap<String, Object> update_status(FrigoDto dto) {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		
+		dto.setMem_seq(1L);
+		int result = service.updateStatus(dto);
+		if (result != 1) {
+			resultMap.put("message", "fail");
+			return resultMap;
+		}
+		
+		resultMap.put("message", "success");
+		
+		return resultMap;
+	}
+	
 }

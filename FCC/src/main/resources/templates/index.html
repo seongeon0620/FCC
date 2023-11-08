@@ -1,7 +1,7 @@
 {{>layout/header}}
 <style>
 	#ingreInfoDetail {
-		display: none; 	
+		display: none;
 	}
 </style>
 
@@ -41,7 +41,8 @@
 							<div class="card-body">
 								<div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
 									<div class="mb-3 mb-sm-0" id="frigoLink">
-										<h5 class="card-title fw-semibold">{{logInfo.mem_nickname}}님❗유통기한 순으로 정리해드릴게요💕 </h5>
+										<h5 class="card-title fw-semibold">{{logInfo.mem_nickname}}님❗유통기한 순으로 정리해드릴게요💕
+										</h5>
 									</div>
 									<div>
 										<select class="form-select" id="fridge_select">
@@ -118,14 +119,15 @@
 			</div>
 			<!-- //row1 -->
 		</div>
-		{{>layout/mobile_nav}}
-		<!-- Import Js Files -->
-		<script src="/libs/jquery/dist/jquery.min.js"></script>
-		<!-- core files -->
-		<script src="/js/app-style-switcher.js"></script>
-		<script src="/js/custom.js"></script>
-		<script src="/libs/owl.carousel/dist/owl.carousel.min.js"></script>
-		<script src="/js/dashboard.js"></script>
+	</div>
+	{{>layout/mobile_nav}}
+	<!-- Import Js Files -->
+	<script src="/libs/jquery/dist/jquery.min.js"></script>
+	<!-- core files -->
+	<script src="/js/app-style-switcher.js"></script>
+	<script src="/js/custom.js"></script>
+	<script src="/libs/owl.carousel/dist/owl.carousel.min.js"></script>
+	<script src="/js/dashboard.js"></script>
 </body>
 
 </html>
@@ -156,12 +158,12 @@
 		updateProgressBar();
 
 	});
-	
+
 	// TastyTales's Pick✨ 텍스트 클릭 이벤트 처리
 	$(".card-title.mb-9.fw-semibold").on("click", function () {
 		window.location.href = "/recipe/list";
 	});
-	
+
 	// 내 냉장고 요약 클릭 시 my_frigo.html로 이동
 	$("#frigoLink").on("click", function () {
 		// 페이지 이동

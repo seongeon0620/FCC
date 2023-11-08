@@ -11,4 +11,6 @@ public interface FrigoService {
 	List<FrigoResponseDto> getList(FrigoResponseDto frigoResponseDto, String category);
 	int deleteOne(FrigoDto frigoDto);
 	int deleteAll(FrigoDto frigoDto);
+	int updateDatail(FrigoDto frigoDto);
+	int updateStatus(FrigoDto frigoDto);
 }

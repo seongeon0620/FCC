@@ -27,6 +27,7 @@
 </head>
 
 <body>
+	{{>layout/nav}}
 	{{#member}}
 	<!-- Preloader -->
 	<div class="preloader">
@@ -41,48 +42,8 @@
 	<!--  Body Wrapper -->
 	<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-sidebartype="full"
 		data-sidebar-position="fixed" data-header-position="fixed">
-		<!-- Sidebar Start -->
-		<aside class="left-sidebar">
-			<!-- Sidebar scroll-->
-			<div>
-				<div class="brand-logo d-flex align-items-center justify-content-between">
-					<a href="index-2.html" class="text-nowrap logo-img">
-						<img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/dark-logo.svg"
-							class="dark-logo" width="180" alt="" />
-						<img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/light-logo.svg"
-							class="light-logo" width="180" alt="" />
-					</a>
-					<div class="close-btn d-lg-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
-						<i class="ti ti-x fs-8 text-muted"></i>
-					</div>
-				</div>
-				<!-- Sidebar navigation-->
 
-				<div class="fixed-profile p-3 bg-light-secondary rounded sidebar-ad mt-3">
-					<div class="hstack gap-3">
-						<div class="john-img">
-							<img src="/images/profile/user-1.jpg" class="rounded-circle" width="40" height="40" alt="">
-						</div>
-						<div class="john-title">
-							<h6 class="mb-0 fs-4 fw-semibold">Mathew</h6>
-							<span class="fs-2 text-dark">Designer</span>
-						</div>
-						<button class="border-0 bg-transparent text-primary ms-auto" tabindex="0" type="button"
-							aria-label="logout" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="logout">
-							<i class="ti ti-power fs-6"></i>
-						</button>
-					</div>
-				</div>
-				<!-- End Sidebar navigation -->
-			</div>
-			<!-- End Sidebar scroll-->
-		</aside>
-		<!--  Sidebar End -->
-		<!--  Main wrapper -->
 		<div class="body-wrapper">
-			<!--  Header Start -->
-
-			<!--  Header End -->
 			<div class="container-fluid">
 				<div class="card bg-light-info shadow-none position-relative overflow-hidden">
 
@@ -117,22 +78,25 @@
 										<div class="card w-100 position-relative overflow-hidden">
 											<div class="card-body p-4">
 												<h5 class="card-title fw-semibold">프로필 사진 변경</h5>
-
 												<div class="text-center">
 													<img id="profileimg" src="/images/profile/user-1.jpg" alt=""
 														class="img-fluid rounded-circle" width="120" height="120">
 													<div
 														class="d-flex align-items-center justify-content-center my-4 gap-3">
+														<div
+															class="d-flex align-items-center justify-content-center my-4 gap-3">
+
+															<button type="button" id="btnUpload"
+																class="btn btn-primary">사진 변경</button>
+															<button class="btn btn-outline-danger">초기화</button>
+
+
+														</div>
 														<form method="post" name="myform" id="myform"
 															encytype="multipart/form-data">
-															<input type="file" name="file" id="file">
-															<button type="button" id="btnUpload" class="btn btn-primary"
-																onclick="imgChange()">사진 변경</button>
-															<button class="btn btn-outline-danger">초기화</button>
-														</form>
 
+														</form>
 													</div>
-													<p class="mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
 												</div>
 											</div>
 										</div>
@@ -159,6 +123,7 @@
 														<input type="password" class="form-control"
 															id="new_passwordChk">
 													</div>
+													<input type="hidden" id="mem_seq" value="${member.mem_seq}" />
 												</form>
 											</div>
 										</div>
@@ -166,46 +131,16 @@
 									<div class="col-12">
 										<div class="card w-100 position-relative overflow-hidden mb-0">
 											<div class="card-body p-4">
-												<h5 class="card-title fw-semibold">상세정보</h5>
-
-												<form name="myform" id="myform">
-													<div class="row">
-														<div class="col-lg-6">
-															<div class="mb-4">
-																<label for="exampleInputPassword1"
-																	class="form-label fw-semibold">아이디</label>
-																<input type="text" class="form-control"
-																	value="{{mem_name}}" readonly />
-
-															</div>
-															<div class="mb-4">
-																<label for="exampleInputPassword1"
-																	class="form-label fw-semibold">닉네임</label>
-																<input type="text" class="form-control"
-																	id="mem_nickname" value="{{mem_nickname}}">
-															</div>
-															<div class="mb-4">
-																<label for="exampleInputPassword1"
-																	class="form-label fw-semibold">Email</label>
-																<input type="email" class="form-control" id="mem_email"
-																	value="{{mem_email}}">
-															</div>
-														</div>
-														<div class="col-lg-6">
-
-														</div>
-														<div class="col-12">
-															<div
-																class="d-flex align-items-center justify-content-end mt-4 gap-3">
-																<button class="btn btn-primary" id="btnUpdate"
-																	name="btnUpdate">변경</button>
-																<button
-																	class="btn btn-light-danger text-danger">취소</button>
-															</div>
-														</div>
+												<div class="col-12">
+													<div
+														class="d-flex align-items-center justify-content-end mt-4 gap-3">
+														<button class="btn btn-primary" id="btnUpdate"
+															name="btnUpdate">변경</button>
+														<button class="btn btn-light-danger text-danger">취소</button>
 													</div>
-												</form>
+												</div>
 											</div>
+											</form>
 										</div>
 									</div>
 								</div>
@@ -215,8 +150,9 @@
 				</div>
 			</div>
 		</div>
-		<div class="dark-transparent sidebartoggler"></div>
-		<div class="dark-transparent sidebartoggler"></div>
+	</div>
+	<div class="dark-transparent sidebartoggler"></div>
+	<div class="dark-transparent sidebartoggler"></div>
 	</div>
 
 	<!--  Customizer -->
@@ -241,15 +177,12 @@
 </html>
 <script>
 	$("#btnUpdate").click(() => {
-		const mem_seq = '<%= session.getAttribute("mem_seq") %>';
-		console.log("memseq : "+ mem_seq);
+
 		const mem_password = $("#mem_password").val();
-		const mem_nickname = $("#mem_nickname").val();
-		const mem_email = $("#mem_email").val();
 
 		const params = {
-			mem_nickname: mem_nickname,
-			mem_email: mem_email,
+			mem_password: mem_password,
+
 		};
 		$.ajax({
 			url: "/member/update",
@@ -260,7 +193,7 @@
 			.done(res => {
 				if (res.result == "success") {
 					alert("마이페이지 수정");
-					location.href = "/";
+					location.href = "/index";
 				} else {
 					alert("수정 실패");
 				}
@@ -273,8 +206,6 @@
 
 
 </script>
-
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script>
 	//encytype="multipart/form-data" 이게 있어야 파일전송가능
 	$(() => {

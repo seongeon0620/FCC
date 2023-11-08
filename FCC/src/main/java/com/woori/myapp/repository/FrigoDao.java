@@ -11,4 +11,6 @@ public interface FrigoDao {
 	List<FrigoResponseDto> getList(FrigoResponseDto frigoResponseDto);
 	int deleteAll(FrigoDto dto);
 	int deleteOne(FrigoDto dto);
+	int updateDetail(FrigoDto dto);
+	int updateStatus(FrigoDto dto);
 }

@@ -32,9 +32,8 @@ public class MemberController {
 		MemberDto memberDto = (MemberDto) session.getAttribute("logInfo");
 
 		if (memberDto != null) {
-			String memName = memberDto.getMem_name();
-			System.out.println("세션 mem_name: " + memName);
-			return "/";
+		
+			return "redirect:/index";
 		}
 
 		return "/member/member_login";
@@ -54,18 +53,21 @@ public class MemberController {
 	@ResponseBody
 	public HashMap<String, Object> member_update(MemberDto dto) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
+		Long id = dto.getmem_seq();
+	    dto.setmem_seq(id);
+	    System.out.println("sea : " + dto.getmem_seq());
 		service.update(dto);
 		map.put("result", "success");
 		return map;
 	}
 
-	@PostMapping("/logout")
+	@GetMapping("/logout")
 	public String member_logout(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		if (session != null) {
 			session.invalidate();
 		}
-		return "redirect:/";
+		return "redirect:/index";
 	}
 
 	@GetMapping("/member/idcheck")
@@ -81,6 +83,7 @@ public class MemberController {
 		}
 		return map;
 	}
+	
 
 	@PostMapping("/member/loginproc")
 	@ResponseBody
@@ -121,11 +124,11 @@ public class MemberController {
 	@GetMapping("/member/mypage")
 	public String mypage(Model model, HttpSession session) {
 		MemberDto memberDto = (MemberDto) session.getAttribute("logInfo");
-		String memName = (String) session.getAttribute("mem_name");
-
+		
 		if (memberDto != null) {
-			MemberDto dto = new MemberDto();
-			dto.setMem_name(memName);
+			Long memSeq = memberDto.getmem_seq();
+			MemberDto dto = new MemberDto();		
+			dto.setmem_seq(memSeq);
 			MemberDto resultDto = service.getMypage(dto);
 			model.addAttribute("member", resultDto);
 			return "/member/member_mypage";
@@ -135,14 +138,15 @@ public class MemberController {
 		}
 	}
 
+
 	@GetMapping("/member/modify")
 	public String modify(Model model, HttpSession session) {
-		MemberDto memberDto = (MemberDto) session.getAttribute("logInfo");
-		String memName = (String) session.getAttribute("mem_name");
-
+		MemberDto memberDto = (MemberDto) session.getAttribute("logInfo");	
+		
 		if (memberDto != null) {
-			MemberDto dto = new MemberDto();
-			dto.setMem_name(memName);
+			Long memSeq = memberDto.getmem_seq();
+			MemberDto dto = new MemberDto();		
+			dto.setmem_seq(memSeq);
 			MemberDto resultDto = service.getMypage(dto);
 			model.addAttribute("member", resultDto);
 			return "/member/member_modify";
@@ -151,5 +155,6 @@ public class MemberController {
 			return "redirect:/member/login";
 		}
 	}
+
 
 }
