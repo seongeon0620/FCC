@@ -7,21 +7,11 @@
 //StompJs -  아 라이브러는 스프이에서 제공 
 //const 상수 stomClient  상수에 개체를 할당한다. 그럼 상수(final) 라서 새로운 객체로 바꾸진 못한다
 //객체 안의 정보를 바꾸는 건 가능하다. 
-let stompClient = null;
-
-try{
-		stompClient =new StompJs.Client({
-			//설정파일의 이부분registry.addEndpoint("/testwebsocket");
-		    brokerURL: 'ws://localhost:9000/aaawebsocket'
-		});
-}
-catch( e)
-{
-	console.log( e);
-}
-
-console.log("************************************" );
-console.log(stompClient);
+const stompClient = new StompJs.Client({
+	
+	//설정파일의 이부분registry.addEndpoint("/testwebsocket");
+    brokerURL: 'ws://127.0.0.1:9000/aaasocket'
+});
 
 //접속요청이 왔을때 처리함수전달 (화살표함수)
 //접속요청이 오면 웹소켓의 경우에 별도로 서버와 클라이언트 개념이 없다. 서로 주고 받을 수 있디 
@@ -31,7 +21,7 @@ stompClient.onConnect = (frame) => {
     //	registry.enableSimpleBroker("/topic");
     //정보를 기다린다, /topic/greetins 로 오면 
     //greeting =>  Message객체 
-    let roomid = "all";
+    let roomid = $("#roomid").val();
     let topic = `/topic/${roomid}`;
     stompClient.subscribe(topic, (greeting) => {
 		console.log( greeting );  //
@@ -42,13 +32,13 @@ stompClient.onConnect = (frame) => {
 
 //소켓에러처리
 stompClient.onWebSocketError = (error) => {
-    console.error('Error with websocket', error);
+    console.log('Error with websocket', error);
 };
 
 //잘못올때의 에러처리 
 stompClient.onStompError = (frame) => {
-    console.error('Broker reported error: ' + frame.headers['message']);
-    console.error('Additional details: ' + frame.body);
+    console.log('Broker reported error: ' + frame.headers['message']);
+    console.log('Additional details: ' + frame.body);
 };
 
 function setConnected(connected) {
@@ -87,8 +77,8 @@ function sendName() {
         body: JSON.stringify(
 			{
 		     'roomid':roomid,
-			 'mem_nickname': $("#mem_nickname").val(),
-			 'message':$("#message").val(),
+			 'username': $("#username").val(),
+			 'message':$("#message").val()
 			}
 		)
     });
@@ -104,16 +94,19 @@ function showGreeting(data) {
 //e -> 이벤트 객체 
 // preventDefault : submit가 무조건 서버로 정보를 전송하는데 이를 차단하는 기능을 하다.
  
- // 메세지 보내는 기능 
 $(function() {
-	connect();
-	
-	/*$("#message").on("keyup", function(key) {
+	stompClient.activate();
+
+	$("#message").on("keyup", function(key) {
 		if (key.keyCode == 13) {
-			sendName();
+			sendName()
 		}
 	});
-*/
+
+    /*$("form").on('submit', (e) => e.preventDefault());//서브밋 버튼의 원래 기능차단
+    $( "#connect" ).click(() => connect());
+    $( "#disconnect" ).click(() => disconnect());
+    $( "#send" ).click(() => sendName());*/
 });
 
 
