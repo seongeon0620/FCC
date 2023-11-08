@@ -3,6 +3,7 @@
   
 <!-- Mirrored from demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/html/main/page-account-settings.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 16 Aug 2023 15:07:19 GMT -->
 <head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!--  Title -->
     <title>Mordenize</title>
     <!--  Required Meta Tag -->
@@ -77,10 +78,7 @@
           <div class="card bg-light-info shadow-none position-relative overflow-hidden">
             
               <div class="row align-items-center">
-                <div class="col-9">
-                  
-                 
-                
+                <div class="col-9">          
                 <div class="col-3">
                   <div class="text-center mb-n5">  
                     
@@ -108,10 +106,14 @@
                           <h5 class="card-title fw-semibold">프로필 사진 변경</h5>
                           
                           <div class="text-center">
-                            <img src="/images/profile/user-1.jpg" alt="" class="img-fluid rounded-circle" width="120" height="120">
+                            <img id="profileimg" src="/images/profile/user-1.jpg" alt="" class="img-fluid rounded-circle" width="120" height="120">
                             <div class="d-flex align-items-center justify-content-center my-4 gap-3">
-                              <button class="btn btn-primary">Upload</button>
-                              <button class="btn btn-outline-danger">Reset</button>
+								<form method="post" name="myform" id="myform" encytype="multipart/form-data">
+								  <input type="file"  name="file" id="file">
+	                              <button type="button" id="btnUpload" class="btn btn-primary" onclick="imgChange()">사진 변경</button>
+	                              <button class="btn btn-outline-danger">초기화</button>
+                              </form>
+
                             </div>
                             <p class="mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
                           </div>
@@ -123,7 +125,7 @@
                         <div class="card-body p-4">
                           <h5 class="card-title fw-semibold">비밀번호 변경</h5>
                           
-                          <form>
+                          <form name="myform" id="myform">
                             <div class="mb-4">
                               <label for="exampleInputPassword1" class="form-label fw-semibold">현재 비밀번호</label>
                               <input type="password" class="form-control" id="cur_password" >
@@ -145,20 +147,21 @@
                         <div class="card-body p-4">
                           <h5 class="card-title fw-semibold">상세정보</h5>
                           
-                          <form>
+                          <form name="myform" id="myform">
                             <div class="row">
                               <div class="col-lg-6">
                                 <div class="mb-4">
                                   <label for="exampleInputPassword1" class="form-label fw-semibold">아이디</label>
-                                  <input type="text" class="form-control" id="mem_name" value="{{mem_name}}">
+                                  <input type="text" class="form-control" id="mem_name" value="{{mem_name}}" readonly/>
+                                  
                                 </div>
                              	<div class="mb-4">
                                   <label for="exampleInputPassword1" class="form-label fw-semibold">닉네임</label>
-                                  <input type="text" class="form-control" id="mem_nickname" >
+                                  <input type="text" class="form-control" id="mem_nickname" value="{{mem_nickname}}" >
                                 </div>
                                 <div class="mb-4">
                                   <label for="exampleInputPassword1" class="form-label fw-semibold">Email</label>
-                                  <input type="email" class="form-control" id="mem_email" >
+                                  <input type="email" class="form-control" id="mem_email" value="{{mem_email}}">
                                 </div>
                               </div>
                               <div class="col-lg-6">
@@ -166,7 +169,7 @@
                               </div>
                               <div class="col-12">
                                 <div class="d-flex align-items-center justify-content-end mt-4 gap-3">
-                                  <button class="btn btn-primary">변경</button>
+                                  <button class="btn btn-primary" id="btnUpdate" name="btnUpdate">변경</button>
                                   <button class="btn btn-light-danger text-danger">취소</button>
                                 </div>
                               </div>
@@ -205,3 +208,73 @@
 
 <!-- Mirrored from demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/html/main/page-account-settings.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 16 Aug 2023 15:07:19 GMT -->
 </html>
+<script>
+	$("#btnUpdate").click(()=>{
+
+	
+	let params = $("#myform").serialize();
+		console.log(params);
+		
+		$.ajax({
+			url:"/member/update",
+			data:params,
+			dataType:"json",
+			method:"POST"
+		})
+		.done(res=>{
+			if(res.result=="success"){
+				alert("마이페이지 수정");
+				location.href="/";
+			}else{
+				alert("수정 실패");
+			}
+		})
+		.fail((res,error,status)=>{
+			console.log(error);
+		})
+
+});
+
+	
+</script>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script>
+		//encytype="multipart/form-data" 이게 있어야 파일전송가능
+	$(()=>{
+		$("#btnUpload").click(()=>{
+			// 파일 전송할때 자바스크립트가 제공하는 FormData 객체를 써야한다
+			// document.myform - 이름속성으로 폼을 접근
+			// document.getElementById("myform"); -- id로 접근
+			// document.getElementById("myform") , $("#myform") 서로 다르다
+			let frmData = new FormData($("#myform")[0]);
+			console.log(frmData);
+			for(key of frmData.keys()){
+				console.log(frmData.get(key));	
+			}
+			
+			
+			$.ajax({url:"/member/upload",
+					data:frmData,
+					contentType:false, // 파일전송에 반드시 필요
+					processData:false, // 파일전송에 반드시 필요
+					method:"POST",
+					dataType:"json"
+				})
+				.done((res)=>{
+					console.log(res.filename);
+					console.log(res.image_url);
+				})
+				.fail((res,error,status)=>{
+					console.log(error);
+				})
+		});
+	})
+	
+</script>
+<script>
+	function imgChange(){
+		document.getElementById("profileimg").src = "./fileUpload/"
+	}
+	
+</script>

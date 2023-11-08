@@ -60,4 +60,16 @@
 	
 	</select>
 	
+
+	<update id="Member_modify"  parameterType="MemberDto">
+		update tb_member
+		SET mem_nickname = #{mem_nickname}	
+		,mem_email = #{mem_email}
+		,mem_password = #{mem_password}
+		,mem_img = #{mem_img}
+		,mem_imgsize = #{mem_imgsize}
+		WHERE mem_seq = #{mem_seq}	
+			
+	</update>
+	
 </mapper>
