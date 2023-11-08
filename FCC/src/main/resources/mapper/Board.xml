@@ -9,7 +9,7 @@
 		select A.board_seq, A.board_category,
 		A.board_ingredients, A.board_title,
 		A.board_contents, A.board_wdate,
-		A.member_seq, A.rnum
+		A.member_seq, A.rnum, B.mem_nickname
 		from (
 		select A.board_seq, A.board_category,
 		A.board_ingredients, A.board_title,
@@ -19,7 +19,7 @@
 		ceil(row_number() over (order by board_seq desc) / 9) - 1 as pg
 		from
 		tb_board A
-		) A where pg=#{pg}
+		) A join tb_member B on A.member_seq = B.mem_seq where pg=#{pg}
 	</select>
 
 	<select id="Board_getTotalCnt" resultType="int">

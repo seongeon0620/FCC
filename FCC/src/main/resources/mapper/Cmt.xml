@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Cmt">
+	<select id="Cmt_list" resultType="CmtDto" parameterType="CmtDto">
+		select
+		a.cmt_seq,
+		a.cmt_contents,
+		a.cmt_wdate,
+		a.board_seq,
+		a.member_seq,
+		b.mem_nickname,
+		b.mem_img,
+		b.mem_imgsize
+		from tb_comments a
+		join tb_member
+		b
+		on a.member_seq = b.mem_seq
+		and a.board_seq = #{board_seq}
+	</select>
+
+	<select id="Cmt_count" resultType="int" parameterType="CmtDto">
+		SELECT
+		COUNT(*) FROM
+		tb_comments
+		where board_seq=#{board_seq}
+	</select>
+
+	<insert id="Cmt_insert" parameterType="CmtDto">
+		insert into tb_comments
+		(
+		cmt_seq,
+		cmt_contents,
+		cmt_wdate,
+		board_seq,
+		member_seq
+		)
+		values
+		(
+		sq_comments.nextval,
+		#{cmt_contents},
+		sysdate,
+		#{board_seq},
+		#{member_seq}
+		)
+	</insert>
+
+	<delete id="Cmt_delete" parameterType="CmtDto">
+delete tb_comments where cmt_seq=#{cmt_seq}
+	</delete>
+</mapper>
+
+
+
+
+ 
