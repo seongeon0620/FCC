@@ -122,20 +122,21 @@
 											</div>
 
 										</div><br />
-										<h4>제목</h4> <input type="text" id="title" class="form-control"><br />
-										<h4>재료</h4> <input type="text" id="ingredients" class="form-control">
+										<h4>제목</h4> <input type="text" id="title" class="form-control"
+											value="{{resultDto.board_title}}"><br />
+										<h4>재료</h4> <input type="text" id="ingredients" class="form-control"
+											value="{{resultDto.board_ingredients}}">
 									</div>
 								</form>
 							</div>
 							<div class="card-body">
-								<textarea class="summernote">
-								</textarea>
+								<div class="summernote">{{&resultDto.board_contents}}</div>
 							</div>
 						</div>
 					</div>
 					<div class="card-body">
-						<button id="save" class="btn btn-success" type="button">
-							Save
+						<button id="edit" class="btn btn-success" type="button">
+							Edit
 						</button>
 					</div>
 
@@ -172,49 +173,79 @@
 </html>
 <script>
 	$(document).ready(function () {
+		let selectedCategory = "{{resultDto.board_category}}";
+
+
+		let radioId = "";
+
+		switch (selectedCategory) {
+			case "한식":
+				radioId = "radio-category-ko";
+				break;
+			case "중식":
+				radioId = "radio-category-ch";
+				break;
+			case "일식":
+				radioId = "radio-category-jp";
+				break;
+			case "양식":
+				radioId = "radio-category-we";
+				break;
+			case "분식":
+				radioId = "radio-category-bun";
+				break;
+			case "기타":
+				radioId = "radio-category-etc";
+				break;
+			default:
+				// 기본값 설정
+				radioId = "radio-category-etc";
+		}
+		
+		$("#" + radioId).prop("checked", true);
+
 		$(".summernote").summernote({
 			height: 350, // set editor height
 			minHeight: null, // set minimum height of editor
 			maxHeight: null, // set maximum height of editor
 			focus: false, // set focus to editable area after initializing summernote
 			lang: 'ko-KR'
-
 		});
 
+
 		//save
-		let btnSave = $("#save");
-		btnSave.click(() => {
-			let categoryId = $('input[name="customRadio"]:checked').attr("id");
+		let btnEdit = $("#edit");
+		btnEdit.click(() => {
+			let categoryId = $('input[name="customRadio"]:checked').prop("id");
 			let board_category = $('label[for="' + categoryId + '"]').text();
 			let board_title = $("#title").val();
 			let board_ingredients = $("#ingredients").val();
 			let board_contents = $(".summernote").summernote('code');
-			
-			console.log(board_category);
-			console.log(board_contents);
-			
+			let board_seq = "{{resultDto.board_seq}}";
+
 			$.ajax({
-				url: "/board/save",
+				url: "/board/update",
 				data: {
-					"board_category":board_category,
-					"board_title":board_title,
-					"board_ingredients":board_ingredients,
-					"board_contents":board_contents
+					"board_category": board_category,
+					"board_title": board_title,
+					"board_ingredients": board_ingredients,
+					"board_contents": board_contents,
+					"board_seq": board_seq
 				},
 				dataType: "json",
 				method: "post"
 
 			})
-			.done((res) => {
-				console.log(res);
-				if(res.result == "success"){
-					alert("등록되었습니다");
-					location.href="/board/list/0";
-				}
-			})
-			.fail((res, error, status) => {
-				
-			})
+				.done((res) => {
+					console.log(res);
+					if (res.result == "success") {
+						alert("수정되었습니다");
+						location.href = "/board/view/" + board_seq;
+					}
+				})
+				.fail((res, error, status) => {
+
+				})
 		});
 	});
 

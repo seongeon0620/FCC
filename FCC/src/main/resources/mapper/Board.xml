@@ -6,19 +6,25 @@
 <mapper namespace="Board">
 	<select id="Board_list" resultType="BoardDto"
 		parameterType="BoardDto">
-		select A.board_seq, A.board_category, A.board_ingredients, A.board_title,
-		A.board_contents, A.board_wdate, A.member_seq, A.rnum
+		select A.board_seq, A.board_category,
+		A.board_ingredients, A.board_title,
+		A.board_contents, A.board_wdate,
+		A.member_seq, A.rnum
 		from (
-		select A.board_seq, A.board_category, A.board_ingredients, A.board_title,
-		A.board_contents, A.board_wdate, A.member_seq, row_number() over(order
+		select A.board_seq, A.board_category,
+		A.board_ingredients, A.board_title,
+		A.board_contents, A.board_wdate,
+		A.member_seq, row_number() over(order
 		by board_seq desc) as rnum,
 		ceil(row_number() over (order by board_seq desc) / 9) - 1 as pg
-		from tb_board A
+		from
+		tb_board A
 		) A where pg=#{pg}
 	</select>
 
 	<select id="Board_getTotalCnt" resultType="int">
-		SELECT COUNT(*) FROM tb_board
+		SELECT COUNT(*) FROM
+		tb_board
 	</select>
 
 	<select id="Board_view" resultType="BoardDto"
@@ -32,7 +38,8 @@
 		board_wdate,
 		member_seq
 		from tb_board
-		where board_seq = #{board_seq}
+		where
+		board_seq = #{board_seq}
 	</select>
 
 	<insert id="Board_write" parameterType="BoardDto">
@@ -57,7 +64,23 @@
 		#{member_seq}
 		)
 	</insert>
+
+	<update id="Board_update" parameterType="BoardDto">
+		update tb_board
+		set board_category = #{board_category},
+		board_ingredients = #{board_ingredients},
+		board_title = #{board_title},
+		board_contents = #{board_contents}
+		where board_seq = #{board_seq}
+	</update>
+	
+	<delete id="Board_delete" parameterType="BoardDto">
+		delete tb_board
+		where board_seq=#{board_seq}
+	</delete>
 </mapper>
+
+
 
 
  
