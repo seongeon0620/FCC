@@ -1,7 +1,7 @@
 {{>layout/header}}
- <body>
-	 <input type="text" id="username" class="form-control" placeholder="이름을 입력하세요">
-	  <input type="text" id="message" class="form-control" placeholder="보낼메시지를 입력하세요">
+<input type="hidden" id="mem_nickname" class="form-control" value="tester">
+
+<body>
 	<!-- Preloader -->
 	<div class="preloader">
 		<img src="/images/logos/favicon.ico" alt="loader" class="lds-ripple img-fluid" />
@@ -11,158 +11,208 @@
 		data-sidebar-position="fixed" data-header-position="fixed">
 		{{>layout/nav}}
 		<div class="body-wrapper">
-        <div class="container-fluid">
-          <div class="card bg-light-info shadow-none position-relative overflow-hidden">
-            <div class="card-body px-4 py-3">
-              <div class="row align-items-center">
-                <div class="col-9">
-                  <h4 class="fw-semibold mb-8">Chat Application</h4>
-                  <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                      <li class="breadcrumb-item"><a class="text-muted " href="/index">main</a></li>
-                      <li class="breadcrumb-item" aria-current="page">Chats</li>
-                    </ol>
-                  </nav>
-                </div>
-                <div class="col-3">
-                  <div class="text-center mb-n5">  
-                    <img src="/images/breadcrumb/ChatBc.png" alt="" class="img-fluid mb-n4">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card overflow-hidden chat-application">
-            <div class="d-flex align-items-center justify-content-between gap-3 m-3 d-lg-none">
-              <button class="btn btn-primary d-flex" type="button" data-bs-toggle="offcanvas" data-bs-target="#chat-sidebar" aria-controls="chat-sidebar">
-                <i class="ti ti-menu-2 fs-5"></i>
-              </button>
-            </div>
-            <div class="d-flex">
-              <div class="w-30 d-none d-lg-block border-end user-chat-box">
-                <div class="px-4 pt-9 pb-6">
-                  <div class="d-flex align-items-center justify-content-between mb-3">
-                    <div class="d-flex align-items-center">
-                      <div class="position-relative">
-                        <img src="/images/profile/user-1.jpg" alt="user1" width="54" height="54" class="rounded-circle">
-                        <span class="position-absolute bottom-0 end-0 p-1 badge rounded-pill bg-success">
-                          <span class="visually-hidden">New alerts</span>
-                        </span>
-                      </div>
-                      <div class="ms-3">
-                        <h6 class="fw-semibold mb-2">유저 닉네임</h6>
-                        <p class="mb-0 fs-2">유저 아이디</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="app-chat">
-                  <ul class="chat-users" style="height: calc(100vh - 496px)" data-simplebar>
-					   <h6 class="mb-1 fw-semibold chat-title" data-username="James Anderson">현재 접속 중인 사용자들</h6>
-                    <li>
-                      <a href="javascript:void(0)" class="px-4 py-3 bg-hover-light-black d-flex align-items-start justify-content-between chat-user bg-light" id="chat_user_1" data-user-id="1">
-                        <div class="d-flex align-items-center">
-                          <span class="position-relative">
-                            <img src="/images/profile/user-1.jpg" alt="user1" width="48" height="48" class="rounded-circle" />
-                            <span class="position-absolute bottom-0 end-0 p-1 badge rounded-pill bg-success">
-                              <span class="visually-hidden">New alerts</span>
-                            </span>
-                          </span>
-                          <div class="ms-3 d-inline-block w-75">
-                            <h6 class="mb-1 fw-semibold chat-title" data-username="James Anderson">유저 닉네임</h6>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    
-                  </ul>
-                </div>
-              </div>
-              <div class="w-70 w-xs-100 chat-container">
-                <div class="chat-box-inner-part h-100">
-                  <div class="chat-not-selected h-100 d-none">
-                    <div class="d-flex align-items-center justify-content-center h-100 p-5">
-                      <div class="text-center">
-                        <span class="text-primary">
-                          <i class="ti ti-message-dots fs-10"></i>
-                        </span>
-                        <h6 class="mt-2">Open chat from the list</h6>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="chatting-box d-block">
-                    <div class="position-relative overflow-hidden d-flex">
-                      <div class="position-relative d-flex flex-grow-1 flex-column">
-                        <div class="chat-box p-9" style="height: calc(100vh - 442px)" data-simplebar>
-                          <div class="chat-list chat active-chat" data-user-id="1">
-                            <div class="hstack gap-3 align-items-start mb-7 justify-content-start">
-                              <img src="/images/profile/user-8.jpg" alt="user8" width="40" height="40" class="rounded-circle" />
-                              
-                              <div>
-                                <h6 class="fs-2 text-muted">TastyTales 관리자</h6>
-                                <div class="p-2 bg-light rounded-1 d-inline-block text-dark fs-3"> TastyTales 를 이용해주신 여러분 모두 감사합니다 👍💕</div>
-                              </div>
-                            </div>
-                              <div>
-                              </div>
-                            <div class="hstack gap-3 align-items-start mb-7 justify-content-start">
-                              <img src="/images/profile/user-8.jpg" alt="user8" width="40" height="40" class="rounded-circle" />
-                              <div>
-                                <h6 class="fs-2 text-muted">TastyTales 관리자</h6>
-                                <div class="p-2 bg-light rounded-1 d-inline-block text-dark fs-3"> 이 곳은 현재 TastyTales를 이용하시는 유저님들끼리 편하게 소통할 수 있는 단톡방 입니다 😊 </div>
-                              </div>
-                            </div>
-                            
-                            <div class="hstack gap-3 align-items-start mb-7 justify-content-start">
-                              <img src="/images/profile/user-8.jpg" alt="user8" width="40" height="40" class="rounded-circle" />
-                              <div>
-                                <h6 class="fs-2 text-muted">TastyTales 관리자</h6>
-                                  <div class="p-2 bg-light rounded-1 d-inline-block text-dark fs-3"> ⚠️욕설 등 남에게 피해를 끼치는 행동은 자제해주세요 ⚠️  </div>
-                              </div>
-                            </div>
-                            
-                            
-                            <div class="hstack gap-3 align-items-start mb-7 justify-content-start">
-                              <img src="/images/profile/user-8.jpg" alt="user8" width="40" height="40" class="rounded-circle" />
-                              <div>
-                                <h6 class="fs-2 text-muted">TastyTales 관리자</h6>
-                                <div class="rounded-2 overflow-hidden">
-                                  <img src="/images/products/product-1.jpg" alt="" class="w-100">
-                                </div>
-                              </div>
-                            </div>
-                            
-                          </div>
-                          
-                        </div>
-                        <div class="px-9 py-6 border-top chat-send-message-footer">
-                          <div class="d-flex align-items-center justify-content-between">
-                            <div class="d-flex align-items-center gap-2 w-85">
-                              <input type="text" class="form-control message-type-box text-muted border-0 p-0 ms-2" placeholder="Type a Message" />
-                            </div>
-                          </div>
-                        </div>
-                      </div> 
-                      
-      
- 
-   
-    {{>layout/mobile_nav}}
-    <!-- Import Js Files -->
-    <script src="/libs/jquery/dist/jquery.min.js"></script>
-    <script src="/libs/simplebar/dist/simplebar.min.js"></script>
-    <script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- core files -->
-    <script src="/js/app.min.js"></script>
-    <script src="/js/app.init.js"></script>
-    <script src="/js/app-style-switcher.js"></script>
-    <script src="/js/sidebarmenu.js"></script>
-    
-    <script src="/js/custom.js"></script>
-    <!-- current page js files -->
-     <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.0.0/bundles/stomp.umd.min.js"></script>
-    <script src="/js/apps/chat.js"></script>
-    <script src="/js/apps/app.js"></script>
-  </body>
+			<div class="container-fluid">
+				<div class="card bg-light-info shadow-none position-relative overflow-hidden">
+					<div class="card-body px-4 py-3">
+						<div class="row align-items-center">
+							<div class="col-9">
+								<h4 class="fw-semibold mb-8">Welcom TastyTales's Open Chat</h4>
+								<nav aria-label="breadcrumb">
+									<ol class="breadcrumb">
+										<li class="breadcrumb-item"><a class="text-muted " href="/index">main</a></li>
+										<li class="breadcrumb-item" aria-current="page">Chats</li>
+									</ol>
+								</nav>
+							</div>
+							<div class="col-3">
+								<div class="text-center mb-n5">
+									<img src="/images/breadcrumb/ChatBc.png" alt="" class="img-fluid mb-n4">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card overflow-hidden chat-application">
+					<div class="d-flex align-items-center justify-content-between gap-3 m-3 d-lg-none">
+						<button class="btn btn-primary d-flex" type="button" data-bs-toggle="offcanvas"
+							data-bs-target="#chat-sidebar" aria-controls="chat-sidebar">
+							<i class="ti ti-menu-2 fs-5"></i>
+						</button>
+					</div>
+					<div class="d-flex">
+						<div class="w-30 d-none d-lg-block border-end user-chat-box" id="chatBox">
+							<div class="px-4 pt-9 pb-6">
+								<div class="d-flex align-items-center justify-content-between mb-3">
+									<div class="d-flex align-items-center">
+
+										<div class="position-relative">
+											<img src="/images/profile/user-1.jpg" alt="user1" width="54" height="54"
+												class="rounded-circle">
+										</div>
+										<div class="ms-3">
+											<h6 class="fw-semibold mb-2">유저 닉네임</h6>
+											<p class="mb-0 fs-2">유저 아이디</p>
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="app-chat">
+								<h6 class="mb-1 fw-semibold chat-title" data-username="James Anderson">TastyTales's
+									users</h6>
+								<ul class="chat-users" id="userList" style="height: calc(100vh - 496px)" data-simplebar>
+
+									<!--추가적인 사용자 목록을 여기에 추가. -->
+									<li>
+										<a href="javascript:void(0)"
+											class="px-4 py-3 bg-hover-light-black d-flex align-items-start justify-content-between chat-user bg-light"
+											id="chat_user_1" data-user-id="1">
+
+											<div class="d-flex align-items-center">
+												<span class="position-relative">
+													<img src="/images/profile/user-1.jpg" alt="user1" width="48"
+														height="48" class="rounded-circle" />
+												</span>
+												<div class="ms-3 d-inline-block w-75">
+													<h6 class="mb-1 fw-semibold chat-title">내 닉네임</h6>
+												</div>
+											</div>
+										</a>
+									</li>
+
+								</ul>
+							</div>
+						</div>
+
+						<div class="w-70 w-xs-100 chat-container">
+							<div class="chat-box-inner-part h-100">
+								<div class="chat-not-selected h-100 d-none">
+									<div class="d-flex align-items-center justify-content-center h-100 p-5">
+										<div class="text-center">
+											<span class="text-primary">
+												<i class="ti ti-message-dots fs-10"></i>
+											</span>
+										</div>
+									</div>
+								</div>
+								<div class="chatting-box d-block">
+									<div class="position-relative overflow-hidden d-flex">
+										<div class="position-relative d-flex flex-grow-1 flex-column">
+											<div class="chat-box p-9" style="height: calc(100vh - 442px)"
+												data-simplebar>
+												<div class="chat-list chat active-chat" data-user-id="1" id="chatList">
+													<!-- 채팅 내용을 여기에 추가할 수 있습니다. -->
+													<div
+														class="hstack gap-3 align-items-start mb-7 justify-content-start">
+														<img src="/images/profile/user-8.jpg" alt="user8" width="40"
+															height="40" class="rounded-circle" />
+														<div>
+															<h6 class="fs-2 text-muted">TastyTales 관리자</h6>
+															<div
+																class="p-2 bg-light rounded-1 d-inline-block text-dark fs-3">
+																안녕하세요 TastyTales 유저님🖐 <br />
+																이 채팅방은 이용중인 유저님들끼리 자유롭게 소통할 수 있는 채팅방 입니다💕 <br />
+																⚠️욕설 등 남에게 피해를 끼치는 행동은 자제해주세요 ⚠️
+															</div>
+														</div>
+													</div>
+													<!-- 추가적인 채팅 내용을 여기에 계속해서 추가할 수 있습니다. -->
+												</div>
+											</div>
+
+											<div class="px-9 py-6 border-top chat-send-message-footer">
+												<div class="d-flex align-items-center justify-content-between">
+													<div class="d-flex align-items-center gap-2 w-85">
+														<input type="text"
+															class="form-control message-type-box text-muted border-0 p-0 ms-2"
+															placeholder="Type a Message" />
+													</div>
+												</div>
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	{{>layout/mobile_nav}}
+	<!-- Import Js Files -->
+	<script src="/libs/jquery/dist/jquery.min.js"></script>
+	<script src="/libs/simplebar/dist/simplebar.min.js"></script>
+	<script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- core files -->
+	<script src="/js/app.min.js"></script>
+	<script src="/js/app.init.js"></script>
+	<script src="/js/app-style-switcher.js"></script>
+	<script src="/js/sidebarmenu.js"></script>
+
+	<script src="/js/custom.js"></script>
+	<!-- current page js files -->
+	<script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.0.0/bundles/stomp.umd.min.js"></script>
+	<script src="/js/apps/app.js"></script>
+	<script src="/js/apps/chat.js"></script>
+</body>
 
 </html>
+
+<script>
+	let mem_seq = 1;
+	$(() => {
+		// setInterval( loadUserList, 3000);
+		loadUserList()
+	});
+
+	function loadUserList() {
+		$.ajax({
+			url: "/chat/userlist",
+			dataType: "json",
+			method: "post"
+		})
+			.done((res) => {
+				console.log(res);
+
+				$("#userList > div.simplebar-wrapper > div.simplebar-mask > div > div > div").empty();
+				res.userlist.forEach(item => {
+					let users =
+						` <li>
+					<a href="javascript:void(0)"
+                             class="px-4 py-3 bg-hover-light-black d-flex align-items-start justify-content-between chat-user bg-light"
+                             id="chat_user_1" data-user-id="1">
+                             
+                             <div class="d-flex align-items-center">
+                                 <span class="position-relative">
+                                     <img src="/images/profile/user-1.jpg" alt="user1" width="48"
+                                         height="48" class="rounded-circle" />
+                                 </span>
+                                 <div class="ms-3 d-inline-block w-75">
+                                     <h6 class="mb-1 fw-semibold chat-title"
+                                         data-username="James Anderson">${item.mem_nickname}</h6>
+                                 </div>
+                             </div>
+                         </a>
+                         </li>`;
+
+					// 사용자 목록 아래에 사용자 정보 추가
+					$("#userList > div.simplebar-wrapper > div.simplebar-mask > div > div > div").append(users);
+				})
+
+
+			})
+			.fail((res, error, status) => {
+				console.log(error);
+			});
+
+	}
+
+
+</script>
