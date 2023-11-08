@@ -1,142 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
-  
-<!-- Mirrored from demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/html/main/blog-detail.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 16 Aug 2023 15:07:12 GMT -->
-<head>
-    <!-- --------------------------------------------------- -->
-    <!-- Title -->
-    <!-- --------------------------------------------------- -->
-    <title>Mordenize</title>
-    <!-- --------------------------------------------------- -->
-    <!-- Required Meta Tag -->
-    <!-- --------------------------------------------------- -->
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="handheldfriendly" content="true" />
-    <meta name="MobileOptimized" content="width" />
-    <meta name="description" content="Mordenize" />
-    <meta name="author" content="" />
-    <meta name="keywords" content="Mordenize" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!-- --------------------------------------------------- -->
-    <!-- Favicon -->
-    <!-- --------------------------------------------------- -->
-    <link rel="shortcut icon" type="image/png" href="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico" />
-    <!-- --------------------------------------------------- -->
-    <!-- Core Css -->
-    <!-- --------------------------------------------------- -->
-    <link  id="themeColors"  rel="stylesheet" href="/css/style.min.css" />
-    <link rel="stylesheet" href="/css/board-custom.css" />
-  </head>
-  <body>
-    <!-- Preloader -->
-    <div class="preloader">
-      <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico" alt="loader" class="lds-ripple img-fluid" />
-    </div>
-    {{>layout/nav}}
-    <!-- --------------------------------------------------- -->
-    <!-- Body Wrapper -->
-    <!-- --------------------------------------------------- -->
-    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
-      <!-- --------------------------------------------------- -->
-      <!-- Main Wrapper -->
-      <!-- --------------------------------------------------- -->
-      <div class="body-wrapper">
-        <div class="container-fluid">
-          <div class="card rounded-2 overflow-hidden">
-            <div class="position-relative">
-              <a href="javascript:void(0)"><img src="/images/blog/blog-img5.jpg" class="card-img-top rounded-0 object-fit-cover" alt="..." height="440"></a>
-              <img src="/images/profile/user-5.jpg" alt="" class="img-fluid rounded-circle position-absolute bottom-0 start-0 mb-n9 ms-9" width="40" height="40" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Esther Lindsey">
-            </div>
-            <div class="card-body p-4">
-              <span class="badge text-bg-light fs-2 rounded-4 py-1 px-2 lh-sm  mt-3">{{boardView.board_category}}</span>
-              <h2 class="fs-9 fw-semibold my-4">{{boardView.board_title}}</h2>
-              <div class="d-flex align-items-center gap-4">
-                <!-- 조회수 <div class="d-flex align-items-center gap-2"><i class="ti ti-eye text-dark fs-5"></i>2252</div> -->
-                <div class="d-flex align-items-center gap-2"><i class="ti ti-message-2 text-dark fs-5"></i>3</div>
-                <div class="d-flex align-items-center fs-2 ms-auto"><i class="ti ti-point text-dark"></i>{{boardView.board_wdate}}</div>
-              </div>
-            </div>
-            <div class="card-body border-top p-4">
-				<div class="border-bottom mb-3 pb-3">
-                	<h3 class="fw-semibold">재료</h3>
-	                <ul class="my-3 ps-4 text-dark">
-						{{#ingre}}
-	                  <li class="d-flex align-items-center gap-2"><span class="p-1 bg-dark rounded-circle"></span> {{.}}</li>
-	                	{{/ingre}}
-	                </ul>
-              </div>
-              <h2 class="fs-8 fw-semibold mb-3">조리 방법</h2>
-              <p class="mb-3">
-                {{&boardView.board_contents}}
-              </p>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h4 class="mb-4 fw-semibold">Post Comments</h4>
-              <form>
-                <textarea class="form-control mb-4" rows="5"></textarea>
-                <button class="btn btn-primary">Post Comment</button>
-              </form>
-              <div class="d-flex align-items-center gap-3 mb-4 mt-7 pt-8">
-                <h4 class="mb-0 fw-semibold">Comments</h4>
-                <span class="badge bg-light-primary text-primary fs-4 fw-semibold px-6 py-8 rounded">3</span>
-              </div>
-              <div class="position-relative">
-                <div class="p-4 rounded-2 bg-light mb-3">
-                  <div class="d-flex align-items-center gap-3">
-                    <img src="/images/profile/user-2.jpg" alt="" class="rounded-circle" width="33" height="33">
-                    <h6 class="fw-semibold mb-0 fs-4">Don Russell</h6>
-                  </div>
-                  <p class="my-3">Es do ujurus nejson imju azgudpi toceztep ji cocicoci bosawrop korze ta. 
-                    Casetlu udumej umocu wanaro webmos ijafa ud muli amja softoj ma pijum.
-                  </p>
-                </div>
-                <div class="p-4 rounded-2 bg-light mb-3">
-                  <div class="d-flex align-items-center gap-3">
-                    <img src="/images/profile/user-3.jpg" alt="" class="rounded-circle" width="33" height="33">
-                    <h6 class="fw-semibold mb-0 fs-4">Cordelia Potter</h6>
-                  </div>
-                  <p class="my-3">Huwso jewzehgu julriw niwgazep lewbob isujirmuz hemto pahop cewa zuhucze rinitba etdebluj. 
-                    Obdevo bo fa siztes laobeir agoemugo rut sapaviw mulati do re dabelul wo tumnik wih mu.
-                  </p>
-                </div>
-                <div class="p-4 rounded-2 bg-light">
-                  <div class="d-flex align-items-center gap-3">
-                    <img src="/images/profile/user-4.jpg" alt="" class="rounded-circle" width="33" height="33">
-                    <h6 class="fw-semibold mb-0 fs-4">Seth Ortiz</h6>
-                  </div>
-                  <p class="my-3">Icme rasejmat ciwo ifekemug owoca vicoz ukikitus famiftat nuk eroewu za upe. 
-                    Pobrikvup kivofvac tuba ot veh ozoab sa gesi hahoniha hop burbip volo hufotobo di uted vojoamu.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    <!-- ---------------------------------------------- -->
-    <!-- ---------------------------------------------- -->
-    <!-- Import Js Files -->
-    <!-- ---------------------------------------------- -->
-    <script src="/libs/jquery/dist/jquery.min.js"></script>
-    <script src="/libs/simplebar/dist/simplebar.min.js"></script>
-    <script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- ---------------------------------------------- -->
-    <!-- core files -->
-    <!-- ---------------------------------------------- -->
-    <script src="/js/app.min.js"></script>
-    <script src="/js/app.init.js"></script>
-    <script src="/js/app-style-switcher.js"></script>
-    <script src="/js/sidebarmenu.js"></script>
-    
-    <script src="/js/custom.js"></script>
-    <!-- ---------------------------------------------- -->
-    <!-- current page js files -->
-    <!-- ---------------------------------------------- -->
-    <script src="/js/apps/chat.js"></script>
-  </body>
 
 <!-- Mirrored from demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/html/main/blog-detail.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 16 Aug 2023 15:07:12 GMT -->
+
+<head>
+	<!-- --------------------------------------------------- -->
+	<!-- Title -->
+	<!-- --------------------------------------------------- -->
+	<title>Mordenize</title>
+	<!-- --------------------------------------------------- -->
+	<!-- Required Meta Tag -->
+	<!-- --------------------------------------------------- -->
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="handheldfriendly" content="true" />
+	<meta name="MobileOptimized" content="width" />
+	<meta name="description" content="Mordenize" />
+	<meta name="author" content="" />
+	<meta name="keywords" content="Mordenize" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<!-- --------------------------------------------------- -->
+	<!-- Favicon -->
+	<!-- --------------------------------------------------- -->
+	<link rel="shortcut icon" type="image/png"
+		href="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico" />
+	<!-- --------------------------------------------------- -->
+	<!-- Core Css -->
+	<!-- --------------------------------------------------- -->
+	<link id="themeColors" rel="stylesheet" href="/css/style.min.css" />
+	<link rel="stylesheet" href="/css/board-custom.css" />
+</head>
+
+<body>
+	<!-- Preloader -->
+	<div class="preloader">
+		<img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico"
+			alt="loader" class="lds-ripple img-fluid" />
+	</div>
+	{{>layout/nav}}
+	<!-- --------------------------------------------------- -->
+	<!-- Body Wrapper -->
+	<!-- --------------------------------------------------- -->
+	<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-sidebartype="full"
+		data-sidebar-position="fixed" data-header-position="fixed">
+		<!-- --------------------------------------------------- -->
+		<!-- Main Wrapper -->
+		<!-- --------------------------------------------------- -->
+		<div class="body-wrapper">
+			<div class="container-fluid">
+				<div class="card rounded-2 overflow-hidden">
+					<div class="position-relative">
+						<a href="javascript:void(0)"><img src="/images/blog/blog-img5.jpg"
+								class="card-img-top rounded-0 object-fit-cover" alt="..." height="440"></a>
+						<img src="/images/profile/user-5.jpg" alt=""
+							class="img-fluid rounded-circle position-absolute bottom-0 start-0 mb-n9 ms-9" width="40"
+							height="40" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Esther Lindsey">
+					</div>
+					<div class="card-body p-4">
+						<span
+							class="badge text-bg-light fs-2 rounded-4 py-1 px-2 lh-sm  mt-3">{{boardView.board_category}}</span>
+						<h2 class="fs-9 fw-semibold my-4">{{boardView.board_title}}</h2>
+						<div class="text-end">
+							<button class="btn btn-primary fs-2 rounded-4 py-1 px-2 lh-sm  mt-3"
+								id="btnEdit">수정</button>
+							<button class="btn btn-danger fs-2 rounded-4 py-1 px-2 lh-sm  mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">삭제</button>
+						</div><br />
+						<div class="d-flex align-items-center gap-4">
+							<!-- 조회수 <div class="d-flex align-items-center gap-2"><i class="ti ti-eye text-dark fs-5"></i>2252</div> -->
+							<div class="d-flex align-items-center gap-2"><i class="ti ti-message-2 text-dark fs-5"></i>3
+							</div>
+							<div class="d-flex align-items-center fs-2 ms-auto"><i
+									class="ti ti-point text-dark"></i>{{boardView.board_wdate}}</div>
+						</div>
+					</div>
+					<div class="card-body border-top p-4">
+						<div class="border-bottom mb-3 pb-3">
+							<h3 class="fw-semibold">재료</h3>
+							<ul class="my-3 ps-4 text-dark">
+								{{#ingre}}
+								<li class="d-flex align-items-center gap-2"><span
+										class="p-1 bg-dark rounded-circle"></span> {{.}}</li>
+								{{/ingre}}
+							</ul>
+						</div>
+						<h2 class="fs-8 fw-semibold mb-3">조리 방법</h2>
+						<p class="mb-3">
+							{{&boardView.board_contents}}
+						</p>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-body">
+						<h4 class="mb-4 fw-semibold">Post Comments</h4>
+						<form>
+							<textarea class="form-control mb-4" rows="5"></textarea>
+							<button class="btn btn-primary">Post Comment</button>
+						</form>
+						<div class="d-flex align-items-center gap-3 mb-4 mt-7 pt-8">
+							<h4 class="mb-0 fw-semibold">Comments</h4>
+							<span
+								class="badge bg-light-primary text-primary fs-4 fw-semibold px-6 py-8 rounded">3</span>
+						</div>
+						<div class="position-relative">
+							<div class="p-4 rounded-2 bg-light mb-3">
+								<div class="d-flex align-items-center gap-3">
+									<img src="/images/profile/user-2.jpg" alt="" class="rounded-circle" width="33"
+										height="33">
+									<h6 class="fw-semibold mb-0 fs-4">Don Russell</h6>
+								</div>
+								<p class="my-3">Es do ujurus nejson imju azgudpi toceztep ji cocicoci bosawrop korze ta.
+									Casetlu udumej umocu wanaro webmos ijafa ud muli amja softoj ma pijum.
+								</p>
+							</div>
+							<div class="p-4 rounded-2 bg-light mb-3">
+								<div class="d-flex align-items-center gap-3">
+									<img src="/images/profile/user-3.jpg" alt="" class="rounded-circle" width="33"
+										height="33">
+									<h6 class="fw-semibold mb-0 fs-4">Cordelia Potter</h6>
+								</div>
+								<p class="my-3">Huwso jewzehgu julriw niwgazep lewbob isujirmuz hemto pahop cewa zuhucze
+									rinitba etdebluj.
+									Obdevo bo fa siztes laobeir agoemugo rut sapaviw mulati do re dabelul wo tumnik wih
+									mu.
+								</p>
+							</div>
+							<div class="p-4 rounded-2 bg-light">
+								<div class="d-flex align-items-center gap-3">
+									<img src="/images/profile/user-4.jpg" alt="" class="rounded-circle" width="33"
+										height="33">
+									<h6 class="fw-semibold mb-0 fs-4">Seth Ortiz</h6>
+								</div>
+								<p class="my-3">Icme rasejmat ciwo ifekemug owoca vicoz ukikitus famiftat nuk eroewu za
+									upe.
+									Pobrikvup kivofvac tuba ot veh ozoab sa gesi hahoniha hop burbip volo hufotobo di
+									uted vojoamu.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">게시글 삭제</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						삭제하시겠습니까?
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+						<button type="button" class="btn btn-danger" id="btnDelete">삭제</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- ---------------------------------------------- -->
+		<!-- ---------------------------------------------- -->
+		<!-- Import Js Files -->
+		<!-- ---------------------------------------------- -->
+		<script src="/libs/jquery/dist/jquery.min.js"></script>
+		<script src="/libs/simplebar/dist/simplebar.min.js"></script>
+		<script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+		<!-- ---------------------------------------------- -->
+		<!-- core files -->
+		<!-- ---------------------------------------------- -->
+		<script src="/js/app.min.js"></script>
+		<script src="/js/app.init.js"></script>
+		<script src="/js/app-style-switcher.js"></script>
+		<script src="/js/sidebarmenu.js"></script>
+
+		<script src="/js/custom.js"></script>
+		<!-- ---------------------------------------------- -->
+		<!-- current page js files -->
+		<!-- ---------------------------------------------- -->
+		<script src="/js/apps/chat.js"></script>
+</body>
+
+<!-- Mirrored from demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/html/main/blog-detail.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 16 Aug 2023 15:07:12 GMT -->
+
 </html>
+<script>
+	$(function () {
+		$("#btnEdit").click(() => {
+			location.href = "/board/edit/{{boardView.board_seq}}";
+		});
+
+		$("#btnDelete").click(() => {
+			
+			location.href = "/board/delete/{{boardView.board_seq}}";
+		});
+
+	})
+</script>

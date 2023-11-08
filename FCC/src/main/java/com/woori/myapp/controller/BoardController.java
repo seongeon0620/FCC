@@ -1,5 +1,6 @@
 package com.woori.myapp.controller;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,10 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.woori.myapp.common.Pager;
 import com.woori.myapp.entity.BoardDto;
 import com.woori.myapp.service.BoardService;
-import com.woori.myapp.service.MemberService;
 
 import jakarta.annotation.Resource;
-import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class BoardController {
@@ -55,7 +54,7 @@ public class BoardController {
 	
 	@PostMapping("/board/save")
 	@ResponseBody
-	public HashMap<String, Object> board_save(BoardDto dto, HttpServletRequest request){
+	public HashMap<String, Object> board_save(BoardDto dto){
 		
 		service.insert(dto);
 		HashMap<String, Object> resultMap = new HashMap<>();
@@ -64,4 +63,37 @@ public class BoardController {
 		return resultMap;
 		
 	}
+	
+	@GetMapping("/board/edit/{board_seq}")
+	public String board_edit(Model model, @PathVariable("board_seq") long board_seq) {
+		BoardDto dto = new BoardDto();
+		dto.setBoard_seq(board_seq);
+		BoardDto resultDto = service.getView(dto);
+		model.addAttribute("resultDto", resultDto);
+		
+		return "/board/board_edit";
+	}
+	
+	@PostMapping("/board/update")
+	@ResponseBody
+	public HashMap<String, Object> board_update(BoardDto dto){
+		
+		service.update(dto);
+		HashMap<String, Object> resultMap = new HashMap<>();
+		resultMap.put("result", "success");
+		
+		return resultMap;
+		
+	}
+	
+	@GetMapping("/board/delete/{board_seq}")
+	public String board_delete(@PathVariable("board_seq") long board_seq){
+		BoardDto dto = new BoardDto();
+		dto.setBoard_seq(board_seq);
+		service.delete(dto);
+		
+		return "redirect:/board/list/0";
+	}
+	
+	
 }
