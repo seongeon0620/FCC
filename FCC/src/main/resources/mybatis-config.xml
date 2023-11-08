@@ -11,6 +11,7 @@
 		<typeAlias alias="FrigoDto"  type="com.woori.myapp.entity.FrigoDto"/>
 		<typeAlias alias="FrigoResponseDto"  type="com.woori.myapp.entity.FrigoResponseDto"/>
 				<typeAlias alias="MainDto"  type="com.woori.myapp.entity.MainDto"/>
+		<typeAlias alias="LikesDto"  type="com.woori.myapp.entity.LikesDto"/>
 		
 	</typeAliases>
 	<mappers>
