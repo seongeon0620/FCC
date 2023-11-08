@@ -38,4 +38,11 @@ public class MemberServiceImpl implements MemberService{
 		return dao.idCheck(dto);
 	}
 
+	@Override
+	public void update(MemberDto dto) {
+		dao.update(dto);
+		
+	}
+
+
 }

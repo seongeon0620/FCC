@@ -35,56 +35,127 @@ $(function () {
   }
 
   // ----------------------------------------------------------------------
-  // add task and open modal
+  // 저장공간 추가
   // ----------------------------------------------------------------------
-  function addKanbanItem() {
-    $(".addTask").on("click", function (event) {
-      event.preventDefault();
-      getParentElement = $(this)
-        .parents('[data-action="sorting"]')
-        .attr("data-item");
-      $(".edit-task-title").hide();
-      $(".add-task-title").show();
-      $('[data-btn-action="addTask"]').show();
-      $('[data-btn-action="editTask"]').hide();
-      // $('.addTaskAccordion .collapse').collapse('hide');
-      $("#addItemModal").modal("show");
-      kanban_add(getParentElement);
-    });
-  }
+	function addKanbanItem() {
+		$(".addTask").on("click", function (event) {
+			event.preventDefault();
+			getParentElement = $(this)
+				.parents('[data-action="sorting"]')
+				.attr("data-item");
+			$("#storage-type").val(getParentElement)
+			$(".edit-task-title").hide();
+			$(".add-task-title").show();
+			$('[data-btn-action="addTask"]').show();
+			$('[data-btn-action="editTask"]').hide();
+			$("#addItemModal").modal("show");
+			kanban_add(getParentElement);
+		});
+	}
 
   // ----------------------------------------------------------------------
   //   add default item
   // ----------------------------------------------------------------------
   function kanban_add(getParent) {
     $('[data-btn-action="addTask"]')
-      .off("click")
-      .on("click", function (event) {
-        getAddBtnClass = $(this).attr("class").split(" ")[1];
+		.off("click")
+		.on("click", function (event) {
+			
+		let itemTitle = document.getElementById("kanban-title");
+		let itemText = document.getElementById("kanban-text");
+		let itemEdate = document.getElementById("kanban-edate");
+		console.log(itemEdate.value);
+		
+		let tmpDate = new Date(itemEdate.value);
 
+		let year = tmpDate.getFullYear().toString().substr(-2);
+		let month = (tmpDate.getMonth() + 1).toString().padStart(2, '0');
+		let day = tmpDate.getDate().toString().padStart(2, '0');
+		
+		let formattedDate = year + '/' + month + '/' + day;
+		console.log(formattedDate);
+		
+		if (itemTitle.value == "") {
+			alert("재료명을 입력하세요.");
+			itemTitle.focus();
+			return false;
+		}
+		if (itemText.value == "") {
+			alert("상세 재료명을 선택하세요.");
+			return false;
+		}
+		
+		if (itemEdate.value == "") {
+			alert("유통기한을 선택하세요.");
+			return false;
+		}
+		
+		
+		$.ajax({
+			url : "/frigo/save",
+			method : "post",
+			data : {
+				"ingre_seq" : itemText.value,
+				"frigo_expiration" : formattedDate,
+				"frigo_storage" : $("#storage-type").val()
+			},
+			dataType : "json"
+			
+		})
+		.done((res) => {
+			console.log(res);
+		})
+		.fail((res, error, status) => {
+			console.log("등록 실패");
+			console.log(error);
+		})
+			
+		getAddBtnClass = $(this).attr("class").split(" ")[1];
+
+<<<<<<< Updated upstream
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, "0");
+        var mm = String(today.getMonth());
+=======
 		let today = new Date();
+		console.log(today);
 		let dd = String(today.getDate()).padStart(2, "0");
 		let mm = String(today.getMonth() + 1);
 		let yy = String(today.getFullYear()).slice(-2);
 		let hh = String(today.getHours());
 		let minutes = String(today.getMinutes());
+>>>>>>> Stashed changes
 
-		today = yy + "/" + mm + "/" + dd + " " + hh + ":" + minutes;
+        var monthNames = [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+        ];
 
-        var $_getParent = getParent;
+        today = dd + " " + monthNames[mm];
 
-        var itemTitle = document.getElementById("kanban-title").value;
-        var itemText = document.getElementById("kanban-text").value;
+		let $_getParent = getParent;
 
+		
+		
         item_html =
           '<div data-draggable="true" class="card task-text-progress" style="">' +
           '<div class="card-body">' +
           '<div class="task-header">' +
           '<div class="">' +
           '<h4 class="" data-item-title="' +
-          itemTitle +
+          itemTitle.value +
           '">' +
-          itemTitle +
+          itemTitle.value +
           "</h4>" +
           "</div>" +
           '<div class="">' +
@@ -102,24 +173,29 @@ $(function () {
           '<div class="task-body">' +
           '<div class="task-content">' +
           '<p class="mb-0" data-item-text="' +
-          itemText +
+          itemText.value +
           '">' +
-          itemText +
+          itemText.value +
           "</p>" +
           "</div>" +
-          '<div class="task-bottom flex-wrap">' +
+          '<div class="task-bottom">' +
           '<div class="tb-section-1">' +
           '<span class="hstack gap-2 fs-2" data-item-date="' +
           today +
+<<<<<<< Updated upstream
+          '"><i class="ti ti-calendar fs-5"></i> ' +
+          today +
+=======
           '">등록일시<i class="ti ti-calendar fs-5"></i> ' +
           today +
           "</span>" +
           "</div>" +
           '<div class="tb-section-1">' +
           '<span class="hstack gap-2 fs-2" data-item-date="' +
-          today +
+          itemEdate +
           '">유통기한<i class="ti ti-calendar fs-5"></i> ' +
-          today +
+          itemEdate +
+>>>>>>> Stashed changes
           "</span>" +
           "</div>" +
           '<div class="tb-section-2">' +
