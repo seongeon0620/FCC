@@ -61,7 +61,7 @@ public class MemberController {
 		return map;
 	}
 
-	@PostMapping("/logout")
+	@GetMapping("/logout")
 	public String member_logout(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		if (session != null) {
