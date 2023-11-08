@@ -25,6 +25,13 @@ public class RecipeDaoImpl implements RecipeDao{
 		
 		return sm.selectOne("Recipe_getTotalCnt");
 	}
+
+	@Override
+	public RecipeDto getRecipeInfo(Integer rcp_seq) {
+		
+		return sm.selectOne("Recipe_getInfo", rcp_seq);
+	}
+
 	
 	
 

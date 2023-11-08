@@ -30,12 +30,15 @@ public class RecipeController {
 		
 		dto.setPg(pg);
 		model.addAttribute("recipeList", service.getRecipeList(dto));
-		model.addAttribute("page", Pager.makePage(9, service.getRecipeTotalCnt(), pg));
+		model.addAttribute("page", Pager.makePage(12, service.getRecipeTotalCnt(), pg));
 		return "/recipe/recipe_list";
 	}
 	
-	@GetMapping("/recipe/view")
-	public String recipe_view() {
+	@GetMapping("/recipe/view/{rcp_seq}")
+	public String recipe_view(Model model, @PathVariable("rcp_seq") Integer rcp_seq) {
+		RecipeDto recipeInfo = service.getRecipeInfo(rcp_seq);
+		model.addAttribute("recipeInfo", recipeInfo);
+		model.addAttribute("recipeAnalysis", service.analyzeRecipe(recipeInfo));
 		return "/recipe/recipe_view";
 	}
 	

@@ -8,11 +8,11 @@ public class RecipeDto extends BaseDto{
     private String rcp_way = "";
     private String rcp_pat = "";
     private String rcp_wgt = "";
-    private String rcp_eng = "";
-    private String rcp_car = "";
-    private String rcp_pro = "";
-    private String rcp_fat = "";
-    private String rcp_na = "";
+    private Long rcp_eng = 0L;
+    private Long rcp_car = 0L;
+    private Long rcp_pro = 0L;
+    private Long rcp_fat = 0L;
+    private Long rcp_na = 0L;
     private String rcp_tag = "";
     private String rcp_img_s = "";
     private String rcp_img_b = "";
@@ -58,9 +58,8 @@ public class RecipeDto extends BaseDto{
     private String rcp_manual_img19 = "";
     private String rcp_manual20 = "";
     private String rcp_manual_img20 = "";
-    
-    
-	public Long getRcp_seq() {
+	
+    public Long getRcp_seq() {
 		return rcp_seq;
 	}
 	public void setRcp_seq(Long rcp_seq) {
@@ -90,34 +89,34 @@ public class RecipeDto extends BaseDto{
 	public void setRcp_wgt(String rcp_wgt) {
 		this.rcp_wgt = rcp_wgt;
 	}
-	public String getRcp_eng() {
+	public Long getRcp_eng() {
 		return rcp_eng;
 	}
-	public void setRcp_eng(String rcp_eng) {
+	public void setRcp_eng(Long rcp_eng) {
 		this.rcp_eng = rcp_eng;
 	}
-	public String getRcp_car() {
+	public Long getRcp_car() {
 		return rcp_car;
 	}
-	public void setRcp_car(String rcp_car) {
+	public void setRcp_car(Long rcp_car) {
 		this.rcp_car = rcp_car;
 	}
-	public String getRcp_pro() {
+	public Long getRcp_pro() {
 		return rcp_pro;
 	}
-	public void setRcp_pro(String rcp_pro) {
+	public void setRcp_pro(Long rcp_pro) {
 		this.rcp_pro = rcp_pro;
 	}
-	public String getRcp_fat() {
+	public Long getRcp_fat() {
 		return rcp_fat;
 	}
-	public void setRcp_fat(String rcp_fat) {
+	public void setRcp_fat(Long rcp_fat) {
 		this.rcp_fat = rcp_fat;
 	}
-	public String getRcp_na() {
+	public Long getRcp_na() {
 		return rcp_na;
 	}
-	public void setRcp_na(String rcp_na) {
+	public void setRcp_na(Long rcp_na) {
 		this.rcp_na = rcp_na;
 	}
 	public String getRcp_tag() {
@@ -390,6 +389,8 @@ public class RecipeDto extends BaseDto{
 	public void setRcp_manual_img20(String rcp_manual_img20) {
 		this.rcp_manual_img20 = rcp_manual_img20;
 	}
-
+    
+    
+	
     
 }
