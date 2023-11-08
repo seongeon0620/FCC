@@ -40,6 +40,16 @@ public class FrigoServiceImpl implements FrigoService {
 		return dao.deleteOne(frigoDto);
 	}
 
+	@Override
+	public int updateDatail(FrigoDto frigoDto) {
+		return dao.updateDetail(frigoDto);
+	}
+
+	@Override
+	public int updateStatus(FrigoDto frigoDto) {
+		return dao.updateStatus(frigoDto);
+	}
+
 	
 	
 }

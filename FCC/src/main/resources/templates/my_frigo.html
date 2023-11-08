@@ -51,15 +51,13 @@
 									<div class="compose-content" id="addTaskModalTitle">
 										<div class="addTaskAccordion" id="add_task_accordion">
 											<div class="task-content task-text-progress">
-												<div id="collapseTwo" class="collapse show"
-													data-parent="#add_task_accordion">
+												<div id="collapseTwo" class="collapse show" data-parent="#add_task_accordion">
 													<div class="task-content-body">
 														<form action="javascript:void(0);">
 															<div class="row">
 																<div class="col-md-12 mb-4">
 																	<label class="form-label fw-semibold" for="kanban-title">재료명</label>
-																	<input type="text" id="kanban-title"
-																		class="form-control">
+																	<input type="text" id="kanban-title" class="form-control">
 																</div>
 															</div>
 															<div class="row">
@@ -93,45 +91,12 @@
 							<div class="modal-footer justify-content-start">
 								<button class="btn btn-dark d-flex align-items-center gap-1" data-bs-dismiss="modal">취소</button>
 								<button data-btn-action="addTask" class="btn add-tsk btn-primary">등록</button>
+								<button data-btn-action="editTask" class="btn edit-tsk btn-success">수정</button>
 							</div>
 						</div>
 					</div>
 				</div>
 				<!--</form>-->
-				<div class="modal fade" id="addListModal" tabindex="-1" role="dialog"
-					aria-labelledby="addListModalTitle" aria-hidden="true">
-					<div class="modal-dialog modal-dialog-centered" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title add-list-title" id="addListModalTitleLabel1">보관장소 추가</h5>
-								<h5 class="modal-title edit-list-title" id="addListModalTitleLabel2">Edit List</h5>
-								<button type="button" class="btn-close" data-bs-dismiss="modal"
-									aria-label="Close"></button>
-							</div>
-							<div class="modal-body">
-								<div class="compose-box">
-									<div class="compose-content" id="addListModalTitle">
-										<form action="javascript:void(0);">
-											<div class="row">
-												<div class="col-md-12">
-													<div class="list-title d-flex align-items-center">
-														<input id="item-name" type="text" class="form-control"
-															name="place" />
-													</div>
-												</div>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-							<div class="modal-footer justify-content-start">
-								<button class="btn btn-secondary d-flex align-items-center gap-1"
-									data-bs-dismiss="modal">취소</button>
-								<button class="btn add-list btn-primary">등록</button>
-							</div>
-						</div>
-					</div>
-				</div>
 				<div class="modal fade" id="deleteConformation" tabindex="-1" role="dialog"
 					aria-labelledby="deleteConformationLabel" aria-hidden="true">
 					<div class="modal-dialog modal-dialog-centered" role="document">
@@ -215,12 +180,12 @@
 												<div class="task-body">
 													<div class="task-bottom flex-wrap">
 														<div class="tb-section-1 w-100">
-															<span class="hstack gap-2 fs-2" data-item-date="24 July">
+															<span class="hstack gap-2 fs-2" data-item-date="{{frigo_wdate}}">
 																등록일시 <i class="ti ti-calendar fs-5"></i> {{frigo_wdate}}
 															</span>
 														</div>
 														<div class="tb-section-1">
-															<span class="hstack gap-2 fs-2" data-item-date="24 July">
+															<span id="expiration" class="hstack gap-2 fs-2" data-item-date="{{frigo_expiration}}">
 																유통기한 <i class="ti ti-calendar fs-5"></i> {{frigo_expiration}}
 															</span>
 														</div>
@@ -232,9 +197,9 @@
 											</div>
 										</div>
 									{{/iceList}}
-									{{^iceList}}
-									<p class="text-center pt-3">냉장실에 보관중인 재료가 없습니다.</p>
-									{{/iceList}}
+<!--									{{^iceList}}-->
+<!--									<p class="text-center pt-3 empty-text">냉장실에 보관중인 재료가 없습니다.</p>-->
+<!--									{{/iceList}}-->
 									</div>
 								</div>
 							</div>
@@ -313,9 +278,9 @@
 											</div>
 										</div>
 									{{/frozenList}}
-									{{^frozenList}}
-									<p class="text-center pt-3">냉동실에 보관중인 재료가 없습니다.</p>
-									{{/frozenList}}
+<!--									{{^frozenList}}-->
+<!--									<p class="text-center pt-3  empty-text">냉동실에 보관중인 재료가 없습니다.</p>-->
+<!--									{{/frozenList}}-->
 									</div>
 									</div>
 								</div>
@@ -394,9 +359,9 @@
 											</div>
 										</div>
 									{{/roomList}}
-									{{^roomList}}
-									<p class="text-center pt-3">실온에 보관중인 재료가 없습니다.</p>
-									{{/roomList}}
+<!--									{{^roomList}}-->
+<!--									<p class="text-center pt-3 empty-text">실온에 보관중인 재료가 없습니다.</p>-->
+<!--									{{/roomList}}-->
 									</div>
 									</div>
 								</div>
