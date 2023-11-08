@@ -4,27 +4,59 @@
 	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Board">
-	  <select id="Board_list" resultType="BoardDto" parameterType="BoardDto">
-select A.board_seq, A.board_category, A.board_ingredients, A.board_title, A.board_contents, A.board_wdate, A.member_seq, A.rnum
-from (
-        select A.board_seq, A.board_category, A.board_ingredients, A.board_title, A.board_contents, A.board_wdate, A.member_seq, row_number() over(order by board_seq desc) as rnum,
-        ceil(row_number() over (order by board_seq desc) / 9) - 1 as pg
-        from tb_board A
-        ) A where pg=#{pg}
-	 </select>
-	 
-	 <select id="Board_view" resultType="BoardDto" parameterType="BoardDto">
-	 select  
-	 	board_seq, 
-	 	board_category, 
-	 	board_ingredients, 
-	 	board_title, 
-	 	board_contents, 
-	 	board_wdate, 
-	 	member_seq
-	from tb_board
-	where board_seq = #{board_seq}
-	 </select>
+	<select id="Board_list" resultType="BoardDto"
+		parameterType="BoardDto">
+		select A.board_seq, A.board_category, A.board_ingredients, A.board_title,
+		A.board_contents, A.board_wdate, A.member_seq, A.rnum
+		from (
+		select A.board_seq, A.board_category, A.board_ingredients, A.board_title,
+		A.board_contents, A.board_wdate, A.member_seq, row_number() over(order
+		by board_seq desc) as rnum,
+		ceil(row_number() over (order by board_seq desc) / 9) - 1 as pg
+		from tb_board A
+		) A where pg=#{pg}
+	</select>
+
+	<select id="Board_getTotalCnt" resultType="int">
+		SELECT COUNT(*) FROM tb_board
+	</select>
+
+	<select id="Board_view" resultType="BoardDto"
+		parameterType="BoardDto">
+		select
+		board_seq,
+		board_category,
+		board_ingredients,
+		board_title,
+		board_contents,
+		board_wdate,
+		member_seq
+		from tb_board
+		where board_seq = #{board_seq}
+	</select>
+
+	<insert id="Board_write" parameterType="BoardDto">
+		insert into tb_board
+		(
+		board_seq,
+		board_category,
+		board_ingredients,
+		board_title,
+		board_contents,
+		board_wdate,
+		member_seq
+		)
+		values
+		(
+		sq_board.nextval,
+		#{board_category},
+		#{board_ingredients},
+		#{board_title},
+		#{board_contents},
+		sysdate,
+		#{member_seq}
+		)
+	</insert>
 </mapper>
 
 
