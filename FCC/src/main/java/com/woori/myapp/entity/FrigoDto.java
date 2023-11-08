@@ -56,6 +56,5 @@ public class FrigoDto {
 	public void setFrigo_wdate(String frigo_wdate) {
 		this.frigo_wdate = frigo_wdate;
 	}
-
 	
 }

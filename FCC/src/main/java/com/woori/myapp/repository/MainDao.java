@@ -2,20 +2,27 @@ package com.woori.myapp.repository;
 
 import java.util.List;
 
-import com.woori.myapp.entity.MainDto;
+import com.woori.myapp.entity.FrigoDto;
+import com.woori.myapp.entity.IngreDto;
 import com.woori.myapp.entity.RecipeDto;
 
 public interface MainDao {
 	// 냉장고
-	List<MainDto> getFrigoInfo ( MainDto mto );
+	List<FrigoDto> getFrigoInfo ( FrigoDto Fto );
+	
+	// 냉동고
+	List<FrigoDto> getIceInfo ( FrigoDto Fto );
+	
+	// 실온 보관
+	List<FrigoDto> getIndoorInfo ( FrigoDto Fto );
 	
 	// 레시피
 	List<RecipeDto> randomRecipeList ( RecipeDto Rto );
 	
 	// 영양 성분
-	MainDto getNutritionInfo ( MainDto mto );
+	IngreDto getNutritionInfo ( IngreDto Ito );
 	
 	// 냉장고 신선도
-	MainDto getFrigoFreshInfo ( MainDto mto );
+	FrigoDto getFrigoFreshInfo ( FrigoDto Fto );
 	
 }

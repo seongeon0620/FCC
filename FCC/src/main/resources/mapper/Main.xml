@@ -10,43 +10,90 @@
  --> 
 <mapper namespace="Main">
 	<select id="randomRecipeList" resultType="RecipeDto" parameterType="RecipeDto">
-              SELECT rcp_img_s , rcp_name
-			  FROM ( select rcp_img_s , rcp_name 
+              SELECT RCP_IMG_S , rcp_name
+			  FROM ( select * 
 			           from tb_recipe  
 			          order by DBMS_RANDOM.RANDOM ) Tb1
 			WHERE  rownum <![CDATA[<=]]> 6
 	</select>
 	
 	<!-- 냉장고 -->
-	<select id="MainRefriList" resultType="MainDto" parameterType="MainDto">
-		SELECT A.ingre_seq, B.ingre_name
-		FROM tb_frigo A
-		LEFT OUTER JOIN tb_ingre B on A.ingre_seq=B.ingre_seq
-		WHERE  A.mem_seq = #{mem_seq}  and  A.FRIGO_STORAGE = #{frigo_storage} and  rownum <![CDATA[<=]]> 10
-		order by A.FRIGO_EXPIRATION
+	<select id="MainRefriList" resultType="FrigoDto" parameterType="FrigoDto">
+		SELECT * 
+		  FROM ( select *
+		           from tb_frigo
+		          Where  mem_seq = 2
+		            and  ingre_seq = 3
+		            and  FRIGO_STORAGE = '냉장'
+		          order by FRIGO_EXPIRATION
+		        ) tb1
+		WHERE  rownum <![CDATA[<=]]> 10
+
+<!-- 
+		SELECT  ingre_name
+		  FROM ( select *
+		           from tb_frigo
+		          Where  mem_seq = #{mem_seq}
+		            and  ingre_seq = #{ingre_seq}
+		            and  FRIGO_STORAGE = '냉장'
+		          order by FRIGO_EXPIRATION
+		        ) tb1
+		WHERE  rownum <![CDATA[<=]]> 10
+		-->
 	</select>
 	
+	<!-- 냉동실 -->
+	<select id="MainIceList" resultType="FrigoDto" parameterType="FrigoDto">
+		SELECT  ingre_name
+		  FROM ( select *
+		           from tb_frigo
+	          Where  mem_seq = 2
+	            and  ingre_seq = 3
+		            and  FRIGO_STORAGE = '냉동'
+		          order by FRIGO_EXPIRATION
+		        ) tb1
+		WHERE  rownum <![CDATA[<=]]>10
+	</select>
+	
+	<!-- 실온보관 -->
+	<select id="MainIndoorList" resultType="FrigoDto" parameterType="FrigoDto">
+		SELECT  ingre_name
+		  FROM ( select *
+		           from tb_frigo
+	          Where  mem_seq = 2
+	         	   and  ingre_seq = 3
+		            and  FRIGO_STORAGE = '실온'
+		          order by FRIGO_EXPIRATION
+		        ) tb1
+		WHERE  rownum <![CDATA[<=]]> 10
+	</select>
 	
 	<!--  영양 성분  -->
-	<select id="ingreNutritionInfo" resultType="MainDto" parameterType="MainDto">
-	SELECT  ingre_name, ingre_pro, ingre_car , ingre_fat
+	<select id="ingreNutritionInfo" resultType="IngreDto" parameterType="IngreDto">
+	SELECT  INGRE_NAME, INGRE_PRO, INGRE_CAR , INGRE_FAT
+	  FROM tb_ingre
+	 WHERE  ingre_seq = 11
+	
+	<!--
+	SELECT  INGRE_NAME, INGRE_PRO, INGRE_CAR , INGRE_FAT
 	  FROM tb_ingre
 	 WHERE  ingre_seq = #{ingre_seq}
+	   -->
 	</select>
 	
 	<!--  냉장고 신선도  -->
-	<select id="RefriFreshInfo" resultType="MainDto" parameterType="MainDto">
-		SELECT CASE WHEN f_cnt = 0 THEN '비움'
-		            WHEN e_cnt = 0 THEN '양호' 
-		            WHEN e_cnt/f_cnt <![CDATA[<]]> 0.3 then '보통' 
+	<select id="RefriFreshInfo" resultType="IngreDto" parameterType="IngreDto">
+		SELECT CASE WHEN T_Cnt = 0 THEN '비움'
+		            WHEN E_CNT = 0 THEN '양호' 
+		            WHEN E_Cnt/T_Cnt <![CDATA[<]]> 0.3 then '보통' 
 		            ELSE '위험' 
-		       END as f_status
-		     , f_cnt
-		     , e_cnt
-		  FROM (SELECT COUNT(frigo_seq) as f_cnt
-		             , COUNT(case when frigo_expiration  <![CDATA[<]]> sysdate then 1 end) as e_cnt
+		       END as F_Status
+		     , T_Cnt
+		     , E_Cnt
+		  FROM (SELECT COUNT(FRIGO_SEQ) as T_Cnt
+		             , COUNT(case when FRIGO_EXPIRATION  <![CDATA[<]]> sysdate then 1 end) as E_Cnt
 		          FROM tb_frigo
-		     Where  mem_seq =#{mem_seq}
+		     Where  mem_seq = 1
 		 )
 	</select>
 	
