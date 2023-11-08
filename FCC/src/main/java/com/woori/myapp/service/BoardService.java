@@ -6,5 +6,7 @@ import com.woori.myapp.entity.BoardDto;
 
 public interface BoardService {
 	List<BoardDto> getList(BoardDto dto);
+	int getBoardTotalcnt();
 	BoardDto getView(BoardDto dto);
+	void insert(BoardDto dto);
 }

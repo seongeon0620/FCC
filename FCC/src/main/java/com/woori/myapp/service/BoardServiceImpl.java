@@ -20,11 +20,24 @@ public class BoardServiceImpl implements BoardService{
 		
 		return dao.getList(dto);
 	}
+	
+	@Override
+	public int getBoardTotalcnt() {
+		
+		return dao.getBoardTotalcnt();
+	}
 
 	@Override
 	public BoardDto getView(BoardDto dto) {
 		
 		return dao.getView(dto);
 	}
+
+	@Override
+	public void insert(BoardDto dto) {
+		dao.insert(dto);
+	}
+
+
 
 }

@@ -1,3 +1,12 @@
     #main-wrapper[data-layout=vertical][data-sidebartype=full] .body-wrapper {
         margin-left: 0px;
     }
+
+    #main-wrapper[data-layout=vertical][data-header-position=fixed] .body-wrapper>.container-fluid,#main-wrapper[data-layout=vertical][data-header-position=fixed] .body-wrapper>.container-lg,#main-wrapper[data-layout=vertical][data-header-position=fixed] .body-wrapper>.container-md,#main-wrapper[data-layout=vertical][data-header-position=fixed] .body-wrapper>.container-sm,#main-wrapper[data-layout=vertical][data-header-position=fixed] .body-wrapper>.container-xl,#main-wrapper[data-layout=vertical][data-header-position=fixed] .body-wrapper>.container-xxl {
+    padding-top: calc(15px);
+}
+
+
+
+
+

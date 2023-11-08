@@ -19,12 +19,26 @@ public class BoardDaoImpl implements BoardDao{
 		
 		return sm.selectList("Board_list", dto);
 	}
+	
+	@Override
+	public int getBoardTotalcnt() {
+
+		return sm.selectOne("Board_getTotalCnt");
+	}
 
 	@Override
 	public BoardDto getView(BoardDto dto) {
 		
 		return sm.selectOne("Board_view", dto);
 	}
+
+	@Override
+	public void insert(BoardDto dto) {
+		sm.insert("Board_write", dto);
+		
+	}
+
+
 	
 	
 }
