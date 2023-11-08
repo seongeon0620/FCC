@@ -40,8 +40,8 @@
 						<div class="card w-100">
 							<div class="card-body">
 								<div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
-									<div class="mb-3 mb-sm-0">
-										<h5 class="card-title fw-semibold">{{mem_nickname}}님의 냉장고 요약</h5> <!--mem_name-->
+									<div class="mb-3 mb-sm-0" id="frigoLink">
+										<h5 class="card-title fw-semibold">{{mem_nickname}}님의 냉장고 요약</h5>
 									</div>
 									<div>
 										<select class="form-select" id="fridge_select">
@@ -155,10 +155,16 @@
 		updateProgressBar();
 
 	});
+	
 	// TastyTales's Pick✨ 텍스트 클릭 이벤트 처리
 	$(".card-title.mb-9.fw-semibold").on("click", function () {
-		// 페이지 이동
 		window.location.href = "/recipe/list";
+	});
+	
+	// 내 냉장고 요약 클릭 시 my_frigo.html로 이동
+	$("#frigoLink").on("click", function () {
+		// 페이지 이동
+		window.location.href = "/my_frigo";
 	});
 
 	// 냉장고 셀렉트 박스
