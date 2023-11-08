@@ -11,9 +11,9 @@
 <mapper namespace="Member">
 	<select id="Member_idcheck" resultType="Integer" parameterType="MemberDto">
 		select count(*) from tb_member
-		where mem_name=#{mem_name}
-	
+		where mem_name=#{mem_name}	
 	</select>
+	
 	
 	<insert id="Member_insert" parameterType="MemberDto">
 	 	insert into tb_member
@@ -56,19 +56,16 @@
 				,mem_nickname
 				,mem_img				
 			from tb_member
-			where mem_name = #{mem_name}
+			where mem_seq = #{mem_seq}
 	
 	</select>
 	
 
 	<update id="Member_modify"  parameterType="MemberDto">
 		update tb_member
-		SET mem_nickname = #{mem_nickname}	
-		,mem_email = #{mem_email}
-		,mem_password = #{mem_password}
-		,mem_img = #{mem_img}
-		,mem_imgsize = #{mem_imgsize}
-		WHERE mem_name = #{mem_name}	
+		SET 		
+		mem_password = #{mem_password}			
+		WHERE mem_seq = #{mem_seq}	
 			
 	</update>
 	

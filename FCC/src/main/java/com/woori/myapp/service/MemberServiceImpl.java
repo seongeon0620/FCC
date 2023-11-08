@@ -8,22 +8,22 @@ import com.woori.myapp.repository.MemberDao;
 import jakarta.annotation.Resource;
 
 @Service("memberService")
-public class MemberServiceImpl implements MemberService{
+public class MemberServiceImpl implements MemberService {
 
-	@Resource(name="memberDao")
+	@Resource(name = "memberDao")
 	MemberDao dao;
-	
+
 	@Override
 	public void insert(MemberDto dto) {
 		dao.insert(dto);
-		
+
 	}
 
 	@Override
 	public MemberDto login_proc(MemberDto dto) {
-		
+
 		MemberDto resultDto = dao.login_proc(dto);
-		
+
 		return resultDto;
 	}
 
@@ -41,8 +41,7 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void update(MemberDto dto) {
 		dao.update(dto);
-		
-	}
 
+	}
 
 }
