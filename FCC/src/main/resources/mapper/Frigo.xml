@@ -67,4 +67,13 @@
 		UPDATE TB_FRIGO SET FRIGO_STORAGE = #{frigo_storage} WHERE MEM_SEQ = #{mem_seq} AND FRIGO_SEQ = #{frigo_seq}
 	</update>
 	
+	<select id="Frigo_getRandomList" resultType="RecipeDto">
+		SELECT
+			rcp_seq, rcp_img_s , rcp_name
+		FROM (
+			select rcp_seq, rcp_img_s , rcp_name
+			from tb_recipe  
+			order by DBMS_RANDOM.RANDOM ) Tb1
+			WHERE rownum <![CDATA[<=]]> 4
+	</select>
 </mapper>
