@@ -1,16 +1,20 @@
 package com.woori.myapp.entity;
 
-public class MemberDto {
+import java.io.Serializable;
 
-	 private Long mem_seq=0L;
-	 private String mem_name=""; 
-	 private String mem_password=""; 
-	 private String mem_email=""; 
-	 private String mem_nickname="";
-	 private String member_wdate="";
-	 private String mem_img="";
-	 private Long mem_imgsize=0L;
-	 
+public class MemberDto implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private Long mem_seq = 0L;
+	private String mem_name = "";
+	private String mem_password = "";
+	private String mem_email = "";
+	private String mem_nickname = "";
+	private String member_wdate = "";
+	private String mem_img = "";
+	private Long mem_imgsize = 0L;
+
 	public MemberDto() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -29,11 +33,11 @@ public class MemberDto {
 		this.mem_imgsize = mem_imgsize;
 	}
 
-	public Long getMember_seq() {
+	public Long getmem_seq() {
 		return mem_seq;
 	}
 
-	public void setMember_seq(Long member_seq) {
+	public void setmem_seq(Long member_seq) {
 		this.mem_seq = member_seq;
 	}
 
@@ -92,9 +96,5 @@ public class MemberDto {
 	public void setMem_imgsize(Long mem_imgsize) {
 		this.mem_imgsize = mem_imgsize;
 	}
-	
-	
-	 
-	
-	
+
 }

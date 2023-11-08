@@ -56,7 +56,7 @@
 				,mem_nickname
 				,mem_img				
 			from tb_member
-			where mem_seq = #{mem_seq}
+			where mem_name = #{mem_name}
 	
 	</select>
 	
@@ -68,7 +68,7 @@
 		,mem_password = #{mem_password}
 		,mem_img = #{mem_img}
 		,mem_imgsize = #{mem_imgsize}
-		WHERE mem_seq = #{mem_seq}	
+		WHERE mem_name = #{mem_name}	
 			
 	</update>
 	
