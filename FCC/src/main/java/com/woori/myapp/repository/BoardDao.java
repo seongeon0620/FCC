@@ -12,4 +12,8 @@ public interface BoardDao {
 	BoardDto getView(BoardDto dto);
 	
 	void insert(BoardDto dto);
+	
+	void update(BoardDto dto);
+	
+	void delete(BoardDto dto);
 }

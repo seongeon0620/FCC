@@ -74,7 +74,8 @@
 														height="48" class="rounded-circle" />
 												</span>
 												<div class="ms-3 d-inline-block w-75">
-													<h6 class="mb-1 fw-semibold chat-title">{{logInfo.mem_nickname}}</h6>
+													<h6 class="mb-1 fw-semibold chat-title">{{logInfo.mem_nickname}}
+													</h6>
 												</div>
 											</div>
 										</a>
@@ -166,7 +167,7 @@
 </html>
 
 <script>
-	let mem_seq = 1;
+	let mem_seq = '{{logInfo.mem_seq}}';
 	$(() => {
 		// setInterval( loadUserList, 3000);
 		loadUserList()
@@ -184,23 +185,23 @@
 				$("#userList > div.simplebar-wrapper > div.simplebar-mask > div > div > div").empty();
 				res.userlist.forEach(item => {
 					let users =
-						` <li>
-					<a href="javascript:void(0)"
-                             class="px-4 py-3 bg-hover-light-black d-flex align-items-start justify-content-between chat-user bg-light"
-                             id="chat_user_1" data-user-id="1">
-                             
-                             <div class="d-flex align-items-center">
-                                 <span class="position-relative">
-                                     <img src="/images/profile/user-1.jpg" alt="user1" width="48"
-                                         height="48" class="rounded-circle" />
-                                 </span>
-                                 <div class="ms-3 d-inline-block w-75">
-                                     <h6 class="mb-1 fw-semibold chat-title"
-                                         data-username="James Anderson">${item.mem_nickname}</h6>
-                                 </div>
-                             </div>
-                         </a>
-                         </li>`;
+						`<li>
+							<a href="javascript:void(0)"
+								class="px-4 py-3 bg-hover-light-black d-flex align-items-start justify-content-between chat-user bg-light"
+								id="chat_user_1" data-user-id="1">
+
+								<div class="d-flex align-items-center">
+									<span class="position-relative">
+										<img src="/images/profile/user-1.jpg" alt="user1" width="48"
+											height="48" class="rounded-circle" />
+									</span>
+									<div class="ms-3 d-inline-block w-75">
+										<h6 class="mb-1 fw-semibold chat-title"
+											data-username="James Anderson">${item.mem_nickname}</h6>
+									</div>
+								</div>
+							</a>
+						</li>`;
 
 					// 사용자 목록 아래에 사용자 정보 추가
 					$("#userList > div.simplebar-wrapper > div.simplebar-mask > div > div > div").append(users);

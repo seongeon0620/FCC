@@ -38,6 +38,18 @@ public class BoardServiceImpl implements BoardService{
 		dao.insert(dto);
 	}
 
+	@Override
+	public void update(BoardDto dto) {
+		dao.update(dto);
+		
+	}
+
+	@Override
+	public void delete(BoardDto dto) {
+		dao.delete(dto);
+		
+	}
+
 
 
 }

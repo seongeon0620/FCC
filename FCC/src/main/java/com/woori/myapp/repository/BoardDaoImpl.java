@@ -38,6 +38,18 @@ public class BoardDaoImpl implements BoardDao{
 		
 	}
 
+	@Override
+	public void update(BoardDto dto) {
+		sm.update("Board_update", dto);
+		
+	}
+
+	@Override
+	public void delete(BoardDto dto) {
+		sm.delete("Board_delete", dto);
+		
+	}
+
 
 	
 	
