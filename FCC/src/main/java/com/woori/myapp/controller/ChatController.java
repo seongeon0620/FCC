@@ -15,6 +15,8 @@ import com.woori.myapp.entity.Message;
 import com.woori.myapp.service.ChatService;
 
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class ChatController {
@@ -23,8 +25,17 @@ public class ChatController {
 	ChatService service;
 
 	@GetMapping("appchat")
-	public String appChat() {
-		return "/app-chat";
+	public String appChat(HttpServletRequest request) {
+	HttpSession session = request.getSession();
+	MemberDto resultDto = (MemberDto)session.getAttribute("logInfo");
+		if ( resultDto == null ) {
+			return "redirect:member/login";
+		}
+		else
+		{
+			System.out.println( "채팅에서 resultDto.getmem_seq() >>>>>> " + resultDto.getmem_seq() );
+			return "/app-chat";
+		}
 	}
 	
 	// 유저 정보

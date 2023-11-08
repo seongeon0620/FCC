@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.woori.myapp.entity.MainDto;
@@ -25,18 +26,31 @@ public class MainController {
 	@Resource( name="mainService" )
 	MainService service;
 	
+	
+
 	// 메인 페이지_레시피 리스트
 	@GetMapping("/index")
 	public String index( Model model, MemberDto mto, HttpServletRequest request ) {
+		
+		//System.out.println("####################################");
 		HttpSession session = request.getSession();
-		session.setAttribute( "mem_nickname", "tester" );
-		session.setAttribute( "mem_seq", 1 );
+		MemberDto resultDto = (MemberDto)session.getAttribute("logInfo");
+	  
+		if ( resultDto == null ) {
+			return "redirect:member/login";
+		}
+		else
+		{
+			System.out.println( "Main에서 resultDto.getmem_seq() >>>>>> " + resultDto.getmem_seq() );
+			List<RecipeDto> list = service.getRecipeList( null );
+			model.addAttribute( "list", list );
+			model.addAttribute( "mto", mto );
+			
+			return "/index";
+			
+		}
+		//return "redirect :/member/login"; 
 		
-		List<RecipeDto> list = service.getRecipeList( null );
-		model.addAttribute( "list", list );
-		model.addAttribute( "mto", mto );
-		
-		return "/index";
 	}
 	
 	// 냉장고 정보
