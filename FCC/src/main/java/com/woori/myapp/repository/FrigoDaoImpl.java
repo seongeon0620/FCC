@@ -41,6 +41,16 @@ public class FrigoDaoImpl implements FrigoDao {
 		return sm.delete("Frigo_deleteOne", dto);
 	}
 
+	@Override
+	public int updateDetail(FrigoDto dto) {
+		return sm.update("Frigo_updateDetail", dto);
+	}
+
+	@Override
+	public int updateStatus(FrigoDto dto) {
+		return sm.update("Frigo_updateStatus", dto);
+	}
+
 	
 
 }

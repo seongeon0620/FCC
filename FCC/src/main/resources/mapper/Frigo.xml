@@ -59,4 +59,12 @@
 		DELETE FROM TB_FRIGO WHERE FRIGO_STORAGE = #{frigo_storage} AND MEM_SEQ = #{mem_seq}
 	</delete>
 	
+	<update id="Frigo_updateDetail" parameterType="FrigoDto">
+		UPDATE TB_FRIGO SET INGRE_SEQ = #{ingre_seq}, FRIGO_EXPIRATION = #{frigo_expiration} WHERE MEM_SEQ = #{mem_seq} AND FRIGO_SEQ = #{frigo_seq}
+	</update>
+	
+	<update id="Frigo_updateStatus" parameterType="FrigoDto">
+		UPDATE TB_FRIGO SET FRIGO_STORAGE = #{frigo_storage} WHERE MEM_SEQ = #{mem_seq} AND FRIGO_SEQ = #{frigo_seq}
+	</update>
+	
 </mapper>
