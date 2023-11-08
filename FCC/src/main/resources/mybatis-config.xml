@@ -10,7 +10,8 @@
 		<typeAlias alias="IngreDto"  type="com.woori.myapp.entity.IngreDto"/>
 		<typeAlias alias="FrigoDto"  type="com.woori.myapp.entity.FrigoDto"/>
 		<typeAlias alias="FrigoResponseDto"  type="com.woori.myapp.entity.FrigoResponseDto"/>
-				<typeAlias alias="MainDto"  type="com.woori.myapp.entity.MainDto"/>
+		<typeAlias alias="MainDto"  type="com.woori.myapp.entity.MainDto"/>
+		<typeAlias alias="CmtDto"  type="com.woori.myapp.entity.CmtDto"/>
 		
 	</typeAliases>
 	<mappers>
@@ -21,6 +22,7 @@
 		<mapper resource="mapper/Chat.xml" />
 		<mapper resource="mapper/Ingre.xml" />
 		<mapper resource="mapper/Frigo.xml" />
+		<mapper resource="mapper/Cmt.xml" />
 	</mappers>
 </configuration>
 

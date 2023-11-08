@@ -9,7 +9,8 @@ public class BoardDto extends BaseDto{
     private String board_contents="";
     private String board_ingredients="";
     private	String board_wdate="";
-    private Long member_seq=1L;
+    private Long member_seq;
+    private String mem_nickname;
 	public Long getBoard_seq() {
 		return board_seq;
 	}
@@ -52,7 +53,11 @@ public class BoardDto extends BaseDto{
 	public void setMember_seq(Long member_seq) {
 		this.member_seq = member_seq;
 	}
-    
-    
-
+	public String getMem_nickname() {
+		return mem_nickname;
+	}
+	public void setMem_nickname(String mem_nickname) {
+		this.mem_nickname = mem_nickname;
+	}
+	
 }

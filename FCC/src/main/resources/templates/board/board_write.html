@@ -135,7 +135,7 @@
 					</div>
 					<div class="card-body">
 						<button id="save" class="btn btn-success" type="button">
-							Save
+							등록
 						</button>
 					</div>
 
@@ -189,9 +189,6 @@
 			let board_title = $("#title").val();
 			let board_ingredients = $("#ingredients").val();
 			let board_contents = $(".summernote").summernote('code');
-			
-			console.log(board_category);
-			console.log(board_contents);
 			
 			$.ajax({
 				url: "/board/save",
