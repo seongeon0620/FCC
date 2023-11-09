@@ -26,7 +26,6 @@ public class MainController {
 	@Resource( name="mainService" )
 	MainService service;
 	
-	
 
 	// 메인 페이지_레시피 리스트
 	@GetMapping("/index")
