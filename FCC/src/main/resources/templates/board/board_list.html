@@ -55,7 +55,10 @@
 								<h4 class="fw-semibold mb-8">유저레시피 </h4>
 								<nav aria-label="breadcrumb">
 									<ol class="breadcrumb">
-										<li class="breadcrumb-item" aria-current="page">유저레시피를 공유해주세요</li>
+										<li class="breadcrumb-item" aria-current="page">
+											<a href="/board/write"
+												class="btn d-block btn-outline-danger px-5 py-8 mb-2 mb-sm-0"> 레시피 쓰러가기 </a>
+										</li>
 									</ol>
 								</nav>
 							</div>
@@ -104,11 +107,11 @@
 				</nav>
 			</div>
 		</div>
-		<button
+		<!-- <button
 			class="btn btn-primary p-3 rounded-circle d-flex align-items-center justify-content-center customizer-btn"
 			type="button" id="btnWrite">
 			<i class="ti ti-pencil fs-7"></i>
-		</button>
+		</button> -->
 		<!-- ---------------------------------------------- -->
 		<!-- Import Js Files -->
 		<!-- ---------------------------------------------- -->
@@ -133,9 +136,9 @@
 </html>
 
 <script>
-	$("#btnWrite").click(() => {
+	/* $("#btnWrite").click(() => {
 		location.href = "/board/write";
-	});
+	});*/
 
 	function goPage(pageNumber) {
 		var url = "/board/list/" + pageNumber; // 페이지 번호에 맞는 URL 생성
