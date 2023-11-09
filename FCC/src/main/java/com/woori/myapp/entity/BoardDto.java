@@ -11,6 +11,7 @@ public class BoardDto extends BaseDto{
     private	String board_wdate="";
     private Long member_seq;
     private String mem_nickname;
+    private int cmt_cnt;
 	public Long getBoard_seq() {
 		return board_seq;
 	}
@@ -59,5 +60,13 @@ public class BoardDto extends BaseDto{
 	public void setMem_nickname(String mem_nickname) {
 		this.mem_nickname = mem_nickname;
 	}
+	public int getCmt_cnt() {
+		return cmt_cnt;
+	}
+	public void setCmt_cnt(int cmt_cnt) {
+		this.cmt_cnt = cmt_cnt;
+	}
+    
+	
 	
 }
