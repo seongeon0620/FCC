@@ -187,7 +187,7 @@
 
 					}
 					for (i = 0; i < result.length; i++) {
-						temp += `<a href="#none" onclick="fnIngreInfo(${result[i].ingre_seq})" class="btn mb-1 waves-effect waves-light btn-rounded btn-outline-primary">${result[i].ingre_name}</a> &nbsp;&nbsp;&nbsp;&nbsp;`;
+						temp += `<a href="#none" onclick="fnIngreInfo('${result[i].ingre_seq}')" class="btn mb-1 waves-effect waves-light btn-rounded btn-outline-primary">${result[i].ingre_name}</a> &nbsp;&nbsp;&nbsp;&nbsp;`;
 					}
 					$("#fridgeInfo").html(temp);
 				}

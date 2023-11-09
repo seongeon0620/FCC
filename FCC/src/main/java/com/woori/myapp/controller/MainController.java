@@ -68,7 +68,7 @@ public class MainController {
 	// 식품 영양 성분
 	@PostMapping("/index/nutrition/{ingre_seq}")
 	@ResponseBody
-	public HashMap<String, Object> mainNutritionInfo (  MainDto mto, @PathVariable("ingre_seq") int ingre_seq ) {
+	public HashMap<String, Object> mainNutritionInfo (  MainDto mto, @PathVariable("ingre_seq") String ingre_seq ) {
 		HashMap<String, Object> resultMap = new HashMap<>();
 		mto.setIngre_seq(ingre_seq+"");
 		MainDto resultDto = service.getNutritionInfo( mto );
