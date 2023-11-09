@@ -37,6 +37,12 @@ public class BoardController {
 	@GetMapping("/board/list/{pg}")
 	public String board_list(Model model, BoardDto dto, @PathVariable("pg") int pg) {
 		List<BoardDto> list = service.getList(dto);
+		for(BoardDto d : list) {
+			CmtDto cd = new CmtDto();
+			cd.setBoard_seq(d.getBoard_seq());
+			int cnt = cmtService.getCmtCount(cd);
+			d.setCmt_cnt(cnt);
+		}
 		dto.setPg(pg);
 		model.addAttribute("page", Pager.makePage(9, service.getBoardTotalcnt(), pg));
 		model.addAttribute("boardList", list);
