@@ -1,66 +1,100 @@
 package com.woori.myapp.entity;
 
-public class MemberDto {
+import java.io.Serializable;
 
-	 private Long member_seq=0L;
-	 private String user_name=""; 
-	 private String password=""; 
-	 private String email=""; 
-	 private String nick_name="";
-	 private String member_wdate="";
+public class MemberDto implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private Long mem_seq = 0L;
+	private String mem_name = "";
+	private String mem_password = "";
+	private String mem_email = "";
+	private String mem_nickname = "";
+	private String member_wdate = "";
+	private String mem_img = "";
+	private Long mem_imgsize = 0L;
+
 	public MemberDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	public MemberDto(Long member_seq, String user_name, String password, String email, String nick_name,
-			String member_wdate) {
+
+	public MemberDto(Long member_seq, String mem_name, String mem_password, String mem_email, String mem_nickname,
+			String member_wdate, String mem_img, Long mem_imgsize) {
 		super();
-		this.member_seq = member_seq;
-		this.user_name = user_name;
-		this.password = password;
-		this.email = email;
-		this.nick_name = nick_name;
+		this.mem_seq = member_seq;
+		this.mem_name = mem_name;
+		this.mem_password = mem_password;
+		this.mem_email = mem_email;
+		this.mem_nickname = mem_nickname;
 		this.member_wdate = member_wdate;
+		this.mem_img = mem_img;
+		this.mem_imgsize = mem_imgsize;
 	}
-	
-	public Long getMember_seq() {
-		return member_seq;
+
+	public Long getmem_seq() {
+		return mem_seq;
 	}
-	public void setMember_seq(Long member_seq) {
-		this.member_seq = member_seq;
+
+	public void setmem_seq(Long member_seq) {
+		this.mem_seq = member_seq;
 	}
-	public String getUser_name() {
-		return user_name;
+
+	public String getMem_name() {
+		return mem_name;
 	}
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+
+	public void setMem_name(String mem_name) {
+		this.mem_name = mem_name;
 	}
-	public String getPassword() {
-		return password;
+
+	public String getMem_password() {
+		return mem_password;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+
+	public void setMem_password(String mem_password) {
+		this.mem_password = mem_password;
 	}
-	public String getEmail() {
-		return email;
+
+	public String getMem_email() {
+		return mem_email;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+
+	public void setMem_email(String mem_email) {
+		this.mem_email = mem_email;
 	}
-	public String getNick_name() {
-		return nick_name;
+
+	public String getMem_nickname() {
+		return mem_nickname;
 	}
-	public void setNick_name(String nick_name) {
-		this.nick_name = nick_name;
+
+	public void setMem_nickname(String mem_nickname) {
+		this.mem_nickname = mem_nickname;
 	}
+
 	public String getMember_wdate() {
 		return member_wdate;
 	}
+
 	public void setMember_wdate(String member_wdate) {
 		this.member_wdate = member_wdate;
 	}
-	 
-	
-	
+
+	public String getMem_img() {
+		return mem_img;
+	}
+
+	public void setMem_img(String mem_img) {
+		this.mem_img = mem_img;
+	}
+
+	public Long getMem_imgsize() {
+		return mem_imgsize;
+	}
+
+	public void setMem_imgsize(Long mem_imgsize) {
+		this.mem_imgsize = mem_imgsize;
+	}
+
 }

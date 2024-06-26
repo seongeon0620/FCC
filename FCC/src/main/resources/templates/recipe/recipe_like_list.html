@@ -1,0 +1,109 @@
+{{>layout/header}}
+
+<body>
+	{{>layout/nav}}
+	<div class="page-wrapper" id="main-wrapper" data-layout="horizontal">
+		<div class="body-wrapper">
+			<div class="container-fluid">
+				<div class="card bg-light-info shadow-none position-relative overflow-hidden">
+					<div class="card-body px-4 py-3">
+						<div class="row align-items-center">
+							<div class="col-9">
+								<h4 class="fw-semibold mb-8"> 찜한 레시피 </h4>
+								<nav aria-label="breadcrumb">
+									<ol class="breadcrumb">
+										<li class="breadcrumb-item" aria-current="page">
+											<a href="/recipe/list"
+												class="btn d-block btn-outline-primary px-5 py-8 mb-2 mb-sm-0">
+												전체 레시피 보기 </a>
+										</li>
+									</ol>
+								</nav>
+							</div>
+							<div class="col-3">
+								<div class="text-center mb-n5">
+									<img src="/images/breadcrumb/ChatBc.png" alt="" class="img-fluid mb-n4">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+				<div id="recipe_list_wrapper">
+					<!-- Row -->
+					<div class="row">
+						<!-- column -->
+						{{#recipeList}}
+						<div class="col-lg-4 col-md-6">
+							<!-- Card -->
+							<div class="card" style="height: 100%;">
+								<div style="position: relative; padding-bottom: 100%; overflow: hidden;">
+									<img class="card-img-top img-responsive" src="{{rcp_img_s}}"
+										style="position: absolute; object-fit: cover; width: 100%; height: 100%;"
+										alt="Card image cap" />
+								</div>
+								<div class="card-body">
+									<h4 class="card-title">{{rcp_name}}</h4>
+									<p class="card-text">
+									</p>
+									<a href="/recipe/view/{{rcp_seq}}" class="btn btn-primary">레시피 보러가기</a>
+									<a href="#" id="btnLikeRecipeCancel" class="btn btn-danger" data-type="{{rcp_seq}}" >찜 취소 X</a>
+								</div>
+							</div>
+							<!-- Card -->
+						</div>
+						<!-- column -->
+						{{/recipeList}}
+					</div>
+					<!-- Row -->
+					<!-- 1. end card with img -->
+				</div>
+			</div>
+		</div>
+		<!-- ---------------------------------------------- -->
+		<!-- Import Js Files -->
+		<!-- ---------------------------------------------- -->
+		<script src="/libs/jquery/dist/jquery.min.js"></script>
+		<script src="/libs/simplebar/dist/simplebar.min.js"></script>
+		<script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+		<!-- ---------------------------------------------- -->
+		<!-- core files -->
+		<!-- ---------------------------------------------- -->
+		<script src="/js/app.min.js"></script>
+		<script src="/js/app.init.js"></script>
+		<script src="/js/app-style-switcher.js"></script>
+		<script src="/js/sidebarmenu.js"></script>
+
+		<script src="/js/custom.js"></script>
+		<!-- ---------------------------------------------- -->
+		<!-- current page js files -->
+		<!-- ---------------------------------------------- -->
+		<script src="/js/apps/chat.js"></script>
+</body>
+
+<!-- Mirrored from demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/html/main/blog-posts.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 16 Aug 2023 15:07:12 GMT -->
+
+</html>
+
+<script>
+	$(function () {
+		
+		$("#btnLikeRecipeCancel").click(function () {
+			let rcp_seq = $(this).attr("data-type");
+			$.ajax({
+				url: "/recipe/like/" + rcp_seq,
+				type: "get",
+				data: {"like_type": "cancelLike"},
+				dataType: "json"
+			}).done((res) => {
+				if (res.change_like_type == "clickLike") {
+					location.reload();
+				}
+			}).fail((res, err, status) => {
+				console.log(err);
+			});
+		});
+	});
+</script>

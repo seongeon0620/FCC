@@ -10,22 +10,44 @@
  --> 
 <mapper namespace="Main">
 	<select id="randomRecipeList" resultType="RecipeDto" parameterType="RecipeDto">
+              SELECT rcp_img_s , rcp_name
+			  FROM ( select rcp_img_s , rcp_name 
+			           from tb_recipe  
+			          order by DBMS_RANDOM.RANDOM ) Tb1
+			WHERE  rownum <![CDATA[<=]]> 6
 	</select>
 	
 	<!-- 냉장고 -->
-	<select id="MainRefriList" resultType="refriDto" parameterType="refriDto">
+	<select id="MainRefriList" resultType="MainDto" parameterType="MainDto">
+		SELECT A.ingre_seq, B.ingre_name
+		FROM tb_frigo A
+		LEFT OUTER JOIN tb_ingre B on A.ingre_seq=B.ingre_seq
+		WHERE  A.mem_seq = #{mem_seq}  and  A.FRIGO_STORAGE = #{frigo_storage} and  rownum <![CDATA[<=]]> 10
+		order by A.FRIGO_EXPIRATION
 	</select>
 	
-	<!-- 냉동실 -->
-	<select id="MainIceList" resultType="refriDto" parameterType="refriDto">
-	</select>
 	
 	<!--  영양 성분  -->
-	<select id="ingreNutritionInfo" resultType="ingreDto" parameterType="ingreDto">
+	<select id="ingreNutritionInfo" resultType="MainDto" parameterType="MainDto">
+	SELECT  ingre_name, ingre_pro, ingre_car , ingre_fat
+	  FROM tb_ingre
+	 WHERE  ingre_seq = #{ingre_seq}
 	</select>
 	
 	<!--  냉장고 신선도  -->
-	<select id="RefriFreshInfo" resultType="ingreDto" parameterType="ingreDto">
+	<select id="RefriFreshInfo" resultType="MainDto" parameterType="MainDto">
+		SELECT CASE WHEN f_cnt = 0 THEN '비움'
+		            WHEN e_cnt = 0 THEN '양호' 
+		            WHEN e_cnt/f_cnt <![CDATA[<]]> 0.3 then '보통' 
+		            ELSE '위험' 
+		       END as f_status
+		     , f_cnt
+		     , e_cnt
+		  FROM (SELECT COUNT(frigo_seq) as f_cnt
+		             , COUNT(case when frigo_expiration  <![CDATA[<]]> sysdate then 1 end) as e_cnt
+		          FROM tb_frigo
+		     Where  mem_seq =#{mem_seq}
+		 )
 	</select>
 	
 	

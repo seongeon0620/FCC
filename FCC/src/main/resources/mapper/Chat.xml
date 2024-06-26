@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	mybatis 기술문서에 보면 resultMap,parameterMap
+	원래 DB 필드값이 item1,item2 ,... Dto 랑 안맞으면
+	map은 두개를 mapping 시켜야 할때 xml 로 기술한다.
+ --> 
+<mapper namespace="Chat">
+ <!--  현재 접속 중인 유저의 닉네임과 프사 
+ 	 	그리고 내 아이디와 닉네임 프사 -->
+	<select id="UserList" resultType="MemberDto" parameterType="MemberDto">
+              SELECT mem_seq, mem_name, mem_nickname, mem_img
+              From tb_member 
+	</select>
+	
+	
+	
+	
+</mapper>

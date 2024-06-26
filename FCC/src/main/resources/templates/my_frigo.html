@@ -1,0 +1,546 @@
+{{>layout/header}}
+<style>
+	.card-img-top { height: 250px; object-fit: cover;}
+</style>
+<body>
+	<!-- Body Wrapper -->
+	<div class="page-wrapper" id="main-wrapper" data-layout="horizontal" data-sidebartype="full">
+		{{>layout/nav}}
+		<!-- --------------------------------------------------- -->
+		<!-- Main Wrapper -->
+		<!-- --------------------------------------------------- -->
+		<div class="body-wrapper">
+			<div class="container-fluid">
+				<div class="card bg-light-info shadow-none position-relative overflow-hidden">
+					<div class="card-body px-4 py-3">
+						<div class="row align-items-center">
+							<div class="col-9">
+								<h4 class="fw-semibold mb-8">내 냉장고</h4>
+								<nav aria-label="breadcrumb">
+									<ol class="breadcrumb">
+										<li class="breadcrumb-item" aria-current="page">
+											다양한 재료를 등록하고, 레시피를 추천받아보세요!
+										</li>
+									</ol>
+								</nav>
+							</div>
+							<div class="col-3">
+								<div class="text-center mb-n5">
+									<img src="/images/breadcrumb/ChatBc.png" alt="" class="img-fluid mb-n4" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--<form action="" method="">-->
+				<div class="modal fade" id="addItemModal" tabindex="-1" role="dialog" aria-labelledby="addTaskModalTitle" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="add-task-title modal-title" id="addTaskModalTitleLabel1">재료 추가</h5>
+								<h5 class="edit-task-title modal-title" id="addTaskModalTitleLabel2">재료 수정</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+								</button>
+							</div>
+							
+							<div class="modal-body">
+								<div class="compose-box">
+									<div class="compose-content" id="addTaskModalTitle">
+										<div class="addTaskAccordion" id="add_task_accordion">
+											<div class="task-content task-text-progress">
+												<div id="collapseTwo" class="collapse show" data-parent="#add_task_accordion">
+													<div class="task-content-body">
+														<form action="javascript:void(0);">
+															<div class="row">
+																<div class="col-md-12 mb-4">
+																	<label class="form-label fw-semibold" for="kanban-title">재료명</label>
+																	<input type="text" id="kanban-title" class="form-control">
+																</div>
+															</div>
+															<div class="row">
+																<div class="col-md-12">
+																	<div class="form-group mb-4">
+																		<label class="form-label fw-semibold">상세 재료</label>
+																		<select class="form-select mr-sm-2" id="kanban-text">
+
+																		</select>
+																	</div>
+																</div>
+															</div>
+
+															<div class="row">
+																<div class="col-md-12">
+																	<div class="form-group">
+																		<label for="kanban-edate" class="form-label fw-semibold">유통기한</label>
+																		<input type="date" id="kanban-edate" class="form-control" value="">
+																	</div>
+																</div>
+															</div>
+															<input type="hidden" id="storage-type" name="storage-type" />
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer justify-content-start">
+								<button class="btn btn-dark d-flex align-items-center gap-1" data-bs-dismiss="modal">취소</button>
+								<button data-btn-action="addTask" class="btn add-tsk btn-primary">등록</button>
+								<button data-btn-action="editTask" class="btn edit-tsk btn-success">수정</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--</form>-->
+				<div class="modal fade" id="deleteConformation" tabindex="-1" role="dialog"
+					aria-labelledby="deleteConformationLabel" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content" id="deleteConformationLabel">
+							<div class="modal-header">
+								<div
+									class="icon round-40 d-flex align-items-center justify-content-center bg-light-danger text-danger me-2 rounded-circle">
+									<i class="ti ti-trash fs-6"></i>
+								</div>
+								<h5 class="modal-title fw-semibold" id="exampleModalLabel">재료를 삭제하시겠습니까?</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<p class="mb-0">해당 재료를 삭제하시겠습니까? 삭제한 재료는 복원할 수 없습니다.</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">취소</button>
+								<button type="button" class="btn btn-danger" data-remove="task">삭제</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row scrumboard" id="cancel-row">
+					<div class="col-lg-12 layout-spacing pb-3" data-simplebar="">
+						<div class="task-list-section">
+							<div data-item="냉장" class="task-list-container" data-action="sorting">
+								<div class="connect-sorting connect-sorting-todo">
+									<div class="task-container-header">
+										<h6 class="item-head mb-0 fs-4 fw-semibold" data-item-title="냉장">냉장</h6>
+										<div class="hstack gap-2">
+											<div class="add-kanban-title">
+												<a class="addTask d-flex align-items-center justify-content-center gap-1 lh-sm"
+													data-bs-toggle="tooltip" data-bs-placement="top"
+													data-bs-title="재료 추가">
+													<i class="ti ti-plus text-dark"></i>
+												</a>
+											</div>
+											<div class="dropdown">
+												<a class="dropdown-toggle" href="#" role="button"
+													id="dropdownMenuLink-1" data-bs-toggle="dropdown"
+													aria-haspopup="true" aria-expanded="true">
+													<i class="ti ti-dots-vertical text-dark"></i>
+												</a>
+												<div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink-1">
+													<a id="btnAllClear" class="dropdown-item list-clear-all" href="javascript:void(0);">모두 비우기</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="connect-sorting-content" data-sortable="true">
+									{{#iceList}}
+										<div data-draggable="true" class="card img-task">
+											<div class="card-body">
+												<div class="task-header">
+													<div class="">
+														<h4 class="" data-item-title="{{frigo_seq}}">{{ingre_name}}</h4>
+													</div>
+													<div class="dropdown">
+														<a class="dropdown-toggle" href="#" role="button"
+															id="dropdownMenuLink-1" data-bs-toggle="dropdown"
+															aria-haspopup="true" aria-expanded="true">
+															<i class="ti ti-dots-vertical text-dark"></i>
+														</a>
+														<div class="dropdown-menu dropdown-menu-end"
+															aria-labelledby="dropdownMenuLink-1">
+															<a class="dropdown-item kanban-item-edit cursor-pointer d-flex align-items-center gap-1"
+																href="javascript:void(0);"><i
+																	class="ti ti-pencil fs-5"></i>수정</a>
+															<a class="dropdown-item kanban-item-delete cursor-pointer d-flex align-items-center gap-1"
+																href="javascript:void(0);"><i
+																	class="ti ti-trash fs-5"></i>삭제</a>
+														</div>
+													</div>
+												</div>
+												<div class="task-content">
+													<p class="mb-0">{{ingre_detail}}</p>
+												</div>
+												<div class="task-body">
+													<div class="task-bottom flex-wrap">
+														<div class="tb-section-1 w-100">
+															<span class="hstack gap-2 fs-2" data-item-date="{{frigo_wdate}}">
+																등록일시 <i class="ti ti-calendar fs-5"></i> {{frigo_wdate}}
+															</span>
+														</div>
+														<div class="tb-section-1">
+															<span id="expiration" class="hstack gap-2 fs-2" data-item-date="{{frigo_expiration}}">
+																유통기한 <i class="ti ti-calendar fs-5"></i> {{frigo_expiration}}
+															</span>
+														</div>
+														<div class="tb-section-2">
+															<span class="badge text-bg-primary fs-1">{{ddayBadge}}</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									{{/iceList}}
+<!--									{{^iceList}}-->
+<!--									<p class="text-center pt-3 empty-text">냉장실에 보관중인 재료가 없습니다.</p>-->
+<!--									{{/iceList}}-->
+									</div>
+								</div>
+							</div>
+							
+							<div data-item="냉동" class="task-list-container" data-action="sorting">
+								<div class="connect-sorting connect-sorting-inprogress">
+									<div class="task-container-header">
+										<h6 class="item-head mb-0 fs-4 fw-semibold" data-item-title="냉동">냉동</h6>
+										<div class="hstack gap-2">
+											<div class="add-kanban-title">
+												<a class="addTask d-flex align-items-center justify-content-center gap-1 lh-sm"
+													data-bs-toggle="tooltip" data-bs-placement="top"
+													data-bs-title="재료 추가">
+													<i class="ti ti-plus text-dark"></i>
+												</a>
+											</div>
+											<div class="dropdown">
+												<a class="dropdown-toggle" href="#" role="button"
+													id="dropdownMenuLink-1" data-bs-toggle="dropdown"
+													aria-haspopup="true" aria-expanded="true">
+													<i class="ti ti-dots-vertical text-dark"></i>
+												</a>
+												<div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink-1">
+													<a class="dropdown-item list-clear-all"
+														href="javascript:void(0);">모두 비우기</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									
+									<div class="connect-sorting-content" data-sortable="true">
+									{{#frozenList}}
+										<div data-draggable="true" class="card img-task">
+											<div class="card-body">
+												<div class="task-header">
+													<div class="">
+														<h4 class="" data-item-title="{{frigo_seq}}">{{ingre_name}}</h4>
+													</div>
+													<div class="dropdown">
+														<a class="dropdown-toggle" href="#" role="button"
+															id="dropdownMenuLink-1" data-bs-toggle="dropdown"
+															aria-haspopup="true" aria-expanded="true">
+															<i class="ti ti-dots-vertical text-dark"></i>
+														</a>
+														<div class="dropdown-menu dropdown-menu-end"
+															aria-labelledby="dropdownMenuLink-1">
+															<a class="dropdown-item kanban-item-edit cursor-pointer d-flex align-items-center gap-1"
+																href="javascript:void(0);"><i
+																	class="ti ti-pencil fs-5"></i>수정</a>
+															<a class="dropdown-item kanban-item-delete cursor-pointer d-flex align-items-center gap-1"
+																href="javascript:void(0);"><i
+																	class="ti ti-trash fs-5"></i>삭제</a>
+														</div>
+													</div>
+												</div>
+												<div class="task-content">
+													<p class="mb-0">{{ingre_detail}}</p>
+												</div>
+												<div class="task-body">
+													<div class="task-bottom flex-wrap">
+														<div class="tb-section-1 w-100">
+															<span class="hstack gap-2 fs-2" data-item-date="24 July">
+																등록일시 <i class="ti ti-calendar fs-5"></i> {{frigo_wdate}}
+															</span>
+														</div>
+														<div class="tb-section-1">
+															<span class="hstack gap-2 fs-2" data-item-date="24 July">
+																유통기한 <i class="ti ti-calendar fs-5"></i> {{frigo_expiration}}
+															</span>
+														</div>
+														<div class="tb-section-2">
+															<span class="badge text-bg-primary fs-1">{{ddayBadge}}</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									{{/frozenList}}
+<!--									{{^frozenList}}-->
+<!--									<p class="text-center pt-3  empty-text">냉동실에 보관중인 재료가 없습니다.</p>-->
+<!--									{{/frozenList}}-->
+									</div>
+									</div>
+								</div>
+								
+								<div data-item="실온" class="task-list-container" data-action="sorting">
+								<div class="connect-sorting connect-sorting-inprogress">
+									<div class="task-container-header">
+										<h6 class="item-head mb-0 fs-4 fw-semibold" data-item-title="실온">실온</h6>
+										<div class="hstack gap-2">
+											<div class="add-kanban-title">
+												<a class="addTask d-flex align-items-center justify-content-center gap-1 lh-sm"
+													data-bs-toggle="tooltip" data-bs-placement="top"
+													data-bs-title="재료 추가">
+													<i class="ti ti-plus text-dark"></i>
+												</a>
+											</div>
+											<div class="dropdown">
+												<a class="dropdown-toggle" href="#" role="button"
+													id="dropdownMenuLink-1" data-bs-toggle="dropdown"
+													aria-haspopup="true" aria-expanded="true">
+													<i class="ti ti-dots-vertical text-dark"></i>
+												</a>
+												<div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink-1">
+													<a class="dropdown-item list-clear-all"
+														href="javascript:void(0);">모두 비우기</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									
+									<div class="connect-sorting-content" data-sortable="true">
+									{{#roomList}}
+										<div data-draggable="true" class="card img-task">
+											<div class="card-body">
+												<div class="task-header">
+													<div class="">
+														<h4 class="" data-item-title="{{frigo_seq}}">{{ingre_name}}</h4>
+													</div>
+													<div class="dropdown">
+														<a class="dropdown-toggle" href="#" role="button"
+															id="dropdownMenuLink-1" data-bs-toggle="dropdown"
+															aria-haspopup="true" aria-expanded="true">
+															<i class="ti ti-dots-vertical text-dark"></i>
+														</a>
+														<div class="dropdown-menu dropdown-menu-end"
+															aria-labelledby="dropdownMenuLink-1">
+															<a class="dropdown-item kanban-item-edit cursor-pointer d-flex align-items-center gap-1"
+																href="javascript:void(0);"><i
+																	class="ti ti-pencil fs-5"></i>수정</a>
+															<a class="dropdown-item kanban-item-delete cursor-pointer d-flex align-items-center gap-1"
+																href="javascript:void(0);"><i
+																	class="ti ti-trash fs-5"></i>삭제</a>
+														</div>
+													</div>
+												</div>
+												<div class="task-content">
+													<p class="mb-0">{{ingre_detail}}</p>
+												</div>
+												<div class="task-body">
+													<div class="task-bottom flex-wrap">
+														<div class="tb-section-1 w-100">
+															<span class="hstack gap-2 fs-2" data-item-date="24 July">
+																등록일시 <i class="ti ti-calendar fs-5"></i> {{frigo_wdate}}
+															</span>
+														</div>
+														<div class="tb-section-1">
+															<span class="hstack gap-2 fs-2" data-item-date="24 July">
+																유통기한 <i class="ti ti-calendar fs-5"></i> {{frigo_expiration}}
+															</span>
+														</div>
+														<div class="tb-section-2">
+															<span class="badge text-bg-primary fs-1">{{ddayBadge}}</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									{{/roomList}}
+<!--									{{^roomList}}-->
+<!--									<p class="text-center pt-3 empty-text">실온에 보관중인 재료가 없습니다.</p>-->
+<!--									{{/roomList}}-->
+									</div>
+									</div>
+								</div>
+						</div>
+					</div>
+				</div>
+<!--				<div class="row">-->
+<!--					<h5 class="mb-4 mt-3 fs-5 fw-semibold">나의 재료기반 기존 레시피</h5>-->
+<!--					<div class="col-md-6 col-lg-3">-->
+<!--						<div class="card rounded-2 overflow-hidden">-->
+<!--							<div class="position-relative">-->
+<!--								<a href="javascript:void(0)"><img src="/images/products/s4.jpg"-->
+<!--										class="card-img-top rounded-0" alt="..."></a>-->
+<!--								<a href="javascript:void(0)"-->
+<!--									class="btn btn-danger rounded-circle p-2 d-flex align-items-center justify-content-center position-absolute bottom-0 end-0 me-3 mb-n3">-->
+<!--									<i class="ti ti-heart"></i>-->
+<!--								</a>-->
+<!--							</div>-->
+<!--							<div class="card-body p-4">-->
+<!--								<h5 class="fw-semibold fs-4 mb-2">Boat Headphone</h5>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--					<div class="col-md-6 col-lg-3">-->
+<!--						<div class="card rounded-2 overflow-hidden">-->
+<!--							<div class="position-relative">-->
+<!--								<a href="javascript:void(0)"><img src="/images/products/s5.jpg"-->
+<!--										class="card-img-top rounded-0" alt="..."></a>-->
+<!--								<a href="javascript:void(0)"-->
+<!--									class="btn btn-danger rounded-circle p-2 d-flex align-items-center justify-content-center position-absolute bottom-0 end-0 me-3 mb-n3">-->
+<!--									<i class="ti ti-basket"></i>-->
+<!--								</a>-->
+<!--							</div>-->
+<!--							<div class="card-body p-4">-->
+<!--								<h5 class="fw-semibold fs-4 mb-2">MacBook Air Pro</h5>-->
+<!--								<div class="d-flex align-items-center justify-content-between">-->
+<!--									<div class="d-flex align-items-center gap-2">-->
+<!--										<h5 class="fw-semibold fs-4 mb-0">$900</h5>-->
+<!--										<p class="mb-0 text-decoration-line-through">$650</p>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--					<div class="col-md-6 col-lg-3">-->
+<!--						<div class="card rounded-2 overflow-hidden">-->
+<!--							<div class="position-relative">-->
+<!--								<a href="javascript:void(0)"><img src="/images/products/s7.jpg"-->
+<!--										class="card-img-top rounded-0" alt="..."></a>-->
+<!--								<a href="javascript:void(0)"-->
+<!--									class="btn btn-primary rounded-circle p-2 d-flex align-items-center justify-content-center position-absolute bottom-0 end-0 me-3 mb-n3">-->
+<!--									<i class="ti ti-basket"></i>-->
+<!--								</a>-->
+<!--							</div>-->
+<!--							<div class="card-body p-4">-->
+<!--								<h5 class="fw-semibold fs-4 mb-2">Red Valvet Dress</h5>-->
+<!--								<div class="d-flex align-items-center justify-content-between">-->
+<!--									<div class="d-flex align-items-center gap-2">-->
+<!--										<h5 class="fw-semibold fs-4 mb-0">$200</h5>-->
+<!--										<p class="mb-0 text-decoration-line-through">$150</p>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--					<div class="col-md-6 col-lg-3">-->
+<!--						<div class="card rounded-2 overflow-hidden">-->
+<!--							<div class="position-relative">-->
+<!--								<a href="javascript:void(0)"><img src="/images/products/s11.jpg"-->
+<!--										class="card-img-top rounded-0" alt="..."></a>-->
+<!--								<a href="javascript:void(0)"-->
+<!--									class="btn btn-primary rounded-circle p-2 d-flex align-items-center justify-content-center position-absolute bottom-0 end-0 me-3 mb-n3">-->
+<!--									<i class="ti ti-basket"></i>-->
+<!--								</a>-->
+<!--							</div>-->
+<!--							<div class="card-body p-4">-->
+<!--								<h5 class="fw-semibold fs-4 mb-2">Cute Soft Teddybear</h5>-->
+<!--								<div class="d-flex align-items-center justify-content-between">-->
+<!--									<div class="d-flex align-items-center gap-2">-->
+<!--										<h5 class="fw-semibold fs-4 mb-0">$345</h5>-->
+<!--										<p class="mb-0 text-decoration-line-through">$205</p>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--				</div>-->
+				
+				
+				
+				
+				<div class="row">
+					<h5 class="mb-4 mt-3 fs-5 fw-semibold">추천 레시피</h5>
+					{{#recipeList}}
+					<div class="col-md-6 col-lg-3">
+						<div class="card rounded-2 overflow-hidden">
+							<div class="position-relative">
+								<a href="/recipe/view/{{rcp_seq}}"><img src="{{rcp_img_s}}" class="card-img-top rounded-0" alt="..."></a>
+								<a href="javascript:void(0)"
+									class="btn btn-danger rounded-circle p-2 d-flex align-items-center justify-content-center position-absolute bottom-0 end-0 me-3 mb-n3">
+									<i class="ti ti-heart"></i>
+								</a>
+							</div>
+							<div class="card-body p-4">
+								<h5 class="fw-semibold fs-4 mb-2">{{rcp_name}}</h5>
+							</div>
+						</div>
+					</div>
+					{{/recipeList}}
+				</div>
+			</div>
+		</div>
+	</div>
+	{{>layout/mobile_nav}}
+	<script src="/libs/jquery/dist/jquery.min.js"></script>
+	<script src="/libs/jquery-ui/dist/jquery-ui.min.js"></script>
+	<script src="/libs/simplebar/dist/simplebar.min.js"></script>
+	<script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="/js/app.min.js"></script>
+	<script src="/js/app.init.js"></script>
+	<script src="/js/app-style-switcher.js"></script>
+	<script src="/js/sidebarmenu.js"></script>
+	<script src="/js/custom.js"></script>
+	<script src="/js/apps/kanban.js"></script>
+	<script src="/libs/owl.carousel/dist/owl.carousel.min.js"></script>
+	<script src="/js/dashboard3.js"></script>
+	<script>
+		$(function () {
+			let cachedData = null;
+
+			// 페이지 로드 시에 데이터를 가져와서 캐시
+			$.ajax({
+				type: "get",
+				url: "/api/getMainIngre",
+				dataType: "json"
+			})
+			.done((res) => {
+				console.log(res);
+				cachedData = res;
+				initAutocomplete();
+			})
+			.fail((res, error, status) => {
+				console.log(error);
+			});
+
+			function initAutocomplete() {
+				$("#kanban-title").autocomplete({
+					source: cachedData, // 캐시된 데이터의 ingre_name을 추출하여 사용
+					minLength: 1,
+					select: function (event, ui) { // 사용자가 옵션을 선택했을 때 수행할 동작
+						addSubCategory(ui.item.label);
+					},
+					classes: {
+						'ui-autocomplete': 'highlight'
+					},
+				})
+			}
+			
+			function addSubCategory(category) {
+				$("#kanban-text").children('option').remove();
+				
+				$.ajax({
+					type: "get",
+					url: `/api/getSubIngre/${category}`,
+					dataType: "json"
+				})
+				.done((res) => {
+					console.log("성공");
+
+					res.forEach((item) => {
+						var option = $("<option>")
+						.val(item.ingre_seq) // option의 값
+						.text(item.ingre_detail); // option의 표시 텍스트;
+						$("#kanban-text").append(option); // option을 select에 추가
+					});
+				})
+				.fail((res, error, status) => {
+					console.log(error);
+				});
+			}
+			
+		});
+	</script>
+</body>
+</html>

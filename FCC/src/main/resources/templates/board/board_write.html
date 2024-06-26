@@ -1,0 +1,163 @@
+{{>layout/header}}
+
+<body>
+	{{>layout/nav}}
+	<div class="page-wrapper" id="main-wrapper" data-layout="horizontal">
+		<div class="body-wrapper">
+			<!-- --------------------------------------------------- -->
+			<div class="container-fluid">
+				<div class="card bg-light-info shadow-none position-relative overflow-hidden">
+					<div class="card-body px-4 py-3">
+						<div class="row align-items-center">
+							<div class="col-9">
+								<h4 class="fw-semibold mb-8">유저레시피</h4>
+								<nav aria-label="breadcrumb">
+									<ol class="breadcrumb">
+										<li class="breadcrumb-item" aria-current="page">
+											유저레시피를 공유해주세요.
+										</li>
+									</ol>
+								</nav>
+							</div>
+							<div class="col-3">
+								<div class="text-center mb-n5">
+									<img src="/images/breadcrumb/ChatBc.png" alt="" class="img-fluid mb-n4" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="border-bottom title-part-padding">
+								<form id="formInfo" name="formInfo">
+									<div class="form-group">
+										<h4>카테고리</h4>
+										<div class="row">
+											<div class="custom-control custom-radio col">
+												<input type="radio" id="radio-category-ko" name="customRadio"
+													class="form-check-input" />
+												<label class="form-check-label" for="radio-category-ko">한식</label>
+											</div>
+											<div class="custom-control custom-radio col">
+												<input type="radio" id="radio-category-ch" name="customRadio"
+													class="form-check-input" />
+												<label class="form-check-label" for="radio-category-ch">중식</label>
+											</div>
+											<div class="custom-control custom-radio col">
+												<input type="radio" id="radio-category-jp" name="customRadio"
+													class="form-check-input" />
+												<label class="form-check-label" for="radio-category-jp">일식</label>
+											</div>
+											<div class="custom-control custom-radio col">
+												<input type="radio" id="radio-category-we" name="customRadio"
+													class="form-check-input" />
+												<label class="form-check-label" for="radio-category-we">양식</label>
+											</div>
+											<div class="custom-control custom-radio col">
+												<input type="radio" id="radio-category-bun" name="customRadio"
+													class="form-check-input" />
+												<label class="form-check-label" for="radio-category-bun">분식</label>
+											</div>
+											<div class="custom-control custom-radio col">
+												<input type="radio" id="radio-category-etc" name="customRadio"
+													class="form-check-input" />
+												<label class="form-check-label" for="radio-category-etc">기타</label>
+											</div>
+
+										</div><br />
+										<h4>제목</h4> <input type="text" id="title" class="form-control"><br />
+										<h4>재료</h4> <input type="text" id="ingredients" class="form-control">
+									</div>
+								</form>
+							</div>
+							<div class="card-body">
+								<textarea class="summernote">
+								</textarea>
+							</div>
+						</div>
+					</div>
+					<div class="card-body">
+						<button id="save" class="btn btn-success" type="button">
+							등록
+						</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--  Mobilenavbar -->
+	<!-- ---------------------------------------------- -->
+	<!-- Import Js Files -->
+	<!-- ---------------------------------------------- -->
+	<script src="/libs/jquery/dist/jquery.min.js"></script>
+	<script src="/libs/simplebar/dist/simplebar.min.js"></script>
+	<script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!-- ---------------------------------------------- -->
+	<!-- core files -->
+	<!-- ---------------------------------------------- -->
+	<script src="/js/app.min.js"></script>
+	<script src="/js/app.init.js"></script>
+	<script src="/js/app-style-switcher.js"></script>
+
+	<script src="/js/custom.js"></script>
+	<!-- ---------------------------------------------- -->
+	<!-- current page js files -->
+	<!-- ---------------------------------------------- -->
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/codemirror.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/mode/xml/xml.min.js"></script>
+	<script src="/libs/summernote/dist/summernote-lite.min.js"></script>
+
+</body>
+
+</html>
+<script>
+	$(document).ready(function () {
+		$(".summernote").summernote({
+			height: 350, // set editor height
+			minHeight: null, // set minimum height of editor
+			maxHeight: null, // set maximum height of editor
+			focus: false, // set focus to editable area after initializing summernote
+			lang: 'ko-KR'
+
+		});
+
+		//save
+		let btnSave = $("#save");
+		btnSave.click(() => {
+			let categoryId = $('input[name="customRadio"]:checked').attr("id");
+			let board_category = $('label[for="' + categoryId + '"]').text();
+			let board_title = $("#title").val();
+			let board_ingredients = $("#ingredients").val();
+			let board_contents = $(".summernote").summernote('code');
+			
+			$.ajax({
+				url: "/board/save",
+				data: {
+					"board_category":board_category,
+					"board_title":board_title,
+					"board_ingredients":board_ingredients,
+					"board_contents":board_contents
+				},
+				dataType: "json",
+				method: "post"
+
+			})
+			.done((res) => {
+				console.log(res);
+				if(res.result == "success"){
+					alert("등록되었습니다");
+					location.href="/board/list/0";
+				}
+			})
+			.fail((res, error, status) => {
+				
+			})
+		});
+	});
+
+</script>

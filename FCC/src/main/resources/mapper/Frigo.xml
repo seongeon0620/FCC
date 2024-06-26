@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Frigo">
+	 <insert id="Frigo_insert" parameterType="FrigoDto">
+		INSERT INTO TB_FRIGO
+		(
+			frigo_seq
+			,mem_seq
+			,ingre_seq
+			,frigo_expiration
+			,frigo_storage
+			,frigo_wdate
+		)
+		VALUES (
+			SEQ_FRIGO.nextval
+			, #{mem_seq}
+			, #{ingre_seq}
+			, #{frigo_expiration}
+			, #{frigo_storage}
+			, sysdate
+		)
+		<selectKey keyProperty="frigo_seq" resultType="Long" order="AFTER">
+			SELECT SEQ_FRIGO.currval FROM dual
+		</selectKey>
+	</insert>
+	
+	<select id="Frigo_getInsertResult" parameterType="Long" resultType="FrigoResponseDto">
+	SELECT FRI.FRIGO_SEQ, FRI.FRIGO_EXPIRATION, FRI.FRIGO_STORAGE, FRI.FRIGO_WDATE, ING.INGRE_NAME, ING.INGRE_DETAIL,
+		CASE
+				WHEN (TO_DATE(FRI.FRIGO_EXPIRATION, 'YY/MM/DD') - TO_DATE(FRI.FRIGO_WDATE, 'YY/MM/DD')) <![CDATA[<]]> 0 THEN '초과'
+				WHEN (TO_DATE(FRI.FRIGO_EXPIRATION, 'YY/MM/DD') - TO_DATE(FRI.FRIGO_WDATE, 'YY/MM/DD')) = 0 THEN 'D-Day'
+				ELSE 'D-'||TO_CHAR(TO_DATE(FRI.FRIGO_EXPIRATION, 'YY/MM/DD') - TO_DATE(FRI.FRIGO_WDATE, 'YY/MM/DD'))
+		END AS ddayBadge
+	FROM TB_FRIGO FRI, TB_INGRE ING
+	WHERE FRI.INGRE_SEQ = ING.INGRE_SEQ AND FRI.FRIGO_SEQ = #{frigo_seq}
+	</select>
+
+	<select id="Frigo_getList" resultType="FrigoResponseDto">
+		SELECT FRI.FRIGO_SEQ, ING.INGRE_NAME, ING.INGRE_DETAIL, TO_CHAR(FRI.FRIGO_EXPIRATION, 'YY/MM/DD') FRIGO_EXPIRATION, FRI.FRIGO_STORAGE, TO_CHAR(FRI.FRIGO_WDATE, 'YY/MM/DD') FRIGO_WDATE, 
+			CASE
+				WHEN (TO_DATE(FRI.FRIGO_EXPIRATION, 'YY/MM/DD') - TO_DATE(FRI.FRIGO_WDATE, 'YY/MM/DD')) <![CDATA[<]]> 0 THEN '초과'
+				WHEN (TO_DATE(FRI.FRIGO_EXPIRATION, 'YY/MM/DD') - TO_DATE(FRI.FRIGO_WDATE, 'YY/MM/DD')) = 0 THEN 'D-Day'
+				ELSE 'D-'||TO_CHAR(TO_DATE(FRI.FRIGO_EXPIRATION, 'YY/MM/DD') - TO_DATE(FRI.FRIGO_WDATE, 'YY/MM/DD'))
+			END AS ddayBadge
+		FROM TB_FRIGO FRI, TB_INGRE ING
+		WHERE FRI.INGRE_SEQ = ING.INGRE_SEQ 
+		AND MEM_SEQ = #{mem_seq}
+		AND FRI.FRIGO_STORAGE = #{frigo_storage}
+	</select>
+	
+	<delete id="Frigo_deleteOne" parameterType="FrigoDto">
+		DELETE FROM TB_FRIGO WHERE MEM_SEQ = #{mem_seq} AND FRIGO_SEQ = #{frigo_seq}
+	</delete>
+	
+	<delete id="Frigo_deleteAll" parameterType="FrigoDto">
+		DELETE FROM TB_FRIGO WHERE FRIGO_STORAGE = #{frigo_storage} AND MEM_SEQ = #{mem_seq}
+	</delete>
+	
+	<update id="Frigo_updateDetail" parameterType="FrigoDto">
+		UPDATE TB_FRIGO SET INGRE_SEQ = #{ingre_seq}, FRIGO_EXPIRATION = #{frigo_expiration} WHERE MEM_SEQ = #{mem_seq} AND FRIGO_SEQ = #{frigo_seq}
+	</update>
+	
+	<update id="Frigo_updateStatus" parameterType="FrigoDto">
+		UPDATE TB_FRIGO SET FRIGO_STORAGE = #{frigo_storage} WHERE MEM_SEQ = #{mem_seq} AND FRIGO_SEQ = #{frigo_seq}
+	</update>
+	
+	<select id="Frigo_getRandomList" resultType="RecipeDto">
+		SELECT
+			rcp_seq, rcp_img_s , rcp_name
+		FROM (
+			select rcp_seq, rcp_img_s , rcp_name
+			from tb_recipe  
+			order by DBMS_RANDOM.RANDOM ) Tb1
+			WHERE rownum <![CDATA[<=]]> 4
+	</select>
+</mapper>

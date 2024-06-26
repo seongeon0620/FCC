@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Recipe">
+	<select id="Recipe_getList" resultType="RecipeDto" parameterType="RecipeDto">
+		select A.rcp_seq, A.rcp_name, A.rcp_img_s
+		from
+		( select A.rcp_seq, A.rcp_name, A.rcp_img_s,
+		row_number() over( order by rcp_seq asc) as rnum,
+		ceil(row_number() over( order by rcp_seq asc)/12)-1 as pg
+		from tb_recipe A
+		)A where pg=#{pg}
+	</select>
+
+	<select id="Recipe_getTotalCnt" resultType="int">
+		SELECT COUNT(*) FROM tb_recipe
+	</select>
+
+	<select id="Recipe_getInfo" resultType="RecipeDto" parameterType="Integer">
+		select * from tb_recipe
+		where rcp_seq=#{rcp_seq}
+	</select>
+
+	<insert id="Recipe_insertLike" parameterType="LikesDto">
+		insert into tb_likes (
+			like_seq, 
+			rcpfrom_seq, 
+			rcpfrom_type, 
+			mem_seq
+		)
+		values (
+			SQ_LIKES.nextval,
+			#{rcpfrom_seq},
+			#{rcpfrom_type},
+			#{mem_seq}
+		)
+	</insert>
+	
+	<delete id="Recipe_deleteLike" parameterType="LikesDto">
+		delete from tb_likes
+		where rcpfrom_seq = #{rcpfrom_seq}
+		and rcpfrom_type = #{rcpfrom_type}
+		and mem_seq = #{mem_seq}
+	</delete>
+
+	<select id="Recipe_selectLike" resultType="LikesDto" parameterType="LikesDto">
+		select * from tb_likes
+		where rcpfrom_seq = #{rcpfrom_seq}
+		and rcpfrom_type = #{rcpfrom_type}
+		and mem_seq = #{mem_seq}
+	</select>
+	
+	<select id="Recipe_getLikeList" resultType="RecipeDto" parameterType="long">
+		
+		select * 
+		from tb_recipe A JOIN 
+			(SELECT * FROM tb_likes where mem_seq = #{mem_seq} and rcpfrom_type = 1) B
+		ON A.rcp_seq = B.rcpfrom_seq
+		
+	</select>
+
+</mapper>

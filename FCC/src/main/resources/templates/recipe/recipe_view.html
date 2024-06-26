@@ -1,0 +1,318 @@
+{{>layout/header}}
+<body>
+	{{>layout/nav}}
+	<div class="page-wrapper" id="main-wrapper" data-layout="horizontal" data-sidebartype="full">
+	<div class="body-wrapper pt-0">
+	<div class="container-fluid">
+		<div class="card bg-light-info shadow-none position-relative overflow-hidden">
+			<div class="card-body px-4 py-3">
+				<div class="row align-items-center">
+					<div class="col-9">
+						<h4 class="fw-semibold mb-8">전체 레시피</h4>
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item" aria-current="page">Blog Details</li>
+							</ol>
+						</nav>
+					</div>
+					<div class="col-3">
+						<div class="text-center mb-n5">
+							<img src="/images/breadcrumb/ChatBc.png" alt="" class="img-fluid mb-n4">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="card rounded-2 overflow-hidden">
+			<div class="card-body p-4">
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="position-relative"
+							style="width: 100%; height: 440px; display: flex; justify-content: center; align-items: center; overflow: hidden;">
+							<img src="{{recipeInfo.rcp_img_b}}"
+								style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;"
+								alt="Recsipe Image">
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="shop-content">
+							<div class="d-flex align-items-center gap-2 mb-2">
+								<span class="badge text-bg-success fs-2 fw-semibold rounded-3">조리 방법</span>
+								<span class="fs-2">{{recipeInfo.rcp_way}}</span>
+								&nbsp &nbsp &nbsp &nbsp &nbsp
+								<span class="badge text-bg-success fs-2 fw-semibold rounded-3">요리 종류</span>
+								<span class="fs-2">{{recipeInfo.rcp_pat}}</span>
+							</div>
+							<br />
+							<h2 class="fw-semibold"> ✔️ {{recipeInfo.rcp_name}}</h2>
+							<br />
+							<span class="badge text-bg-secondary  fs-2 fw-semibold rounded-3">재료 정보</span>
+							<div class="alert alert-secondary" role="alert">
+								{{recipeInfo.rcp_details}}
+							</div>
+							<span class="badge text-bg-warning  fs-2 fw-semibold rounded-3">저감 조리법 Tip</span>
+							<div class="alert alert-warning" role="alert">
+								{{recipeInfo.rcp_tip}}
+							</div>
+							<div class="d-sm-flex align-items-center gap-3 pt-8 mb-7">
+								<a href="javascript:location.href = document.referrer"
+									class="btn d-block btn-outline-primary px-5 py-8 mb-2 mb-sm-0">뒤로가기 </a>
+								<a href="javascript:void(0)" id="btnRecipeLike"> </a>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="card-body border-top p-4">
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="table-responsive">
+					<table id="demo-foo-addrow" class="table table-bordered m-t-30 table-hover contact-list"
+						style="text-align: center;">
+						<thead>
+							<tr>
+								<th style="text-align: center; background-color: #f2f2f2;">사진</th>
+								<th style="text-align: center; background-color: #f2f2f2;">설명</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+				<input type="hidden" id="rcp_car" value="{{recipeInfo.rcp_car}}">
+				<input type="hidden" id="rcp_pro" value="{{recipeInfo.rcp_pro}}">
+				<input type="hidden" id="rcp_fat" value="{{recipeInfo.rcp_fat}}">
+			</div>
+			<div class="col-lg-6">
+				<div class="card">
+					<div class="card-body">
+						<h5>탄단지 비율</h5>
+						<div id="chart-pie-simple"></div>
+					</div>
+				</div>
+
+				<div class="card">
+					<div class="card-body">
+						<div class="mb-3">
+							<h6 class="mb-0">칼로리( kcal ) : {{recipeInfo.rcp_eng}}</h6>
+						</div>
+						<div class="progress" id="eng_progress" style="height: 15px">
+						</div>
+						<br />
+						<div class="mb-3">
+							<h6 class="mb-0">탄수화물( g ) : {{recipeInfo.rcp_car}}</h6>
+						</div>
+						<div class="progress" id="car_progress" style="height: 15px">
+
+						</div>
+						<br />
+						<div class="mb-3">
+							<h6 class="mb-0">단백질( g ) : {{recipeInfo.rcp_pro}}</h6>
+						</div>
+						<div class="progress" id="pro_progress" style="height: 15px">
+
+						</div>
+						<br />
+						<div class="mb-3">
+							<h6 class="mb-0">지방( g ) : {{recipeInfo.rcp_fat}}</h5>
+						</div>
+						<div class="progress" id="fat_progress" style="height: 15px">
+
+						</div>
+						<br />
+						<div class="mb-3">
+							<h6 class="mb-0">나트륨( mg ) : {{recipeInfo.rcp_na}}</h6>
+						</div>
+						<div class="progress" id="na_progress" style="height: 15px">
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	
+	</div>
+</div>
+	</div>
+	</div>
+	</div>
+	<div class="dark-transparent sidebartoggler"></div>
+	<div class="dark-transparent sidebartoggler"></div>
+	</div>
+
+
+	<!-- ---------------------------------------------- -->
+	<!-- Import Js Files -->
+	<!-- ---------------------------------------------- -->
+	<script src="/libs/jquery/dist/jquery.min.js"></script>
+	<script src="/libs/simplebar/dist/simplebar.min.js"></script>
+	<script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- ---------------------------------------------- -->
+	<!-- core files -->
+	<!-- ---------------------------------------------- -->
+	<script src="/js/app.min.js"></script>
+	<script src="/js/app.init.js"></script>
+	<script src="/js/app-style-switcher.js"></script>
+	<script src="/js/sidebarmenu.js"></script>
+
+	<script src="/js/custom.js"></script>
+	<!-- ---------------------------------------------- -->
+	<!-- current page js files -->
+	<!-- ---------------------------------------------- -->
+	<script src="/js/apps/chat.js"></script>
+	<script src="/libs/apexcharts/dist/apexcharts.min.js"></script>
+</body>
+</html>
+
+<script>
+	$(function () {
+		
+		let checkLike = "{{checkRecipeLike}}";
+		if( checkLike == "clickLike" ) {
+			$("#btnRecipeLike").addClass("btn d-block btn-outline-danger px-5 py-8 mb-2 mb-sm-0");
+			$("#btnRecipeLike").text("찜 하기   ").append("<i class='fa fa-heart text-danger'></i>");
+			$("#btnRecipeLike").attr("data-type", checkLike);
+		}else {
+			$("#btnRecipeLike").addClass("btn d-block btn-danger px-5 py-8 mb-2 mb-sm-0");
+			$("#btnRecipeLike").text("찜 완료   ").append("<i class='fa fa-heart text-light'></i>");
+			$("#btnRecipeLike").attr("data-type", checkLike);
+		}
+		
+		// 찜 기능 관련
+		$("#btnRecipeLike").click(function () {
+			let rcp_seq = "{{recipeInfo.rcp_seq}}";
+			let like_type = $(this).attr("data-type");
+			$.ajax({
+				url: "/recipe/like/" + rcp_seq,
+				type: "get",
+				data: {"like_type": like_type},
+				dataType: "json"
+			}).done((res) => {
+				$(this).attr("data-type", res.change_like_type);
+				if (res.change_like_type == "clickLike") {
+					$(this).attr('class','btn d-block btn-outline-danger px-5 py-8 mb-2 mb-sm-0');
+					$(this).text("찜 하기   ").append("<i class='fa fa-heart text-danger'></i>");
+				} else {
+					$(this).attr('class','btn d-block btn-danger px-5 py-8 mb-2 mb-sm-0');
+					$(this).text("찜 완료   ").append("<i class='fa fa-heart text-light'></i>");
+				}
+			}).fail((res, err, status) => {
+				console.log(err);
+			});
+		});
+
+		// 차트 관련
+		let car_gram = parseFloat($("#rcp_car").val());
+		let pro_gram = parseFloat($("#rcp_pro").val());
+		let fat_gram = parseFloat($("#rcp_fat").val());
+
+		let essential_nutrients = {
+			series: [car_gram, pro_gram, fat_gram],
+			chart: {
+				fontFamily: '"Nunito Sans", sans-serif',
+				width: 380,
+				type: "pie",
+			},
+			colors: ["var(--bs-primary)", "var(--bs-success)", "var(--bs-danger)"],
+			labels: ["탄수화물(g)", "단백질(g)", "지방(g)"],
+			responsive: [{
+				breakpoint: 480,
+				options: {
+					chart: {
+						width: 200,
+					},
+					legend: {
+						position: "bottom",
+					},
+				},
+			},],
+			legend: {
+				labels: {
+					colors: ["#a1aab2"],
+				},
+			},
+		};
+
+		var chart_pie_simple = new ApexCharts(
+			document.querySelector("#chart-pie-simple"),
+			essential_nutrients
+		);
+		chart_pie_simple.render();
+
+		let engProgressBar = '<div class="progress-bar bg-secondary" style="width: {{recipeAnalysis.rcp_per_eng}}" role="progressbar">{{recipeInfo.rcp_eng}}</div>';
+		let carProgressBar = '<div class="progress-bar bg-primary" style="width: {{recipeAnalysis.rcp_per_car}}" role="progressbar">{{recipeInfo.rcp_car}}</div>';
+		let proProgressBar = '<div class="progress-bar bg-success" style="width: {{recipeAnalysis.rcp_per_pro}}" role="progressbar">{{recipeInfo.rcp_pro}}</div>';
+		let fatProgressBar = '<div class="progress-bar bg-danger" style="width: {{recipeAnalysis.rcp_per_fat}}" role="progressbar">{{recipeInfo.rcp_fat}}</div>';
+		let naProgressBar = '<div class="progress-bar bg-warning" style="width: {{recipeAnalysis.rcp_per_na}}" role="progressbar">{{recipeInfo.rcp_na}}</div>';
+		$("#eng_progress").append(engProgressBar);
+		$("#car_progress").append(carProgressBar);
+		$("#pro_progress").append(proProgressBar);
+		$("#fat_progress").append(fatProgressBar);
+		$("#na_progress").append(naProgressBar);
+	});
+</script>
+<script>
+	$(document).ready(function () {
+		var imageElements = [
+			"{{recipeInfo.rcp_manual_img01}}",
+			"{{recipeInfo.rcp_manual_img02}}",
+			"{{recipeInfo.rcp_manual_img03}}",
+			"{{recipeInfo.rcp_manual_img04}}",
+			"{{recipeInfo.rcp_manual_img05}}",
+			"{{recipeInfo.rcp_manual_img06}}",
+			"{{recipeInfo.rcp_manual_img07}}",
+			"{{recipeInfo.rcp_manual_img08}}",
+			"{{recipeInfo.rcp_manual_img09}}",
+			"{{recipeInfo.rcp_manual_img10}}",
+			"{{recipeInfo.rcp_manual_img11}}",
+			"{{recipeInfo.rcp_manual_img12}}",
+			"{{recipeInfo.rcp_manual_img13}}",
+			"{{recipeInfo.rcp_manual_img14}}",
+			"{{recipeInfo.rcp_manual_img15}}",
+			"{{recipeInfo.rcp_manual_img16}}",
+			"{{recipeInfo.rcp_manual_img17}}",
+			"{{recipeInfo.rcp_manual_img18}}",
+			"{{recipeInfo.rcp_manual_img19}}",
+			"{{recipeInfo.rcp_manual_img20}}"
+		];
+
+		var manualElements = [
+			"{{recipeInfo.rcp_manual01}}",
+			"{{recipeInfo.rcp_manual02}}",
+			"{{recipeInfo.rcp_manual03}}",
+			"{{recipeInfo.rcp_manual04}}",
+			"{{recipeInfo.rcp_manual05}}",
+			"{{recipeInfo.rcp_manual06}}",
+			"{{recipeInfo.rcp_manual07}}",
+			"{{recipeInfo.rcp_manual08}}",
+			"{{recipeInfo.rcp_manual09}}",
+			"{{recipeInfo.rcp_manual10}}",
+			"{{recipeInfo.rcp_manual11}}",
+			"{{recipeInfo.rcp_manual12}}",
+			"{{recipeInfo.rcp_manual13}}",
+			"{{recipeInfo.rcp_manual14}}",
+			"{{recipeInfo.rcp_manual15}}",
+			"{{recipeInfo.rcp_manual16}}",
+			"{{recipeInfo.rcp_manual17}}",
+			"{{recipeInfo.rcp_manual18}}",
+			"{{recipeInfo.rcp_manual19}}",
+			"{{recipeInfo.rcp_manual20}}"
+		];
+
+		for (var i = 0; i < imageElements.length; i++) {
+			if (imageElements[i] && manualElements[i]) {
+				var tr = '<tr>' +
+					'<td style="vertical-align: middle; text-align: center;">' +
+					'<img src="' + imageElements[i] + '" alt="user" width="200" style="display: block; margin: 0 auto;">' +
+					'</td>' +
+					'<td style="font-size: 1.2em; text-align: center; vertical-align: middle;">' + manualElements[i] + '</td>' +
+					'</tr>';
+				$("#demo-foo-addrow tbody").append(tr);
+			}
+		}
+	});
+</script>

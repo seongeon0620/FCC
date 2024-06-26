@@ -1,0 +1,125 @@
+{{>layout/header}}
+
+<body>
+	{{>layout/nav}}
+	<div class="page-wrapper" id="main-wrapper" data-layout="horizontal">
+		<!-- Main Wrapper -->
+		<!-- --------------------------------------------------- -->
+		<div class="body-wrapper">
+			<div class="container-fluid">
+				<div class="card bg-light-info shadow-none position-relative overflow-hidden">
+					<div class="card-body px-4 py-3">
+						<div class="row align-items-center">
+							<div class="col-9">
+								<h4 class="fw-semibold mb-8"> 전체 레시피 </h4>
+								<nav aria-label="breadcrumb">
+									<ol class="breadcrumb">
+										<li class="breadcrumb-item" aria-current="page">
+											<a href="/recipe/like/list"
+												class="btn d-block btn-outline-danger px-5 py-8 mb-2 mb-sm-0"> 내가 찜한 레시피 </a>
+										</li>
+									</ol>
+								</nav>
+							</div>
+							<div class="col-3">
+								<div class="text-center mb-n5">
+									<img src="/images/breadcrumb/ChatBc.png" alt="" class="img-fluid mb-n4">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+				<div id="recipe_list_wrapper">
+					<div class="row el-element-overlay">
+						{{#recipeList}}
+						<div class="col-lg-3 col-md-6">
+							<div class="card overflow-hidden">
+								<div class="el-card-item pb-3">
+									<div class="
+                      el-card-avatar
+                      mb-3
+                      el-overlay-1
+                      w-100
+                      overflow-hidden
+                      position-relative
+                      text-center
+                    ">
+										<img src="{{rcp_img_s}}" class="d-block position-relative w-100" alt="user"
+											style="height: 20vw; width: 100%; object-fit: cover;" />
+										<div class="el-overlay w-100 overflow-hidden">
+											<ul class="
+                          list-style-none
+                          el-info
+                          text-white text-uppercase
+                          d-inline-block
+                          p-0
+                        ">
+												<li class="el-item d-inline-block my-0 mx-1">
+													<a class="
+                              btn
+                              default
+                              btn-outline
+                              image-popup-vertical-fit
+                              el-link
+                              text-white
+                              border-white
+                            " href="/recipe/view/{{rcp_seq}}">레시피 보러가기</a>
+												</li>
+
+											</ul>
+										</div>
+									</div>
+									<div class="el-card-content text-center">
+										<h4 class="mb-0 fs-5">{{rcp_name}}</h4>
+										<span class="text-muted"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						{{/recipeList}}
+					</div>
+
+					<nav aria-label="...">
+						<ul class="pagination justify-content-center mb-0 mt-4">
+							{{{page}}}
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+		<!-- ---------------------------------------------- -->
+		<!-- Import Js Files -->
+		<!-- ---------------------------------------------- -->
+		<script src="/libs/jquery/dist/jquery.min.js"></script>
+		<script src="/libs/simplebar/dist/simplebar.min.js"></script>
+		<script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+		<!-- ---------------------------------------------- -->
+		<!-- core files -->
+		<!-- ---------------------------------------------- -->
+		<script src="/js/app.min.js"></script>
+		<script src="/js/app.init.js"></script>
+		<script src="/js/app-style-switcher.js"></script>
+		<script src="/js/sidebarmenu.js"></script>
+
+		<script src="/js/custom.js"></script>
+		<!-- ---------------------------------------------- -->
+		<!-- current page js files -->
+		<!-- ---------------------------------------------- -->
+		<script src="/js/apps/chat.js"></script>
+</body>
+
+<!-- Mirrored from demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/html/main/blog-posts.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 16 Aug 2023 15:07:12 GMT -->
+
+</html>
+
+<script>
+
+	function goPage(pageNumber) {
+		var url = "/recipe/list/" + pageNumber; // 페이지 번호에 맞는 URL 생성
+		window.location.href = url; // 새로운 URL로 페이지 이동
+	}
+
+</script>

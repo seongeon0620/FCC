@@ -1,162 +1,301 @@
 {{>layout/header}}
-  <body>
-{{>layout/nav}}
-     <!--  Header End -->
-        <div class="container-fluid">
-          <!--  Owl carousel -->
-          <!--
-          <div class="owl-carousel counter-carousel owl-theme">
-            <div class="item">
-              <div class="card border-0 zoom-in bg-light-primary shadow-none">
-                <div class="card-body">
-                  <div class="text-center">
-                    <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-user-male.svg" width="50" height="50" class="mb-3" alt="" />
-                    <p class="fw-semibold fs-3 text-primary mb-1"> Employees </p>
-                    <h5 class="fw-semibold text-primary mb-0">96</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="card border-0 zoom-in bg-light-warning shadow-none">
-                <div class="card-body">
-                  <div class="text-center">
-                    <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-briefcase.svg" width="50" height="50" class="mb-3" alt="" />
-                    <p class="fw-semibold fs-3 text-warning mb-1">Clients</p>
-                    <h5 class="fw-semibold text-warning mb-0">3,650</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="card border-0 zoom-in bg-light-info shadow-none">
-                <div class="card-body">
-                  <div class="text-center">
-                    <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-mailbox.svg" width="50" height="50" class="mb-3" alt="" />
-                    <p class="fw-semibold fs-3 text-info mb-1">Projects</p>
-                    <h5 class="fw-semibold text-info mb-0">356</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="card border-0 zoom-in bg-light-danger shadow-none">
-                <div class="card-body">
-                  <div class="text-center">
-                    <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-favorites.svg" width="50" height="50" class="mb-3" alt="" />
-                    <p class="fw-semibold fs-3 text-danger mb-1">Events</p>
-                    <h5 class="fw-semibold text-danger mb-0">696</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="card border-0 zoom-in bg-light-success shadow-none">
-                <div class="card-body">
-                  <div class="text-center">
-                    <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-speech-bubble.svg" width="50" height="50" class="mb-3" alt="" />
-                    <p class="fw-semibold fs-3 text-success mb-1">Payroll</p>
-                    <h5 class="fw-semibold text-success mb-0">$96k</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="card border-0 zoom-in bg-light-info shadow-none">
-                <div class="card-body">
-                  <div class="text-center">
-                    <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-connect.svg" width="50" height="50" class="mb-3" alt="" />
-                    <p class="fw-semibold fs-3 text-info mb-1">Reports</p>
-                    <h5 class="fw-semibold text-info mb-0">59</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          -->
-          
-          <!--  Row 1 -->
-          <div class="row">
-            <div class="col-lg-8 d-flex align-items-strech">
-              <div class="card w-100">
-                <div class="card-body">
-                  <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
-                    <div class="mb-3 mb-sm-0">
-                      <h5 class="card-title fw-semibold">Test님의 냉장고 요약</h5> 		<!--mem_name-->
-                    </div>
-                    <div>
-                      <select class="form-select">
-                        <option value="1">냉장고</option>
-                        <option value="2">냉동고</option>
-                      </select>
-                    </div>
-                  </div>
-                  
-                  <div class="row align-items-center">
-                    
-              
-                  </div>
-                  
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="row">
-                <div class="col-lg-12 col-md-6 col-sm-12">
-					
-                  <!-- 식품 영양 정보 -->
-                  <div class="card overflow-hidden">
-                    <div class="card-body">
-                      <div class="row align-items-center">
-                        <div class="col-8">
-							
-                          <h5 class="card-title mb-9 fw-semibold">식품 영양 정보</h5>
-                          
-                        </div>
-                        <div class="col-4">
-                          <div class="d-flex justify-content-center">
-                            <div id="breakup"></div>
-                          </div>
-                        </div>
-                      </div> 
-                    </div>
-                  </div>
-                  <!-- // 식품 영양 정보 -->
-                </div>
-					
-                  <!-- 냉장고 신선도 -->
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="row alig n-items-start">
-                        <div class="col-8">
-                          <h5 class="card-title mb-9 fw-semibold"> 냉장고 신선도</h5>
-                          
-                          
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                   <!-- //냉장고 신선도 -->
-                  
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- //row1 -->
-        
-{{>layout/mobile_nav}}
-    <!-- Import Js Files -->
-    <script src="/libs/jquery/dist/jquery.min.js"></script>
-    <script src="/libs/simplebar/dist/simplebar.min.js"></script>
-    <script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- core files -->
-    <script src="/js/app.min.js"></script>
-    <script src="/js/app.horizontal.init.js"></script>
-    <script src="/js/app-style-switcher.js"></script>
-    <script src="/js/sidebarmenu.js"></script>
-    <script src="/js/custom.js"></script>
-    <script src="/libs/owl.carousel/dist/owl.carousel.min.js"></script>
-    <script src="/libs/apexcharts/dist/apexcharts.min.js"></script>
-    <script src="/js/dashboard.js"></script>
-  </body>
+<style>
+	#ingreInfoDetail {
+		display: none;
+	}
+</style>
+
+<body>
+	<!-- Body Wrapper -->
+	<div class="page-wrapper" id="main-wrapper" data-layout="horizontal">
+		{{>layout/nav}}
+		<div class="body-wrapper">
+			<div class="container-fluid">
+				<!--  Owl carousel -->
+				<h3 class="card-title mb-9 fw-semibold">TastyTales's Pick✨</h3> <br />
+				<div class="owl-carousel counter-carousel owl-theme">
+					{{#list}}
+					<div class="item">
+						<div class="card border-0 zoom-in bg-light-primary shadow-none">
+							<div class="card-body">
+								<div class="text-center">
+									<img src="{{rcp_img_s}}" width="100" height="100" class="mb-3" alt="" />
+									<p class="fw-semibold fs-3 text-primary mb-1"
+										style="max-width: 300px; max-height: 300px; overflow: hidden; text-overflow: ellipsis; white-space: normal;">
+										{{rcp_name}}</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					{{/list}}
+				</div>
+
+				<div class="row">
+					<div class="col-lg-8 d-flex align-items-strech">
+						<div class="card w-100">
+							<div class="card-body">
+								<div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
+									<div class="mb-3 mb-sm-0" id="frigoLink">
+										<h5 class="card-title fw-semibold">{{logInfo.mem_nickname}}님❗유통기한 순으로 정리해드릴게요💕
+										</h5>
+									</div>
+									<div>
+										<select class="form-select" id="fridge_select">
+											<option value="냉장" selected>냉장고</option>
+											<option value="냉동">냉동고</option>
+											<option value="실온">실온보관</option>
+										</select>
+									</div>
+								</div>
+
+								<div id="fridgeInfo">
+									<!-- 냉장고 내용을 여기에 표시 -->
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="row">
+							<div class="col-lg-12 col-md-6 col-sm-12">
+
+								<!-- 식품 영양 정보 -->
+								<div class="card overflow-hidden">
+									<div class="card-body">
+										<div class="row align-items-center">
+											<div class="col-5">
+												<div id="nutritionInfoPlaceholder">
+													<h5 class="card-title mb-9 fw-semibold">재료를 클릭하여 영양 성분을 확인하세요</h5>
+												</div>
+												<h5 class="card-title mb-9 fw-semibold"><span id="ingreName"> </span>
+												</h5>
+												<div id="ingreInfoDetail">
+													<class="card-title mb-9 fw-semibold"> 단백질 : <span id="ingrePro"></span> </class><br />
+													<class="card-title mb-9 fw-semibold"> 탄수화물 : <span id="ingreCar"> </span> </class><br />
+													<class="card-title mb-9 fw-semibold"> 지방 : <span id="ingreFat"> </span> </class><br />
+												</div>
+											</div>
+
+											<div class="col-6">
+												<div class="d-flex justify-content-center">
+													<!-- 차트 -->
+													<div class="card-body">
+														<canvas id="nutritionChart"></canvas>
+													</div>
+													<!-- //차트 -->
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- // 식품 영양 정보 -->
+							</div>
+
+							<!-- 냉장고 신선도 -->
+							<div class="card">
+								<div class="card-body">
+									<div class="row alig n-items-start">
+										<h5 class="card-title mb-9 fw-semibold"> 냉장고 신선도 </h5>
+										<!-- 프로그래스바-->
+										<div class="progress" style="height: 25px;">
+											<div id="progressbar" class="progress-bar bg-empty" role="progressbar">
+												<span id="progressbarStatus"></span>
+											</div>
+										</div>
+										<!--// 프로그래스바-->
+									</div>
+								</div>
+							</div>
+							<!-- //냉장고 신선도 -->
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- //row1 -->
+		</div>
+	</div>
+	{{>layout/mobile_nav}}
+	<script src="/libs/jquery/dist/jquery.min.js"></script>
+	<script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script> 		<!-- 프로필 드롭 다운 -->
+	
+	<script src="/js/app-style-switcher.js"></script>
+	<script src="/js/custom.js"></script>
+	<script src="/libs/owl.carousel/dist/owl.carousel.min.js"></script>
+	<script src="/js/dashboard.js"></script>
+</body>
+
 </html>
+
+<script>
+	let mem_seq = '{{logInfo.mem_seq}}';
+	console.log(mem_seq);
+	// document.ready
+	$(() => {
+		// 냉장고 초기 설정
+		let initialSelectedValue = $("#fridge_select").val();
+		fetchData(initialSelectedValue);
+
+		// 선택된 storage
+		$("#fridge_select").change(function () {
+			let selectedValue = $(this).val();
+
+			// 페이지 로드 시 초기 데이터 가져오기 (기본값: 냉장고)
+			let initialSelectedValue = $("#fridge_select").val();
+			fetchData(initialSelectedValue);
+		});
+
+		// 차트 데이터 초기화
+		nutritionChart.data.datasets[0].data = [33, 33, 33];
+		nutritionChart.update();
+
+		// 프로그래스바
+		updateProgressBar();
+
+	});
+
+	// TastyTales's Pick✨ 텍스트 클릭 이벤트 처리
+	$(".card-title.mb-9.fw-semibold").on("click", function () {
+		window.location.href = "/recipe/list";
+	});
+
+	// 내 냉장고 요약 클릭 시 my_frigo.html로 이동
+	$("#frigoLink").on("click", function () {
+		// 페이지 이동
+		window.location.href = "/my_frigo";
+	});
+
+	// 냉장고 셀렉트 박스
+	function fetchData(selectedValue) {
+		$.ajax({
+			url: "/index/refigoInfo",
+			data: {frigo_storage: selectedValue, mem_seq: mem_seq},
+			dataType: "json",
+			method: "post"
+		})
+			.done((res) => {
+				if (res.result == "success") {
+					let result = res.list;
+					let temp = "";
+					if (result.length === 0) {
+						temp = "<p style='text-align: center; font-size: 24px; font-weight: bold;'> <br /> <br /> <br />비어있습니다 <br /> 나의 냉장고에서 음식을 추가하세요</p>";
+
+					}
+					for (i = 0; i < result.length; i++) {
+						temp += `<a href="#none" onclick="fnIngreInfo('${result[i].ingre_seq}')" class="btn mb-1 waves-effect waves-light btn-rounded btn-outline-primary">${result[i].ingre_name}</a> &nbsp;&nbsp;&nbsp;&nbsp;`;
+					}
+					$("#fridgeInfo").html(temp);
+				}
+			})
+			.fail((res, error, status) => {
+				console.log(error)
+			})
+	}
+
+	// 영양 성분
+	function fnIngreInfo(ingre_seq) {
+		$("#nutritionInfoPlaceholder").hide(); 		// 안내글 삭제
+		$("#ingreInfoDetail").show();  					// 영양정보 표시
+		$.ajax({
+			url: "/index/nutrition/" + ingre_seq,
+			data: {ingre_seq: ingre_seq},
+			dataType: "json",
+			method: "post"
+		})
+			.done((res) => {
+				if (res.result == "success") {
+					let ingreData = res.resultDto;
+					// 가져온 재료의 영양 정보를 변수에 저장
+					let proteinValue = ingreData.ingre_pro;
+					let carbValue = ingreData.ingre_car;
+					let fatValue = ingreData.ingre_fat;
+
+					$("#ingreName").html(ingreData.ingre_name + " 의 영양 정보");
+					$("#ingrePro").html(proteinValue + " g");
+					$("#ingreCar").html(carbValue + " g");
+					$("#ingreFat").html(fatValue + " g");
+
+					// 차트 데이터 업데이트
+					nutritionChart.data.datasets[0].data = [proteinValue, carbValue, fatValue];
+					nutritionChart.update();
+				}
+			})
+			.fail((res, error, status) => {
+				console.log(error);
+			});
+
+	}
+	// 차트 스크립트
+	// 서버에서 받아온 단백질, 탄수화물, 지방 값
+	const proteinValue = 0; // 단백질 값
+	const carbValue = 0; // 탄수화물 값
+	const fatValue = 0; // 지방 값
+
+	// 차트 데이터 설정
+	let data = {
+		datasets: [{
+			data: [proteinValue, carbValue, fatValue],
+			backgroundColor: ['#aec0f5', '#ABCDEF', '#5e7ad6'],
+		}],
+		labels: ['단백질', '탄수화물', '지방'],
+	};
+
+	// 차트 그리기
+	let ctx = document.getElementById("nutritionChart").getContext('2d');
+	let nutritionChart = new Chart(ctx, {
+		type: 'pie',
+		data: data,
+		options: {
+			legend: {
+				display: false // 레이블 숨기기
+			}
+		},
+	});
+
+	// 프로그래스바
+	function updateProgressBar() {
+		const progressBar = $("#progressbar");
+		const progressBarStatus = $("#progressbarStatus");
+
+		$.ajax({
+			url: "/index/progressbar",
+			data: {mem_seq: mem_seq},
+			dataType: "json",
+			method: "post"
+		})
+			.done((res) => {
+				console.log(res);
+				if (res.f_status === "비움") {
+					progressBar.css("width", "100%");
+					progressBar.removeClass("bg-danger bg-warning bg-success");
+					progressBar.addClass("bg-empty");
+					progressBarStatus.html("냉장고가 비었습니다");
+				}
+
+				else if (res.f_status === "양호") {
+					progressBar.css("width", "25%");
+					progressBar.removeClass("bg-empty bg-danger bg-warning");
+					progressBar.addClass("bg-success");
+					progressBarStatus.html("양호");
+				}
+
+				else if (res.f_status === "보통") {
+					progressBar.css("width", "50%");
+					progressBar.removeClass("bg-empty bg-danger bg-success");
+					progressBar.addClass("bg-warning");
+					progressBarStatus.html("보통");
+				}
+
+				else {
+					progressBar.css("width", "75%");
+					progressBar.removeClass("bg-empty bg-warning bg-success");
+					progressBar.addClass("bg-danger");
+					progressBarStatus.html("위험");
+				}
+			})
+			.fail((res, error, status) => {
+				console.log(error);
+			});
+	}
+
+</script>

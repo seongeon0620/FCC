@@ -1,0 +1,104 @@
+{{>layout/header}}
+
+<body>
+	{{>layout/nav}}
+	<div class="page-wrapper" id="main-wrapper" data-layout="horizontal">
+		<div class="body-wrapper">
+			<div class="container-fluid">
+				<div class="card bg-light-info shadow-none position-relative overflow-hidden">
+					<div class="card-body px-4 py-3">
+						<div class="row align-items-center">
+							<div class="col-9">
+								<h4 class="fw-semibold mb-8">유저레시피 </h4>
+								<nav aria-label="breadcrumb">
+									<ol class="breadcrumb">
+										<li class="breadcrumb-item" aria-current="page">
+											<a href="/board/write"
+												class="btn d-block btn-outline-danger px-5 py-8 mb-2 mb-sm-0"> 레시피 쓰러가기 </a>
+										</li>
+									</ol>
+								</nav>
+							</div>
+							<div class="col-3">
+								<div class="text-center mb-n5">
+									<img src="/images/breadcrumb/ChatBc.png" alt="" class="img-fluid mb-n4">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					{{#boardList}}
+						<div class="col-md-6 col-lg-4">
+							<div class="card rounded-2 overflow-hidden hover-img">
+								<div class="position-relative">
+									<a href="/board/view/{{board_seq}}"><img src="/images/blog/blog-img6.jpg" class="card-img-top rounded-0" alt="..."></a>
+									<img src="/images/profile/user-1.jpg" alt=""
+										class="img-fluid rounded-circle position-absolute bottom-0 start-0 mb-n9 ms-9"
+										width="40" height="40" data-bs-toggle="tooltip" data-bs-placement="top"
+										data-bs-title="{{mem_nickname}}">
+								</div>
+								<div class="mx-5 px-4">{{mem_nickname}}</div>
+								<div class="card-body p-4">
+									<span
+										class="badge text-bg-light fs-2 rounded-4 py-1 px-2 lh-sm  mt-3">{{board_category}}</span>
+									<a class="d-block my-4 fs-5 text-dark fw-semibold"
+										href="/board/view/{{board_seq}}">{{board_title}}</a>
+									<div class="d-flex align-items-center gap-4">
+										<!-- 조회수 <div class="d-flex align-items-center gap-2"><i class="ti ti-eye text-dark fs-5"></i>9,125</div> -->
+										<div class="d-flex align-items-center gap-2"><i
+												class="ti ti-message-2 text-dark fs-5"></i>{{cmt_cnt}}</div>
+										<div class="d-flex align-items-center fs-2 ms-auto"><i
+												class="ti ti-point text-dark"></i>{{board_wdate}}</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					{{/boardList}}
+				</div>
+				<nav aria-label="...">
+					<ul class="pagination justify-content-center mb-0 mt-4">
+						{{{page}}}
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<!-- <button
+			class="btn btn-primary p-3 rounded-circle d-flex align-items-center justify-content-center customizer-btn"
+			type="button" id="btnWrite">
+			<i class="ti ti-pencil fs-7"></i>
+		</button> -->
+		<!-- ---------------------------------------------- -->
+		<!-- Import Js Files -->
+		<!-- ---------------------------------------------- -->
+		<script src="/libs/jquery/dist/jquery.min.js"></script>
+		<script src="/libs/simplebar/dist/simplebar.min.js"></script>
+		<script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+		<!-- ---------------------------------------------- -->
+		<!-- core files -->
+		<!-- ---------------------------------------------- -->
+		<script src="/js/app.min.js"></script>
+		<script src="/js/app.init.js"></script>
+		<script src="/js/app-style-switcher.js"></script>
+		<script src="/js/sidebarmenu.js"></script>
+
+		<script src="/js/custom.js"></script>
+		<!-- ---------------------------------------------- -->
+		<!-- current page js files -->
+		<!-- ---------------------------------------------- -->
+		<script src="/js/apps/chat.js"></script>
+</body>
+
+</html>
+
+<script>
+	/* $("#btnWrite").click(() => {
+		location.href = "/board/write";
+	});*/
+
+	function goPage(pageNumber) {
+		var url = "/board/list/" + pageNumber; // 페이지 번호에 맞는 URL 생성
+		window.location.href = url; // 새로운 URL로 페이지 이동
+	}
+</script>

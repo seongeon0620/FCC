@@ -5,10 +5,29 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="MemberDto"  type="com.woori.myapp.entity.MemberDto"/>
+		<typeAlias alias="BoardDto"  type="com.woori.myapp.entity.BoardDto"/>
+		<typeAlias alias="RecipeDto"  type="com.woori.myapp.entity.RecipeDto"/>
+		<typeAlias alias="IngreDto"  type="com.woori.myapp.entity.IngreDto"/>
+		<typeAlias alias="FrigoDto"  type="com.woori.myapp.entity.FrigoDto"/>
+		<typeAlias alias="FrigoResponseDto"  type="com.woori.myapp.entity.FrigoResponseDto"/>
+
+		<typeAlias alias="MainDto"  type="com.woori.myapp.entity.MainDto"/>
+		<typeAlias alias="CmtDto"  type="com.woori.myapp.entity.CmtDto"/>
+
+				<typeAlias alias="MainDto"  type="com.woori.myapp.entity.MainDto"/>
+		<typeAlias alias="LikesDto"  type="com.woori.myapp.entity.LikesDto"/>
+
 		
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/Member.xml" />
+		<mapper resource="mapper/Board.xml" />
+		<mapper resource="mapper/Recipe.xml" />
+		<mapper resource="mapper/Main.xml" />
+		<mapper resource="mapper/Chat.xml" />
+		<mapper resource="mapper/Ingre.xml" />
+		<mapper resource="mapper/Frigo.xml" />
+		<mapper resource="mapper/Cmt.xml" />
 	</mappers>
 </configuration>
 
